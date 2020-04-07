@@ -13,7 +13,7 @@ using APIGateway.Services;
 
 namespace APIGateway.Controllers
 {
-    //Hello world from TK
+    //Hello world from TK2
     public class HomeController : Controller
     {
         protected HttpClient httpClient;
