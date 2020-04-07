@@ -13,7 +13,11 @@ using APIGateway.Services;
 
 namespace APIGateway.Controllers
 {
+<<<<<<< HEAD
     //Hello world from XJ
+=======
+  
+>>>>>>> b3b3c8122ea4cdd036b8755aff886b95548ed148
     public class HomeController : Controller
     {
         protected HttpClient httpClient;
