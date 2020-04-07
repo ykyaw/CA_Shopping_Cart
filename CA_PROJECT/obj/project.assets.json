@@ -7139,25 +7139,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\user\\.nuget\\packages\\": {},
+    "C:\\Users\\guoxi\\.nuget\\packages\\": {},
     "C:\\Microsoft\\Xamarin\\NuGet\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\user\\Documents\\ca_project\\CA_PROJECT\\APIGateway.csproj",
+      "projectUniqueName": "C:\\Users\\guoxi\\Downloads\\SA4102 Foundation\\3. NETCORE\\CA Project\\CA_PROJECT\\APIGateway.csproj",
       "projectName": "APIGateway",
-      "projectPath": "C:\\Users\\user\\Documents\\ca_project\\CA_PROJECT\\APIGateway.csproj",
-      "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\user\\Documents\\ca_project\\CA_PROJECT\\obj\\",
+      "projectPath": "C:\\Users\\guoxi\\Downloads\\SA4102 Foundation\\3. NETCORE\\CA Project\\CA_PROJECT\\APIGateway.csproj",
+      "packagesPath": "C:\\Users\\guoxi\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\guoxi\\Downloads\\SA4102 Foundation\\3. NETCORE\\CA Project\\CA_PROJECT\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\guoxi\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
