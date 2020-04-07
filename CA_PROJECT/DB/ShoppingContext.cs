@@ -6,6 +6,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+/**
+ * Database Context
+ * @author WUYUDING
+ */
 namespace APIGateway.DB
 {
     public class ShoppingContext:DbContext
