@@ -13,6 +13,12 @@ namespace AccountAPI.DB
         {
 
         }
+
+        protected override void OnModelCreating(ModelBuilder model)
+        {
+            model.Entity<Useraccount>().HasIndex(model => model.email).IsUnique();
+            
+        }
         public DbSet<Useraccount> UserAccount_tbl { get; set; }
 
     }
