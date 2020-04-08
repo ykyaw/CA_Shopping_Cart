@@ -38,6 +38,7 @@ namespace WebShoppingCart_1A.Controllers
         }
 
 
+
         public IActionResult Index()
         {
             string sessionId = Request.Cookies["SessionId"];
