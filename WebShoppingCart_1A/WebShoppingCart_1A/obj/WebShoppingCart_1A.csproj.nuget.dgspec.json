@@ -1,26 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\user\\Documents\\ca_project\\WebShoppingCart_1A\\WebShoppingCart_1A\\WebShoppingCart_1A.csproj": {}
+    "C:\\Users\\Thatoe\\OneDrive\\OneDrive - National University of Singapore\\CA\\ca_project\\WebShoppingCart_1A\\WebShoppingCart_1A\\WebShoppingCart_1A.csproj": {}
   },
   "projects": {
-    "C:\\Users\\user\\Documents\\ca_project\\WebShoppingCart_1A\\WebShoppingCart_1A\\WebShoppingCart_1A.csproj": {
+    "C:\\Users\\Thatoe\\OneDrive\\OneDrive - National University of Singapore\\CA\\ca_project\\WebShoppingCart_1A\\WebShoppingCart_1A\\WebShoppingCart_1A.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\Documents\\ca_project\\WebShoppingCart_1A\\WebShoppingCart_1A\\WebShoppingCart_1A.csproj",
+        "projectUniqueName": "C:\\Users\\Thatoe\\OneDrive\\OneDrive - National University of Singapore\\CA\\ca_project\\WebShoppingCart_1A\\WebShoppingCart_1A\\WebShoppingCart_1A.csproj",
         "projectName": "WebShoppingCart_1A",
-        "projectPath": "C:\\Users\\user\\Documents\\ca_project\\WebShoppingCart_1A\\WebShoppingCart_1A\\WebShoppingCart_1A.csproj",
-        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\Documents\\ca_project\\WebShoppingCart_1A\\WebShoppingCart_1A\\obj\\",
+        "projectPath": "C:\\Users\\Thatoe\\OneDrive\\OneDrive - National University of Singapore\\CA\\ca_project\\WebShoppingCart_1A\\WebShoppingCart_1A\\WebShoppingCart_1A.csproj",
+        "packagesPath": "C:\\Users\\Thatoe\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Thatoe\\OneDrive\\OneDrive - National University of Singapore\\CA\\ca_project\\WebShoppingCart_1A\\WebShoppingCart_1A\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\Thatoe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -74,7 +69,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
