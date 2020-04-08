@@ -70,12 +70,12 @@ namespace APIGateway
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
-
-            //create database and table
+            
+            ////create database and table
             dbcontext.Database.EnsureDeleted();
             dbcontext.Database.EnsureCreated();
 
-            //insert data into database
+            ////insert data into database
             new DBSeeder(dbcontext);
 
         }
