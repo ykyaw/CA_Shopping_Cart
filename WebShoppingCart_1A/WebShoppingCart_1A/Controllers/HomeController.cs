@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WebShoppingCart_1A.Models;
@@ -17,9 +18,30 @@ namespace WebShoppingCart_1A.Controllers
         {
             _logger = logger;
         }
+        public IActionResult Login(string username) // link to our AccountAPI. to be completed
+        {
+            return View();
+        }
+
+        public IActionResult StartSession()
+        {
+            string sessionId = System.Guid.NewGuid().ToString();
+            //CookieOption options = new CookieOptions();// this code not yet needed for our project
+            Response.Cookies.Append("SessionId", sessionId);
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult EndSession() //end session added by TK. Check if this goes into loop
+        {
+            Response.Cookies.Delete("SessionId");
+            return RedirectToAction("Index"); 
+        }
+
 
         public IActionResult Index()
         {
+            string sessionId = Request.Cookies["SessionId"];
+            ViewData["Session"] = sessionId;
             return View();
         }
 
@@ -33,5 +55,9 @@ namespace WebShoppingCart_1A.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+    }
+
+    internal class CookieOption
+    {
     }
 }
