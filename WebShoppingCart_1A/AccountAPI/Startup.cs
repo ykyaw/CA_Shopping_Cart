@@ -58,6 +58,9 @@ namespace AccountAPI
 
             db.Database.EnsureDeleted();
             db.Database.EnsureCreated();
+
+            new AccountSeeder(db);
+           
         }
     }
 }
