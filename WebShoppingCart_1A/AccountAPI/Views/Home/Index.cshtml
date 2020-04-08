@@ -1,8 +1,21 @@
-﻿@{
+﻿@model LoginViewModel
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to AccountAPI</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<h1>Login</h1>
+<div>
+    <div>
+        <form action="Login" method="post">
+            <div>
+                <label>Username</label>
+                <input type="email" name="Email" placeholder="Email Address">
+            </div>
+            <div>
+                <label>Password</label>
+                <input type="password" name="Password" placeholder="Password">
+            </div>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
 </div>

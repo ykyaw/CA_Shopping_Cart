@@ -5,10 +5,9 @@ using System.Threading.Tasks;
 
 namespace AccountAPI.Models
 {
-    public class Useraccount
+    public class LoginViewModel
     {
-        public string Id { get; set; }
-        public string password { get; set; }
         public string email { get; set; }
+        public string Password { get; set; }
     }
 }
