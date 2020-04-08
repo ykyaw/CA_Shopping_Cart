@@ -63,3 +63,7 @@ C:\Users\user\Documents\ca_project\WebShoppingCart_1A\ProductsAPI\bin\Debug\netc
 C:\Users\user\Documents\ca_project\WebShoppingCart_1A\ProductsAPI\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\user\Documents\ca_project\WebShoppingCart_1A\ProductsAPI\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\user\Documents\ca_project\WebShoppingCart_1A\ProductsAPI\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\user\Documents\ca_project\WebShoppingCart_1A\ProductsAPI\bin\Debug\netcoreapp3.1\Castle.Core.dll
+C:\Users\user\Documents\ca_project\WebShoppingCart_1A\ProductsAPI\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Proxies.dll
+C:\Users\user\Documents\ca_project\WebShoppingCart_1A\ProductsAPI\obj\Debug\netcoreapp3.1\ProductsAPI.csproj.CoreCompileInputs.cache
+C:\Users\user\Documents\ca_project\WebShoppingCart_1A\ProductsAPI\obj\Debug\netcoreapp3.1\ProductsAPI.MvcApplicationPartsAssemblyInfo.cache
