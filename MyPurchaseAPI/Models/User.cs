@@ -9,8 +9,18 @@ namespace MyPurchaseAPI.Models
 {
     public class User
     {
-        [MaxLength(36)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        internal string errmsg;
+
         public string Id { get; set; }
+
+        public string Username { get; set; }
+
+        public string Password { get; set; }
+
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
+        public string Email { get; set; }
     }
 }

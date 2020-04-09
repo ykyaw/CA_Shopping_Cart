@@ -18,12 +18,12 @@ namespace MyPurchaseAPI.Services
 
         public List<PurchaseHistory> GetPurchaseHistories()
         {
-            List<PurchaseHistory> purchaseHistories = dbcontext.PurchaseHistories.ToList();
+            List<PurchaseHistory> purchaseHistories = dbcontext.PurchaseHistories.ToList<PurchaseHistory>();
             foreach(PurchaseHistory purchase in purchaseHistories)
             {
                 purchase.ActivationCodes = dbcontext.PurchaseActivationCodes.Where(
                     model=>model.PurchaseHistoryId==purchase.Id
-                    ).ToList();
+                    ).ToList<PurchaseActivationCode>();
             }
             return purchaseHistories;
         }

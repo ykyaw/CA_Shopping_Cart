@@ -40,12 +40,12 @@ namespace CartAPI.Controllers
 
         public double Total()
         {
-            
+            return 0;
         }
 
         public int updateQty()
         {
-            
+            return 0;
         }
 
         public void continueShopping()

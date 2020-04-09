@@ -9,6 +9,7 @@ using APIGateway.Models;
 using APIGateway.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 
 /**
 * MyPurchase Controller
@@ -32,20 +33,27 @@ namespace APIGateway.Controllers
 
         public IActionResult Index()
         {
-            return View();
-        }
-
-        //get purchase list
-        [Route("/Purchases")]
-        public string Purchases()
-        {
             string url;
             Operand operand = new Operand();
 
             url = cfg.GetValue<string>("Hosts:MyPurchaseAPI") + "/Home/Purchases";
             operand = dataFetcher.GetData(httpClient, url, operand);
+            var list = JsonConvert.DeserializeObject<List<PurchaseHistory>>(operand.Value.ToString());
             //return View(operand);
-            return JsonSerializer.Serialize(operand);
+            ViewData["purchases"] = list;
+            return View();
         }
+
+        //get purchase list
+        //[Route("/Purchases")]
+        //public string Purchases()
+        //{
+        //    string url;
+        //    Operand operand = new Operand();
+
+        //    url = cfg.GetValue<string>("Hosts:MyPurchaseAPI") + "/Home/Purchases";
+        //    operand = dataFetcher.GetData(httpClient, url, operand);
+        //    return System.Text.Json.JsonSerializer.Serialize(operand);
+        //}
     }
 }

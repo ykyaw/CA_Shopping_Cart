@@ -72,3 +72,7 @@ D:\mine\NUS\SA\MODULE\NETCORE\workspace\CA_PROJECT\CA_PROJECT\obj\Debug\netcorea
 D:\mine\NUS\SA\MODULE\NETCORE\workspace\CA_PROJECT\CA_PROJECT\obj\Debug\netcoreapp3.1\APIGateway.pdb
 D:\mine\NUS\SA\MODULE\NETCORE\workspace\CA_PROJECT\CA_PROJECT\obj\Debug\netcoreapp3.1\APIGateway.genruntimeconfig.cache
 D:\mine\NUS\SA\MODULE\NETCORE\workspace\CA_PROJECT\CA_PROJECT\obj\Debug\netcoreapp3.1\APIGateway.csprojAssemblyReference.cache
+D:\mine\NUS\SA\MODULE\NETCORE\workspace\CA_PROJECT\CA_PROJECT\obj\Debug\netcoreapp3.1\Razor\Views\Login.cshtml.g.cs
+D:\mine\NUS\SA\MODULE\NETCORE\workspace\CA_PROJECT\CA_PROJECT\obj\Debug\netcoreapp3.1\Razor\Views\Login\Index.cshtml.g.cs
+D:\mine\NUS\SA\MODULE\NETCORE\workspace\CA_PROJECT\CA_PROJECT\obj\Debug\netcoreapp3.1\Razor\Views\MyPurchase\index.cshtml.g.cs
+D:\mine\NUS\SA\MODULE\NETCORE\workspace\CA_PROJECT\CA_PROJECT\obj\Debug\netcoreapp3.1\Razor\Views\Cart\Index.cshtml.g.cs

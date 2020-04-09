@@ -3,11 +3,14 @@
 @using System.Diagnostics;
 @{
     ViewData["Title"] = "index";
+    var purchases = ViewData["purchases"] as List<PurchaseHistory>;
 }
 
 <div style="width:70%;margin:auto;">
     <h1 style="display:inline-block">My Purchase </h1> <a style="margin:0 5px 0 20px" href="~/Home/Index">my purchase</a>|<a style="margin:0 5px">Logout</a>
-    <div id="purchases">
+<div id="purchases">
+    @foreach (PurchaseHistory purchase in purchases)
+    {
         <div class="purchase-row">
             <div class="product">
                 <img class="product-img" src="~/assets/1586316169(1).jpg" />
@@ -19,20 +22,21 @@
                 <table id="purchase-detail-table">
                     <tr>
                         <td>Purchased On:</td>
-                        <td>8 Apr 2019</td>
+                        <td>@purchase.PurchaseDate</td>
                     </tr>
                     <tr>
                         <td>Quantity:</td>
-                        <td>2</td>
+                        <td>@purchase.Quantity</td>
                     </tr>
                     <tr>
                         <td>Activation Code:</td>
-                        <td>asdfasfasdf</td>
+                        <td></td>
                     </tr>
                 </table>
             </div>
         </div>
-    </div>
+    }
+                                                                                                                          </div>
 </div>
 
 

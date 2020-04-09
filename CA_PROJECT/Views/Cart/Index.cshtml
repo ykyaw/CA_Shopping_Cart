@@ -1,7 +1,7 @@
-﻿@model CartAPI.ViewModels.CartViewModel;
-@using System.Globalization;
+﻿@using System.Globalization;
 @{
     ViewBag.Title = "Cart";
+    var cartList = ViewData["cartList"] as List<Cart>;
 }
 
 <h2>Cart</h2>
@@ -17,7 +17,7 @@
 
     </tr>
 
-    @foreach (var cart in (List<Carts>)Session["Cart"])
+    @foreach (Cart cart in cartList)
     {
         <tr>
             <td></td>
