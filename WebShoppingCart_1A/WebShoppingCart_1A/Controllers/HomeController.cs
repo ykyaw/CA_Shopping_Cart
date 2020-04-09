@@ -28,7 +28,8 @@ namespace WebShoppingCart_1A.Controllers
             string sessionId = System.Guid.NewGuid().ToString();
             //CookieOption options = new CookieOptions();// this code not yet needed for our project
             Response.Cookies.Append("SessionId", sessionId);
-            return RedirectToAction("Index");
+            //return RedirectToAction("Index","Product");
+            return RedirectToAction("Index","Product");
         }
 
         public IActionResult EndSession() //end session added by TK. Check if this goes into loop

@@ -5,9 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ProductsAPI.ProductDB;
+using ProductsAPI.Service;
 
 namespace ProductsAPI
 {
@@ -24,10 +27,12 @@ namespace ProductsAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDbContext<ProductContext>(opt=> opt.UseLazyLoadingProxies().UseSqlServer(Configuration.GetConnectionString("DbConn")));
+            //services.AddSingleton<ProductContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,ProductContext dbcontext)
         {
             if (env.IsDevelopment())
             {
@@ -51,7 +56,15 @@ namespace ProductsAPI
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+
             });
+
+            //dbcontext.Database.EnsureDeleted();
+            //dbcontext.Database.EnsureCreated();
+
+            //new ProductSeeder(dbcontext);
+           
         }
     }
 }

@@ -3,13 +3,21 @@
 
 // Write your JavaScript code.
 
-$(document).ready(function () {
-    $("LoginToAcc").click(function (e) {
-        $.ajax({
-            type: "POST",
-            contenttype: "application/json",
-            url: "/Home/LoginToAcc",
-        })
-    })
-});
+//$(document).ready(function () {
+//    $("LoginToAcc").click(function (e) {
+//        var str1 = "1";
+//        var str2 = "2";
+//        $.ajax({
+//            type: "POST",
+//            contenttype: "application/json",
+//            url: "/Home/LoginToAcc",
+//            data: { a: str1, b: str2 },
+//            success: function (response) {
+
+//            },
+//            error: function (err) {
+
+//            }
+//        })
+
         
