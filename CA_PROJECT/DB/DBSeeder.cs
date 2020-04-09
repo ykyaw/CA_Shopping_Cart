@@ -8,27 +8,64 @@ namespace APIGateway.DB
 {
     public class DBSeeder
     {
-        public DBSeeder(ShoppingContext dbcontext)
+        public DBSeeder(UserContext dbcontext)
         {
-            // Create movies
+            // Example
+            /*
             ExampleMovie movie1 = new ExampleMovie();
             movie1.Id = Guid.NewGuid().ToString();
             movie1.Title = "Good Will Hunting";
             dbcontext.Add(movie1);
+            */
 
-            ExampleMovie movie2 = new ExampleMovie();
-            movie2.Id = Guid.NewGuid().ToString();
-            movie2.Title = "Men In Black";
-            dbcontext.Add(movie2);
+            User user1 = new User();
+            user1.Id = Guid.NewGuid().ToString();
+            user1.Username = "admin";
+            user1.Password = "admin";
+            user1.FirstName = "admin";
+            user1.LastName = "admin";
+            user1.Email = "admin@sa50.edu";
+            
+            dbcontext.Add(user1);
 
-            // Book movie
-            ExampleBooking booking1 = new ExampleBooking();
-            booking1.Id = Guid.NewGuid().ToString();
-            booking1.MovieId = movie1.Id;
-            booking1.UtcTimestamp = DateTime.UtcNow;
-            dbcontext.Add(booking1);
+            User user2 = new User();
+            user2.Id = Guid.NewGuid().ToString();
+            user2.Username = "jade";
+            user2.Password = "jade";
+            user2.FirstName = "Jade";
+            user2.LastName = "Lim";
+            user2.Email = "jade@sa50.edu";
+            dbcontext.Add(user2);
+
+            User user3 = new User();
+            user3.Id = Guid.NewGuid().ToString();
+            user3.Username = "sein";
+            user3.Password = "sein";
+            user3.FirstName = "Sein";
+            user3.LastName = "Hnin";
+            user3.Email = "sein@sa50.edu";
+            dbcontext.Add(user3);
+
+            User user4 = new User();
+            user4.Id = Guid.NewGuid().ToString();
+            user4.Username = "yuanchang";
+            user4.Password = "yuanchang";
+            user4.FirstName = "Yuanchang";
+            user4.LastName = "Zhang";
+            user4.Email = "yuanchang@sa50.edu";
+            dbcontext.Add(user4);
+
+            User user5 = new User();
+            user5.Id = Guid.NewGuid().ToString();
+            user5.Username = "yuding";
+            user5.Password = "yuding";
+            user5.FirstName = "Yuding";
+            user5.LastName = "Wu";
+            user5.Email = "yuding@sa50.edu";
+            dbcontext.Add(user5);
 
             dbcontext.SaveChanges();
+        
         }
-    }
-}
+      }
+   }

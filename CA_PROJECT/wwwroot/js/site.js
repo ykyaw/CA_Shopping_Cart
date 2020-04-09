@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿function Post(url, value) {
     return $.ajax({
         type: "POST",
@@ -74,13 +75,22 @@ function Delete(url) {
 }
 
 $(document).ready(function () {
-    var str = CryptoJS.SHA256("aaaaaa").toString();
-    Post("/example",str)
-        .then(function (result) {
-            console.log("success in post" + result);
-        })
-        .catch(function (err) {
-            console.log("error in post: " + JSON.stringify(err));
-        })
+    
 
 })
+=======
+﻿$("#loginBtn").click(function () {
+    var username = $("#username").val();
+    var psw = $("#psw").val();
+    if (uname.length === 0 || pwd.length === 0) {
+        $("errmsg").html("All fields are required.");
+        return;
+    }
+
+    $("#hashPwd").val(CryptoJS.SHA256(pwd).toString());
+    $("#pwd").val("");
+
+    $("#loginForm").submit();
+});
+   // Post("/login", { username: username, psw: psw })
+>>>>>>> e51881c60c2a70bc2931ebf83231836f73742de4
