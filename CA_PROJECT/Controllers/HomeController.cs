@@ -19,6 +19,11 @@ namespace APIGateway.Controllers
         protected IConfiguration cfg;
         protected DataFetcher dataFetcher;
 
+        public IActionResult Purchase()
+        {
+            return View();
+        }
+
         public HomeController(HttpClient httpClient, IConfiguration cfg,
              DataFetcher dataFetcher)
         {
@@ -27,12 +32,12 @@ namespace APIGateway.Controllers
             this.dataFetcher = dataFetcher;
         }
 
-        [Route("/example")]
+        [Route("/purchaseHistory")]
         public string Example([FromBody] Operand operand)
         {
             string url;
 
-            url = cfg.GetValue<string>("Hosts:TokenAPI") + "/Home/Example";
+            url = cfg.GetValue<string>("Hosts:MyPurchaseAPI") + "/Home/Example";
             operand = dataFetcher.GetData(httpClient, url, operand);
             return JsonSerializer.Serialize(operand);
         }

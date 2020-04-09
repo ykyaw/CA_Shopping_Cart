@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIGateway", "CA_PROJECT\APIGateway.csproj", "{297E5AA3-BE77-4769-A294-7141429BA6BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokenAPI", "TokenAPI\TokenAPI.csproj", "{FE086761-EF64-4BFB-961C-DB09F4258DC4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TokenAPI", "TokenAPI\TokenAPI.csproj", "{FE086761-EF64-4BFB-961C-DB09F4258DC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyPurchaseAPI", "MyPurchaseAPI\MyPurchaseAPI.csproj", "{809A33C6-CB7F-41CA-90DD-ACD2E8977403}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{FE086761-EF64-4BFB-961C-DB09F4258DC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE086761-EF64-4BFB-961C-DB09F4258DC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE086761-EF64-4BFB-961C-DB09F4258DC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{809A33C6-CB7F-41CA-90DD-ACD2E8977403}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{809A33C6-CB7F-41CA-90DD-ACD2E8977403}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{809A33C6-CB7F-41CA-90DD-ACD2E8977403}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{809A33C6-CB7F-41CA-90DD-ACD2E8977403}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
