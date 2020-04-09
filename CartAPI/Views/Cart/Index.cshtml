@@ -1,0 +1,33 @@
+﻿@model CartAPI.ViewModels.CartViewModel;
+@using System.Globalization;
+@{
+    ViewBag.Title = "Cart";
+}
+
+<h2>Cart</h2>
+
+
+<table border="1">
+    <tr>
+
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+
+    </tr>
+
+    @foreach (var cart in (List<Carts>)Session["Cart"])
+    {
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    }
+</table>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/cart.js"></script>
+

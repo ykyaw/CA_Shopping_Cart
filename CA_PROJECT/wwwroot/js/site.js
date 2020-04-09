@@ -74,13 +74,6 @@ function Delete(url) {
 }
 
 $(document).ready(function () {
-    var str = CryptoJS.SHA256("aaaaaa").toString();
-    Post("/example",str)
-        .then(function (result) {
-            console.log("success in post" + result);
-        })
-        .catch(function (err) {
-            console.log("error in post: " + JSON.stringify(err));
-        })
+    
 
 })

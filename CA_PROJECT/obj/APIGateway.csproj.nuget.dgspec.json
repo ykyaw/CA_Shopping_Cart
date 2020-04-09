@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\mine\\NUS\\SA\\MODULE\\NETCORE\\workspace\\CA_PROJECT\\CA_PROJECT\\APIGateway.csproj": {}
+    "C:\\Users\\Lenovo X240\\Documents\\ca_project\\CA_PROJECT\\APIGateway.csproj": {}
   },
   "projects": {
-    "D:\\mine\\NUS\\SA\\MODULE\\NETCORE\\workspace\\CA_PROJECT\\CA_PROJECT\\APIGateway.csproj": {
+    "C:\\Users\\Lenovo X240\\Documents\\ca_project\\CA_PROJECT\\APIGateway.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\mine\\NUS\\SA\\MODULE\\NETCORE\\workspace\\CA_PROJECT\\CA_PROJECT\\APIGateway.csproj",
+        "projectUniqueName": "C:\\Users\\Lenovo X240\\Documents\\ca_project\\CA_PROJECT\\APIGateway.csproj",
         "projectName": "APIGateway",
-        "projectPath": "D:\\mine\\NUS\\SA\\MODULE\\NETCORE\\workspace\\CA_PROJECT\\CA_PROJECT\\APIGateway.csproj",
-        "packagesPath": "C:\\Users\\于一\\.nuget\\packages\\",
-        "outputPath": "D:\\mine\\NUS\\SA\\MODULE\\NETCORE\\workspace\\CA_PROJECT\\CA_PROJECT\\obj\\",
+        "projectPath": "C:\\Users\\Lenovo X240\\Documents\\ca_project\\CA_PROJECT\\APIGateway.csproj",
+        "packagesPath": "C:\\Users\\Lenovo X240\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Lenovo X240\\Documents\\ca_project\\CA_PROJECT\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\于一\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Lenovo X240\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
