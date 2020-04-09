@@ -1,8 +1,14 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
+<<<<<<< HEAD
       "C:\\Users\\Lenovo X240\\.dotnet\\store\\|arch|\\|tfm|",
       "C:\\Users\\Lenovo X240\\.nuget\\packages"
+=======
+      "C:\\Users\\Jade Lim\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Jade Lim\\.nuget\\packages",
+      "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+>>>>>>> e51881c60c2a70bc2931ebf83231836f73742de4
     ]
   }
 }

@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "C:\\Users\\Lenovo X240\\Documents\\ca_project\\CA_PROJECT\\APIGateway.csproj": {}
   },
   "projects": {
@@ -12,9 +13,26 @@
         "projectPath": "C:\\Users\\Lenovo X240\\Documents\\ca_project\\CA_PROJECT\\APIGateway.csproj",
         "packagesPath": "C:\\Users\\Lenovo X240\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Lenovo X240\\Documents\\ca_project\\CA_PROJECT\\obj\\",
+=======
+    "C:\\Users\\Jade Lim\\Documents\\ca_project\\CA_PROJECT\\APIGateway.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Jade Lim\\Documents\\ca_project\\CA_PROJECT\\APIGateway.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Jade Lim\\Documents\\ca_project\\CA_PROJECT\\APIGateway.csproj",
+        "projectName": "APIGateway",
+        "projectPath": "C:\\Users\\Jade Lim\\Documents\\ca_project\\CA_PROJECT\\APIGateway.csproj",
+        "packagesPath": "C:\\Users\\Jade Lim\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Jade Lim\\Documents\\ca_project\\CA_PROJECT\\obj\\",
+>>>>>>> e51881c60c2a70bc2931ebf83231836f73742de4
         "projectStyle": "PackageReference",
         "configFilePaths": [
+<<<<<<< HEAD
           "C:\\Users\\Lenovo X240\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+          "C:\\Users\\Jade Lim\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> e51881c60c2a70bc2931ebf83231836f73742de4
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -49,6 +67,10 @@
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[5.0.0-preview.2.20159.4, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[3.1.1, )"
             }
           },
           "imports": [
@@ -69,7 +91,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

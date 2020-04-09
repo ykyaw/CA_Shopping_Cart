@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "/EtKK+41w6NTOX0vX+eLE9ZUdw5U11Xy3SaHBZd/wvBxDCHn1mGFmNqFCyuy8UsKypJksJ3R7Nh7Q5lj3t9R1g==",
   "success": true,
   "projectFilePath": "C:\\Users\\Lenovo X240\\Documents\\ca_project\\TokenAPI\\TokenAPI.csproj",
+=======
+  "dgSpecHash": "1eVWa2ZjCSN9vOCfQ8lhARHAO8wDV2/MgxD3d1CResBzu8uVxYcbBHljM9N/wfCO49NKFmlcfPrFxWMDage5Tw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Jade Lim\\Documents\\ca_project\\TokenAPI\\TokenAPI.csproj",
+>>>>>>> e51881c60c2a70bc2931ebf83231836f73742de4
   "expectedPackageFiles": [],
   "logs": []
 }

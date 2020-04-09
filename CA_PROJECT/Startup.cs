@@ -32,17 +32,18 @@ namespace APIGateway
         {
             services.AddControllersWithViews();
 
+
             //inject the service
             services.AddScoped<HttpClient>();
             services.AddScoped<DataFetcher>();
             //inject dbcontext
-            services.AddDbContext<ShoppingContext>(opt =>
+            services.AddDbContext<UserContext>(opt =>
                 opt.UseLazyLoadingProxies()
                 .UseSqlServer(Configuration.GetConnectionString("DbConn")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,ShoppingContext dbcontext)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,UserContext dbcontext)
         {
             if (env.IsDevelopment())
             {
@@ -70,12 +71,12 @@ namespace APIGateway
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
-
-            //create database and table
+            
+            ////create database and table
             dbcontext.Database.EnsureDeleted();
             dbcontext.Database.EnsureCreated();
 
-            //insert data into database
+            ////insert data into database
             new DBSeeder(dbcontext);
 
         }

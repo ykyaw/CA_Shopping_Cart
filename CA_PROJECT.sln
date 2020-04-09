@@ -7,7 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIGateway", "CA_PROJECT\AP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TokenAPI", "TokenAPI\TokenAPI.csproj", "{FE086761-EF64-4BFB-961C-DB09F4258DC4}"
 EndProject
+<<<<<<< HEAD
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CartAPI", "CartAPI\CartAPI.csproj", "{C07AE4F8-AB79-42FB-89F6-1ED6A406CE48}"
+=======
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyPurchaseAPI", "MyPurchaseAPI\MyPurchaseAPI.csproj", "{809A33C6-CB7F-41CA-90DD-ACD2E8977403}"
+>>>>>>> e51881c60c2a70bc2931ebf83231836f73742de4
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +27,17 @@ Global
 		{FE086761-EF64-4BFB-961C-DB09F4258DC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE086761-EF64-4BFB-961C-DB09F4258DC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE086761-EF64-4BFB-961C-DB09F4258DC4}.Release|Any CPU.Build.0 = Release|Any CPU
+<<<<<<< HEAD
 		{C07AE4F8-AB79-42FB-89F6-1ED6A406CE48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C07AE4F8-AB79-42FB-89F6-1ED6A406CE48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C07AE4F8-AB79-42FB-89F6-1ED6A406CE48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C07AE4F8-AB79-42FB-89F6-1ED6A406CE48}.Release|Any CPU.Build.0 = Release|Any CPU
+=======
+		{809A33C6-CB7F-41CA-90DD-ACD2E8977403}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{809A33C6-CB7F-41CA-90DD-ACD2E8977403}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{809A33C6-CB7F-41CA-90DD-ACD2E8977403}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{809A33C6-CB7F-41CA-90DD-ACD2E8977403}.Release|Any CPU.Build.0 = Release|Any CPU
+>>>>>>> e51881c60c2a70bc2931ebf83231836f73742de4
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
