@@ -35,3 +35,40 @@ D:\mine\NUS\SA\MODULE\NETCORE\workspace\CA_PROJECT\TokenAPI\obj\Debug\netcoreapp
 D:\mine\NUS\SA\MODULE\NETCORE\workspace\CA_PROJECT\TokenAPI\obj\Debug\netcoreapp3.1\TokenAPI.genruntimeconfig.cache
 D:\mine\NUS\SA\MODULE\NETCORE\workspace\CA_PROJECT\TokenAPI\obj\Debug\netcoreapp3.1\TokenAPI.csproj.CopyComplete
 D:\mine\NUS\SA\MODULE\NETCORE\workspace\CA_PROJECT\TokenAPI\obj\Debug\netcoreapp3.1\TokenAPI.csprojAssemblyReference.cache
+C:\Users\Jade Lim\Documents\ca_project\TokenAPI\bin\Debug\netcoreapp3.1\appsettings.Development.json
+C:\Users\Jade Lim\Documents\ca_project\TokenAPI\bin\Debug\netcoreapp3.1\appsettings.json
+C:\Users\Jade Lim\Documents\ca_project\TokenAPI\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
+C:\Users\Jade Lim\Documents\ca_project\TokenAPI\bin\Debug\netcoreapp3.1\TokenAPI.exe
+C:\Users\Jade Lim\Documents\ca_project\TokenAPI\bin\Debug\netcoreapp3.1\TokenAPI.deps.json
+C:\Users\Jade Lim\Documents\ca_project\TokenAPI\bin\Debug\netcoreapp3.1\TokenAPI.runtimeconfig.json
+C:\Users\Jade Lim\Documents\ca_project\TokenAPI\bin\Debug\netcoreapp3.1\TokenAPI.runtimeconfig.dev.json
+C:\Users\Jade Lim\Documents\ca_project\TokenAPI\bin\Debug\netcoreapp3.1\TokenAPI.dll
+C:\Users\Jade Lim\Documents\ca_project\TokenAPI\bin\Debug\netcoreapp3.1\TokenAPI.pdb
+C:\Users\Jade Lim\Documents\ca_project\TokenAPI\bin\Debug\netcoreapp3.1\TokenAPI.Views.dll
+C:\Users\Jade Lim\Documents\ca_project\TokenAPI\bin\Debug\netcoreapp3.1\TokenAPI.Views.pdb
+C:\Users\Jade Lim\Documents\ca_project\TokenAPI\obj\Debug\netcoreapp3.1\TokenAPI.csprojAssemblyReference.cache
+C:\Users\Jade Lim\Documents\ca_project\TokenAPI\obj\Debug\netcoreapp3.1\TokenAPI.csproj.CoreCompileInputs.cache
+C:\Users\Jade Lim\Documents\ca_project\TokenAPI\obj\Debug\netcoreapp3.1\TokenAPI.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Jade Lim\Documents\ca_project\TokenAPI\obj\Debug\netcoreapp3.1\TokenAPI.RazorAssemblyInfo.cache
+C:\Users\Jade Lim\Documents\ca_project\TokenAPI\obj\Debug\netcoreapp3.1\TokenAPI.RazorAssemblyInfo.cs
+C:\Users\Jade Lim\Documents\ca_project\TokenAPI\obj\Debug\netcoreapp3.1\TokenAPI.AssemblyInfoInputs.cache
+C:\Users\Jade Lim\Documents\ca_project\TokenAPI\obj\Debug\netcoreapp3.1\TokenAPI.AssemblyInfo.cs
+C:\Users\Jade Lim\Documents\ca_project\TokenAPI\obj\Debug\netcoreapp3.1\TokenAPI.TagHelpers.input.cache
+C:\Users\Jade Lim\Documents\ca_project\TokenAPI\obj\Debug\netcoreapp3.1\TokenAPI.TagHelpers.output.cache
+C:\Users\Jade Lim\Documents\ca_project\TokenAPI\obj\Debug\netcoreapp3.1\TokenAPI.RazorCoreGenerate.cache
+C:\Users\Jade Lim\Documents\ca_project\TokenAPI\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
+C:\Users\Jade Lim\Documents\ca_project\TokenAPI\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
+C:\Users\Jade Lim\Documents\ca_project\TokenAPI\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
+C:\Users\Jade Lim\Documents\ca_project\TokenAPI\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
+C:\Users\Jade Lim\Documents\ca_project\TokenAPI\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
+C:\Users\Jade Lim\Documents\ca_project\TokenAPI\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
+C:\Users\Jade Lim\Documents\ca_project\TokenAPI\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
+C:\Users\Jade Lim\Documents\ca_project\TokenAPI\obj\Debug\netcoreapp3.1\TokenAPI.RazorTargetAssemblyInfo.cache
+C:\Users\Jade Lim\Documents\ca_project\TokenAPI\obj\Debug\netcoreapp3.1\TokenAPI.RazorTargetAssemblyInfo.cs
+C:\Users\Jade Lim\Documents\ca_project\TokenAPI\obj\Debug\netcoreapp3.1\TokenAPI.Views.pdb
+C:\Users\Jade Lim\Documents\ca_project\TokenAPI\obj\Debug\netcoreapp3.1\staticwebassets\TokenAPI.StaticWebAssets.Manifest.cache
+C:\Users\Jade Lim\Documents\ca_project\TokenAPI\obj\Debug\netcoreapp3.1\staticwebassets\TokenAPI.StaticWebAssets.xml
+C:\Users\Jade Lim\Documents\ca_project\TokenAPI\obj\Debug\netcoreapp3.1\TokenAPI.dll
+C:\Users\Jade Lim\Documents\ca_project\TokenAPI\obj\Debug\netcoreapp3.1\TokenAPI.pdb
+C:\Users\Jade Lim\Documents\ca_project\TokenAPI\obj\Debug\netcoreapp3.1\TokenAPI.genruntimeconfig.cache
+C:\Users\Jade Lim\Documents\ca_project\TokenAPI\obj\Debug\netcoreapp3.1\TokenAPI.csproj.CopyComplete
