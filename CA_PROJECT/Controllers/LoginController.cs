@@ -8,6 +8,8 @@ using Microsoft.Data.SqlClient;
 using APIGateway.DB;
 using APIGateway.Services;
 using Microsoft.AspNetCore.Http;
+using APIGateway.Utils;
+using Newtonsoft.Json;
 
 namespace APIGateway.Controllers
 {
@@ -23,12 +25,6 @@ namespace APIGateway.Controllers
 
         public IActionResult Index()
         {
-            User user = new User { Id = "123" };
-            string sessionId = Guid.NewGuid().ToString();//get session id
-            CookieOptions options = new CookieOptions();
-            options.Expires = DateTime.Now.AddDays(1);//set cookie expires day 
-            Response.Cookies.Append("SessionId", sessionId, options);
-            HttpContext.Session.SetString(sessionId,user.Id);
             return View();
         }
 

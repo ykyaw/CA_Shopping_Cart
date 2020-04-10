@@ -1,4 +1,5 @@
 ﻿using APIGateway.Models;
+using APIGateway.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace APIGateway.DB
             User user1 = new User();
             user1.Id = Guid.NewGuid().ToString();
             user1.Username = "admin";
-            user1.Password = "admin";
+            user1.Password = Crypto.Sha256("admin");
             user1.FirstName = "admin";
             user1.LastName = "admin";
             user1.Email = "admin@sa50.edu";

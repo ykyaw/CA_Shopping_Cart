@@ -54,7 +54,7 @@ namespace MyPurchaseAPI
 
             app.UseSession();
 
-            //app.UseMiddlewareExtensions();
+            app.UseMiddlewareExtensions();
 
             app.UseEndpoints(endpoints =>
             {

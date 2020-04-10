@@ -24,7 +24,7 @@ namespace APIGateway.Middlewares
             string controller = (string)context.Request.RouteValues["controller"];
             string action = (string)context.Request.RouteValues["action"];
             //get sessionId from cookie
-            if (controller == "Login")
+            if (controller == "Login"||controller=="Gallery")
             {
 
             }

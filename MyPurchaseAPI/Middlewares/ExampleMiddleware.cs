@@ -1,5 +1,8 @@
 ﻿
 using Microsoft.AspNetCore.Http;
+using MyPurchaseAPI.Models;
+using MyPurchaseAPI.Utils;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -20,28 +23,9 @@ namespace MyPurchaseAPI.Middlewares
 
         public async Task Invoke(HttpContext context)
         {
-            string controller = (string)context.Request.RouteValues["controller"];
-            string action = (string)context.Request.RouteValues["action"];
-            //get sessionId from cookie
-            if (controller == "Login")
-            {
-
-            }
-            else
-            {
-                string sessionId = context.Request.Cookies["sessionId"];
-                //judge the session id
-                //if (sessionId == null)
-                //{
-                //    context.Response.Redirect("https://" +
-                //        context.Request.Host + "/Login/Index");
-                //    return;
-                //}
-                string userId = context.Session.GetString(sessionId);
-                //judge the userId is correct
-            }
-
-
+            User user = new User { Id = "123" };
+            string encrypt = RSA.RSAEncryption(user);
+            User decrypt = JsonConvert.DeserializeObject<User>(RSA.RSADecrypt(encrypt).ToString());
             await next(context);
         }
     }

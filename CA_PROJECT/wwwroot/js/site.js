@@ -76,14 +76,14 @@ function Delete(url) {
 $(document).ready(function () {
 
     $("#loginBtn").click(function () {
-        var username = $("#username").val();
+        var username = $("#uname").val();
         var psw = $("#psw").val();
-        if (uname.length === 0 || pwd.length === 0) {
+        if (username.length === 0 || psw.length === 0) {
             $("errmsg").html("All fields are required.");
             return;
         }
 
-        $("#hashPwd").val(CryptoJS.SHA256(pwd).toString());
+        $("#hashPwd").val(CryptoJS.SHA256(psw).toString());
         $("#pwd").val("");
 
         $("#loginForm").submit();
