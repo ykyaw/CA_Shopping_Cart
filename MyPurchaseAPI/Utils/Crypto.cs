@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace APIGateway.Utils
+namespace MyPurchaseAPI.Utils
 {
     public class Crypto
     {
@@ -15,8 +15,6 @@ namespace APIGateway.Utils
 
             byte[] hash = sha256.ComputeHash(Encoding.UTF8.GetBytes(str));
             return BitConverter.ToString(hash).Replace("-", "").ToLower();
-
-            
         }
     }
 }

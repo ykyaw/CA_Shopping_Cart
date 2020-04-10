@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MyPurchaseAPI.DB;
+using MyPurchaseAPI.Extensions;
 using MyPurchaseAPI.Services;
 
 namespace MyPurchaseAPI
@@ -27,6 +28,7 @@ namespace MyPurchaseAPI
         {
             services.AddControllersWithViews();
             services.AddScoped<Purchase>();
+            services.AddSession();
             //inject dbcontext
             services.AddDbContext<PurchaseHistoryContext>(opt =>
                 opt.UseLazyLoadingProxies()
@@ -49,6 +51,10 @@ namespace MyPurchaseAPI
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSession();
+
+            app.UseMiddlewareExtensions();
 
             app.UseEndpoints(endpoints =>
             {
