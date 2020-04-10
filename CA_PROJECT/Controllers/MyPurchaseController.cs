@@ -7,6 +7,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using APIGateway.Models;
 using APIGateway.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
@@ -35,7 +36,8 @@ namespace APIGateway.Controllers
         {
             string url;
             Operand operand = new Operand();
-
+            string sessionId = Request.Cookies["sessionId"];
+            string userId = HttpContext.Session.GetString(sessionId);
             url = cfg.GetValue<string>("Hosts:MyPurchaseAPI") + "/Home/Purchases";
             operand = dataFetcher.GetData(httpClient, url, operand);
             var list = JsonConvert.DeserializeObject<List<PurchaseHistory>>(operand.Value.ToString());

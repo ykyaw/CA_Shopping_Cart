@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MyPurchaseAPI.Models;
@@ -31,6 +32,8 @@ namespace MyPurchaseAPI.Controllers
         //get purchase list
         public string Purchases([FromBody] Operand operand)
         {
+            string sessionId = Request.Cookies["sessionId"];
+            string userId = HttpContext.Session.GetString(sessionId);
             List<PurchaseHistory> purchaseHistories = purchase.GetPurchaseHistories();
             operand.Value = purchaseHistories;
             return JsonSerializer.Serialize(operand);

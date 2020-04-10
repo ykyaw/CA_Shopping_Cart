@@ -1,5 +1,4 @@
-﻿using APIGateway.Models;
-using APIGateway.Utils;
+﻿
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -7,7 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace APIGateway.Middlewares
+namespace MyPurchaseAPI.Middlewares
 {
     public class ExampleMiddleware
     {
