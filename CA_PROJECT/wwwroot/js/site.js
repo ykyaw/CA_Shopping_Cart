@@ -75,18 +75,29 @@ function Delete(url) {
 
 $(document).ready(function () {
 
-    $("#loginBtn").click(function () {
-        var username = $("#uname").val();
-        var psw = $("#psw").val();
-        if (username.length === 0 || psw.length === 0) {
-            $("errmsg").html("All fields are required.");
+    $("#loginBtn").on("click", function (e) {
+        e.preventDefault();
+        var uname = $("#uname").val();
+        var pwd = $("#pwd").val();
+        if (uname.length === 0 || pwd.length === 0) {
+            $("#errmsg").html("All fields are required.");
             return;
         }
 
         $("#hashPwd").val(CryptoJS.SHA256(psw).toString());
         $("#pwd").val("");
 
-        $("#loginForm").submit();
-    });
+        var hashPwd = $("#hashPwd").val();
 
-})
+        Post("loginBtn", { Username: uname, Password: hashPwd })
+            .then(function (response) {
+                var result = JSON.parse(response);
+            })
+            .catch(function (err) {
+                console.log("Error logging in", JSON.stringify(err));;
+            })
+
+        });
+
+        //$("#loginForm").submit();
+    });

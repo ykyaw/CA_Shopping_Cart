@@ -16,11 +16,9 @@ namespace APIGateway.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string Id { get; set; }
 
-        [Required(ErrorMessage="This field is required.")]
         [Required(AllowEmptyStrings=false, ErrorMessage="This field is required.")]
         public string Username { get; set; }
 
-        [Required(ErrorMessage="This field is required.")]
         [Required(AllowEmptyStrings=false, ErrorMessage="This field is required.")]
         [DataType(DataType.Password)]
         public string Password { get; set; }

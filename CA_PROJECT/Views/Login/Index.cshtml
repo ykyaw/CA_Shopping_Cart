@@ -7,39 +7,47 @@
 
 }
 
-<h2>Welcome</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customer Login</title>
+    <link rel="stylesheet" href="~/css/Login.css" />
+</head>
 
-<form id="loginForm" action="Home/" method="POST">
+<body>
+    <div class="loginbox">
+        <img src="~/assets/avatar.png" class="avatar">
+        <h1>Customer Login</h1>
 
-    <table align="center">
-        <tr>
-            <td>Username:</td>
-            <td>
-                <input id="uname" name="username" value="" />
-            </td>
-        <tr>
-            <td>Password:</td>
-            <td><input id="pwd" name="password" type="password" /></td>
-        </tr>
-        <tr>
-            <td colspan="2" align="right">
-                <input id="loginBtn" type="submit" value="Login" />
-                <input id="clearBtn" type="reset" value="Clear" />
-            </td>
-            <td></td>
-        </tr>
-        <tr>
-            <td colspan="2" class="err">
-                <div id="errmsg">
-                </div>
-            </td>
-        </tr>
-    </table>
-    <input id="hashPwd" name="hashPasswd" type="hidden" />
-</form>
+        <form id="loginForm" action="Home/" method="POST">
+            <p>Username</p>
+            <input id="uname" name="" type="text" placeholder="Enter Username" value="" />
+            <p>Password</p>
+            <input id="pwd" name="" type="password" placeholder="Enter Password" value="" />
+
+            <input id="loginBtn" type="submit" value="LOGIN" />
+
+            <div id="errmsg">
+            </div>
+
+            <input id="hashPwd" name="hashPasswd" type="hidden" />
+
+        </form>
+    </div>
+</body>
+
+</html>
+
 
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/lib/crypto/core-min.js"></script>
 <script src="~/lib/crypto/sha256.js"></script>
+<script src="~/js/site.js"></script>
+
+
+
+

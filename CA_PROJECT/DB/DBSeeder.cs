@@ -11,13 +11,6 @@ namespace APIGateway.DB
     {
         public DBSeeder(UserContext dbcontext)
         {
-            // Example
-            /*
-            ExampleMovie movie1 = new ExampleMovie();
-            movie1.Id = Guid.NewGuid().ToString();
-            movie1.Title = "Good Will Hunting";
-            dbcontext.Add(movie1);
-            */
 
             User user1 = new User();
             user1.Id = Guid.NewGuid().ToString();
@@ -26,13 +19,11 @@ namespace APIGateway.DB
             user1.FirstName = "admin";
             user1.LastName = "admin";
             user1.Email = "admin@sa50.edu";
-            
             dbcontext.Add(user1);
 
             User user2 = new User();
             user2.Id = Guid.NewGuid().ToString();
             user2.Username = "jade";
-            user2.Password = "jade";
             user2.Password = Crypto.Sha256("jade");
             user2.FirstName = "Jade";
             user2.LastName = "Lim";
@@ -42,7 +33,6 @@ namespace APIGateway.DB
             User user3 = new User();
             user3.Id = Guid.NewGuid().ToString();
             user3.Username = "sein";
-            user3.Password = "sein";
             user3.Password = Crypto.Sha256("sein");
             user3.FirstName = "Sein";
             user3.LastName = "Hnin";
@@ -52,7 +42,6 @@ namespace APIGateway.DB
             User user4 = new User();
             user4.Id = Guid.NewGuid().ToString();
             user4.Username = "yuanchang";
-            user4.Password = "yuanchang";
             user4.Password = Crypto.Sha256("yuanchang");
             user4.FirstName = "Yuanchang";
             user4.LastName = "Zhang";
@@ -62,7 +51,6 @@ namespace APIGateway.DB
             User user5 = new User();
             user5.Id = Guid.NewGuid().ToString();
             user5.Username = "yuding";
-            user5.Password = "yuding";
             user5.Password = Crypto.Sha256("yuding");
             user5.FirstName = "Yuding";
             user5.LastName = "Wu";
