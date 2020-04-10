@@ -37,6 +37,16 @@ namespace CartAPI.Controllers
             ViewData["cartList"] = list;
             return View();
         }
+
+        public string Checkout()
+        {
+            return "";
+        }
+
+        public string ChangeQuantity()
+        {
+            return "";
+        }
         public double Total()
         {
             return 0;
