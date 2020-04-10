@@ -7,7 +7,7 @@ namespace WebShoppingCart_1A.Models
 {
     public class Product
     {
-       
+      
         public string Id { get; set; }
 
         public string productName { get; set; }

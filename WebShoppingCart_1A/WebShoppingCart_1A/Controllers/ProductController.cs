@@ -23,7 +23,7 @@ namespace WebShoppingCart_1A.Controllers
 {
     public class ProductController : Controller
     {
-
+        List<Product> products = new List<Product>();
         protected HttpClient httpClient;
         protected IConfiguration cfg;
         protected DataFetcher dataFetcher;
@@ -41,7 +41,7 @@ namespace WebShoppingCart_1A.Controllers
             url = cfg.GetValue<string>("Hosts:ProductsAPI") + "/Home/getProducts";
             Result result = new Result();
             result = dataFetcher.GetData(httpClient, url, result);
-            List<Product> products = new List<Product>();
+            
             products = JsonConvert.DeserializeObject<List<Product>>(result.Value.ToString());
             //IEnumerable<Product> iter =
             //    from product in products
@@ -53,6 +53,20 @@ namespace WebShoppingCart_1A.Controllers
 
             ViewData["products"] = products;
             return View();
+
+        }
+
+        [HttpPost]
+        public void AddToCart([FromBody] string productId /*Product product*/)
+        {
+
+            string _productID = productId;//get input from product page
+
+            //string url;
+            //url = cfg.GetValue<string>("Hosts:ProductsAPI") + "/Home/getProducts";
+            //Result result = new Result();
+            //result = dataFetcher.GetData(httpClient, url, result);
+            //products = JsonConvert.DeserializeObject<List<Product>>(result.Value.ToString());
 
         }
     }

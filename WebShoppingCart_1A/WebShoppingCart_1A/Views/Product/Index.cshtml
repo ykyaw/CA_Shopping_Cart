@@ -6,7 +6,42 @@
 
 @foreach (Product product in products)
 {
-    <form asp-controller="Cart" asp-action="AddToCart">
+
+    <div>
+        <span>@product.productName</span>
+    </div>
+    <img src="@product.imageURL" height="100">
+    <div>
+        <span>@product.unitPrice</span>
+    </div>
+    <div>
+        <span>@product.productDescription</span>
+    </div>
+    <div>
+        <input type="button" value="ADD TO CART" />
+    </div>
+    <input type="hidden" value="@product.Id" name="id" />
+
+
+
+    @*<div>
+        <div>
+            <form action="Login" method="post">
+                <div>
+                    <label>Username</label>
+                    <input id="username" type="email" name="Email" placeholder="Email Address" required>
+                </div>
+                <div>
+                    <label>Password</label>
+                    <input id="password" type="password" name="Password" placeholder="Password" required>
+                </div>
+                <input id="Login" type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+
+
+    <form action="AddToCart" method="post">
         <div>
             <span>@product.productName</span>
         </div>
@@ -18,8 +53,15 @@
             <span>@product.productDescription</span>
         </div>
         <div>
-            <input type="submit" value="ADD TO CART" />
+            <input type="button" value="ADD TO CART" />
         </div>
-        <input type="hidden" asp-for="@product.Id" name="id" />
-    </form>
+        <input id="AddToCart" type="submit" value="@product.Id" />
+
+    </form>*@
+
+
 }
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js"></script>

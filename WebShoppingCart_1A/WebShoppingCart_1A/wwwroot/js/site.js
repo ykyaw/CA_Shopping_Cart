@@ -3,21 +3,30 @@
 
 // Write your JavaScript code.
 
-//$(document).ready(function () {
-//    $("LoginToAcc").click(function (e) {
-//        var str1 = "1";
-//        var str2 = "2";
-//        $.ajax({
-//            type: "POST",
-//            contenttype: "application/json",
-//            url: "/Home/LoginToAcc",
-//            data: { a: str1, b: str2 },
-//            success: function (response) {
+$(document).ready(function () {
+    $("input").on("click", function () {
+        //alert("click the add to cart")
+        var productId = $(this).parent().next().val();
+        $.ajax
+        
+    })
+})
+    //$("LoginToAcc").click(function (e) {
+    //    var str1 = "1";
+    //    var str2 = "2";
+    //    $.ajax({
+    //        type: "POST",
+    //        contenttype: "application/json",
+    //        url: "/Home/LoginToAcc",
+    //        data: { a: str1, b: str2 },
+    //        success: function (response) {
 
-//            },
-//            error: function (err) {
+    //        },
+    //        error: function (err) {
 
-//            }
-//        })
+    //        }
+    //    })
+    //}
+        
 
         
