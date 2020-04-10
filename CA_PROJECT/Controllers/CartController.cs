@@ -43,10 +43,20 @@ namespace CartAPI.Controllers
             return "";
         }
 
-        public string ChangeQuantity()
+        [Route("/changeQuantity")]
+        public int ChangeQuantity(Cart cart)
         {
-            return "";
+            //cart.Quantity;
+            //cart.UserId;
+            //cart.ProductId;
+
+            //return View();
+            return 1;
         }
+
+        
+
+
         public double Total()
         {
             return 0;

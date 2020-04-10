@@ -84,3 +84,23 @@ $(document).ready(function () {
         })
 
 })
+
+$("#changeQty").click(function () {
+    var productId = $(this).next().val(); $(this).prev()
+    alert("ProductId is" + productId);
+});
+
+
+
+$(document).keypress(function () {
+
+    Post("/changeQuantity", { Quantity, ProductId, UserId }
+        .then(function (reponse) {
+            var result = Json.parse(response);
+        })
+        .catch(function (err) {
+
+
+
+        });
+}
