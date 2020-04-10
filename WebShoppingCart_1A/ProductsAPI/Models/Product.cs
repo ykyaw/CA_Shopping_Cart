@@ -29,5 +29,8 @@ namespace ProductsAPI.Models
         [MaxLength(36)]
         public double productRating { get; set; }
 
+        [MaxLengthAttribute]
+        public string imageURL { get; set; }
+
     }
 }

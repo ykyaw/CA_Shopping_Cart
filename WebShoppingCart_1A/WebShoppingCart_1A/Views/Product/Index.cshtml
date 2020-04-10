@@ -1,27 +1,25 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "index";
     var products = ViewData["products"] as List<Product>;
 
 }
 
-<h1>ProductView</h1>
-<h2>
-    @foreach (Product product in products)
-    {
-        <div class="purchase-row">
-            <div class="product">
-                <li>@product.Id</li>
-                <li>@product.productName</li>
-                <li>@product.productDescription</li>
-                <li>@product.unitPrice</li>
-                <li>@product.productRating</li>
-
-
-
-
-
-            </div>
+@foreach (Product product in products)
+{
+    <form asp-controller="Cart" asp-action="AddToCart">
+        <div>
+            <span>@product.productName</span>
         </div>
-    }
-</h2>
+        <img src="@product.imageURL" height="100">
+        <div>
+            <span>@product.unitPrice</span>
+        </div>
+        <div>
+            <span>@product.productDescription</span>
+        </div>
+        <div>
+            <input type="submit" value="ADD TO CART" />
+        </div>
+        <input type="hidden" asp-for="@product.Id" name="id" />
+    </form>
+}

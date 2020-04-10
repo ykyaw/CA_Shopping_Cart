@@ -21,5 +21,7 @@ namespace WebShoppingCart_1A.Models
        
         public double productRating { get; set; }
 
+        public string imageURL { get; set; }
+
     }
 }

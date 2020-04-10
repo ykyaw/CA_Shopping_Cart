@@ -60,10 +60,10 @@ namespace ProductsAPI
 
             });
 
-            //dbcontext.Database.EnsureDeleted();
-            //dbcontext.Database.EnsureCreated();
+            dbcontext.Database.EnsureDeleted();
+            dbcontext.Database.EnsureCreated();
 
-            //new ProductSeeder(dbcontext);
+            new ProductSeeder(dbcontext);
            
         }
     }
