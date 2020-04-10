@@ -39,7 +39,8 @@ namespace APIGateway.Controllers
             string sessionId = Request.Cookies["sessionId"];
             string userId = HttpContext.Session.GetString(sessionId);
             url = cfg.GetValue<string>("Hosts:MyPurchaseAPI") + "/Home/Purchases";
-            operand = dataFetcher.GetData(httpClient, url, operand);
+            //operand = dataFetcher.GetData(httpClient, url, operand);
+            operand = dataFetcher.GetData(url, operand, Request);
             var list = JsonConvert.DeserializeObject<List<PurchaseHistory>>(operand.Value.ToString());
             //return View(operand);
             ViewData["purchases"] = list;

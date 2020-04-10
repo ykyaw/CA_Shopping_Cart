@@ -23,9 +23,7 @@ namespace MyPurchaseAPI.Middlewares
 
         public async Task Invoke(HttpContext context)
         {
-            User user = new User { Id = "123" };
-            string encrypt = RSA.RSAEncryption(user);
-            User decrypt = JsonConvert.DeserializeObject<User>(RSA.RSADecrypt(encrypt).ToString());
+            string token=context.Request.Cookies["token"];
             await next(context);
         }
     }

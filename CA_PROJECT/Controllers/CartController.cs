@@ -32,7 +32,8 @@ namespace CartAPI.Controllers
             Operand operand = new Operand();
 
             url = cfg.GetValue<string>("Hosts:CartAPI") + "/Home/CartList";
-            operand = dataFetcher.GetData(httpClient, url, operand);
+            //operand = dataFetcher.GetData(httpClient, url, operand);
+            operand = dataFetcher.GetData(url, operand,Request);
             var list = JsonConvert.DeserializeObject<List<Cart>>(operand.Value.ToString());
             ViewData["cartList"] = list;
             return View();

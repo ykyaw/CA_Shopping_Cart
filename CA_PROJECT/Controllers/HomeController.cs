@@ -38,7 +38,8 @@ namespace APIGateway.Controllers
             string url;
 
             url = cfg.GetValue<string>("Hosts:MyPurchaseAPI") + "/Home/Example";
-            operand = dataFetcher.GetData(httpClient, url, operand);
+            //operand = dataFetcher.GetData(httpClient, url, operand);
+            operand = dataFetcher.GetData(url, operand, Request);
             return JsonSerializer.Serialize(operand);
         }
 

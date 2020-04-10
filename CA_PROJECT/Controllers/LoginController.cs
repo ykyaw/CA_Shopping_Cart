@@ -25,6 +25,11 @@ namespace APIGateway.Controllers
 
         public IActionResult Index()
         {
+            User user = new User() { Id = "123123" };
+            string token = RSA.RSAEncryption(user);//get token
+            CookieOptions options = new CookieOptions();
+            options.Expires = DateTime.Now.AddDays(1);//set cookie expires day 
+            Response.Cookies.Append("token", token, options);
             return View();
         }
 
@@ -52,11 +57,12 @@ namespace APIGateway.Controllers
                 user.errmsg = "Wrong Username or Password entered.";
                 return View("Index", user);
             }
-            string sessionId = Guid.NewGuid().ToString();//get session id
+            userDetails.Password = null;
+            string token = RSA.RSAEncryption(userDetails);//get token
             CookieOptions options = new CookieOptions();
             options.Expires=DateTime.Now.AddDays(1);//set cookie expires day 
-            Response.Cookies.Append("SessionId", sessionId, options);
-            HttpContext.Session.SetString(sessionId, userDetails.Id);
+            Response.Cookies.Append("token", token, options);
+            //HttpContext.Session.SetString(sessionId, userDetails.Id);
             return View(user);
 
         }
