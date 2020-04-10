@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using APIGateway.Models;
+using APIGateway.Utils;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -21,17 +23,17 @@ namespace APIGateway.Middlewares
         {
             string controller = (string)context.Request.RouteValues["controller"];
             string action = (string)context.Request.RouteValues["action"];
-            Debugger.Log(1,"info","controller in middleware "+ controller);
-            //if (controller == "Home")
+            //get sessionId from cookie
+            string sessionId = context.Request.Cookies["sessionId"];
+            //judge the session id
+            //if (sessionId == null)
             //{
-            //    string sessionId = context.Request.Cookies["sessionId"];
-            //    if (sessionId == null)
-            //    {
-            //        context.Response.Redirect("https://" +
-            //            context.Request.Host + "/Login/Index");
-            //        return;
-            //    }
+            //    context.Response.Redirect("https://" +
+            //        context.Request.Host + "/Login/Index");
+            //    return;
             //}
+            string userId=context.Session.GetString(sessionId);
+            //judge the userId is correct
 
             await next(context);
         }

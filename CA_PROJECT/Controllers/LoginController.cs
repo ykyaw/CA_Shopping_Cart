@@ -7,7 +7,7 @@ using APIGateway.Models;
 using Microsoft.Data.SqlClient;
 using APIGateway.DB;
 using APIGateway.Services;
-
+using Microsoft.AspNetCore.Http;
 
 namespace APIGateway.Controllers
 {
@@ -37,6 +37,25 @@ namespace APIGateway.Controllers
                 user.errmsg = "Wrong Username or Password entered.";
                 return View("Index", user);
             }
+            return View(user);
+
+        }
+
+        public IActionResult Login([FromBody]User user)
+        {
+            var userDetails = usercontext.User.Where(
+            x => x.Username == user.Username && x.Password == user.Password)
+            .FirstOrDefault();
+            if (userDetails == null)
+            {
+                user.errmsg = "Wrong Username or Password entered.";
+                return View("Index", user);
+            }
+            string sessionId = Guid.NewGuid().ToString();//get session id
+            CookieOptions options = new CookieOptions();
+            options.Expires=DateTime.Now.AddDays(1);//set cookie expires day 
+            Response.Cookies.Append("SessionId", sessionId, options);
+            HttpContext.Session.SetString(sessionId, userDetails.Id);
             return View(user);
 
         }
