@@ -1,24 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\guoxi\\Documents\\ca_project\\WebShoppingCart_1A\\AccountAPI\\AccountAPI.csproj": {}
+    "C:\\Users\\user\\Documents\\ca_project\\WebShoppingCart_1A\\AccountAPI\\AccountAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\guoxi\\Documents\\ca_project\\WebShoppingCart_1A\\AccountAPI\\AccountAPI.csproj": {
+    "C:\\Users\\user\\Documents\\ca_project\\WebShoppingCart_1A\\AccountAPI\\AccountAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\guoxi\\Documents\\ca_project\\WebShoppingCart_1A\\AccountAPI\\AccountAPI.csproj",
+        "projectUniqueName": "C:\\Users\\user\\Documents\\ca_project\\WebShoppingCart_1A\\AccountAPI\\AccountAPI.csproj",
         "projectName": "AccountAPI",
-        "projectPath": "C:\\Users\\guoxi\\Documents\\ca_project\\WebShoppingCart_1A\\AccountAPI\\AccountAPI.csproj",
-        "packagesPath": "C:\\Users\\guoxi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\guoxi\\Documents\\ca_project\\WebShoppingCart_1A\\AccountAPI\\obj\\",
+        "projectPath": "C:\\Users\\user\\Documents\\ca_project\\WebShoppingCart_1A\\AccountAPI\\AccountAPI.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\user\\Documents\\ca_project\\WebShoppingCart_1A\\AccountAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\guoxi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],

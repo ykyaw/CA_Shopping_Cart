@@ -1,8 +1,27 @@
 ﻿
 @{
-    ViewData["Title"] = "ProductView";
-    var result = ViewData["result"];
+    ViewData["Title"] = "index";
+    var products = ViewData["products"] as List<Product>;
+
 }
 
 <h1>ProductView</h1>
+<h2>
+    @foreach (Product product in products)
+    {
+        <div class="purchase-row">
+            <div class="product">
+                <li>@product.Id</li>
+                <li>@product.productName</li>
+                <li>@product.productDescription</li>
+                <li>@product.unitPrice</li>
+                <li>@product.productRating</li>
 
+
+
+
+
+            </div>
+        </div>
+    }
+</h2>

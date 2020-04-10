@@ -1,24 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\guoxi\\Documents\\ca_project\\WebShoppingCart_1A\\PaymentAPI\\PaymentAPI.csproj": {}
+    "C:\\Users\\user\\Documents\\ca_project\\WebShoppingCart_1A\\PaymentAPI\\PaymentAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\guoxi\\Documents\\ca_project\\WebShoppingCart_1A\\PaymentAPI\\PaymentAPI.csproj": {
+    "C:\\Users\\user\\Documents\\ca_project\\WebShoppingCart_1A\\PaymentAPI\\PaymentAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\guoxi\\Documents\\ca_project\\WebShoppingCart_1A\\PaymentAPI\\PaymentAPI.csproj",
+        "projectUniqueName": "C:\\Users\\user\\Documents\\ca_project\\WebShoppingCart_1A\\PaymentAPI\\PaymentAPI.csproj",
         "projectName": "PaymentAPI",
-        "projectPath": "C:\\Users\\guoxi\\Documents\\ca_project\\WebShoppingCart_1A\\PaymentAPI\\PaymentAPI.csproj",
-        "packagesPath": "C:\\Users\\guoxi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\guoxi\\Documents\\ca_project\\WebShoppingCart_1A\\PaymentAPI\\obj\\",
+        "projectPath": "C:\\Users\\user\\Documents\\ca_project\\WebShoppingCart_1A\\PaymentAPI\\PaymentAPI.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\user\\Documents\\ca_project\\WebShoppingCart_1A\\PaymentAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\guoxi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],

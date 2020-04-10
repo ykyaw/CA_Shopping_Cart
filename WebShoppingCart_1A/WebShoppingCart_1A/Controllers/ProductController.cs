@@ -10,6 +10,8 @@ using WebShoppingCart_1A.Services;
 using Microsoft.Extensions.Configuration;
 using WebShoppingCart_1A.Models;
 using System.Text.Json;
+using Newtonsoft.Json;
+using System.Diagnostics;
 //using System.Net;
 //using System.Text.Json;
 //using System.Text.Json.Serialization;
@@ -35,15 +37,23 @@ namespace WebShoppingCart_1A.Controllers
         }
         public IActionResult Index()
         {
-
             string url;
             url = cfg.GetValue<string>("Hosts:ProductsAPI") + "/Home/getProducts";
             Result result = new Result();
             result = dataFetcher.GetData(httpClient, url, result);
-            string re=JsonSerializer.Serialize(result);
-            //List<Product> products = (List<Product>)result.Value;
-            ViewData["result"] = result;
+            List<Product> products = new List<Product>();
+            products = JsonConvert.DeserializeObject<List<Product>>(result.Value.ToString());
+            //IEnumerable<Product> iter =
+            //    from product in products
+            //    select product;
+            //foreach (Product product in iter)
+            //{
+            //    Debug.WriteLine("{0},{1},{2}", product.Id, product.productDescription, product.productRating);
+            //}
+
+            ViewData["products"] = products;
             return View();
+
         }
     }
 }

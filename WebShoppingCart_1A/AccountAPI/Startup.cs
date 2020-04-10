@@ -59,10 +59,10 @@ namespace AccountAPI
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            db.Database.EnsureDeleted();
-            db.Database.EnsureCreated();
+            //db.Database.EnsureDeleted();
+            //db.Database.EnsureCreated();
 
-            new AccountSeeder(db);
+            //new AccountSeeder(db);
            
         }
     }
