@@ -4,64 +4,44 @@
 
 }
 
-@foreach (Product product in products)
-{
 
-    <div>
-        <span>@product.productName</span>
-    </div>
-    <img src="@product.imageURL" height="100">
-    <div>
-        <span>@product.unitPrice</span>
-    </div>
-    <div>
-        <span>@product.productDescription</span>
-    </div>
-    <div>
-        <input type="button" value="ADD TO CART" />
-    </div>
-    <input type="hidden" value="@product.Id" name="id" />
+    @foreach (Product product in products)
+    {
+            <div>
+                <span>@product.productName</span>
+            </div>
+            <img src="@product.imageURL" height="100">
+            <div>
+                <span>@product.unitPrice</span>
+            </div>
+            <div>
+                <span>@product.productDescription</span>
+            </div>
+            <input type="button" name="AddToCart" value="ADD TO CART" itemid="@product.Id"  onclick="AddToCart(this)"/>
+    }
 
 
+<script type="text/javascript">
+    function AddToCart(item) {
+        var itemId = $(item).attr("itemid");
+        var formData = new FormData();
+        formData.append("ItemId", itemId);
 
-    @*<div>
-        <div>
-            <form action="Login" method="post">
-                <div>
-                    <label>Username</label>
-                    <input id="username" type="email" name="Email" placeholder="Email Address" required>
-                </div>
-                <div>
-                    <label>Password</label>
-                    <input id="password" type="password" name="Password" placeholder="Password" required>
-                </div>
-                <input id="Login" type="submit" value="Submit">
-            </form>
-        </div>
-    </div>
+        $.ajax({
+            async: true,
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            data: formData,
+            url: '/Product/AddToCart',
+            success: function (data) {
 
-
-    <form action="AddToCart" method="post">
-        <div>
-            <span>@product.productName</span>
-        </div>
-        <img src="@product.imageURL" height="100">
-        <div>
-            <span>@product.unitPrice</span>
-        </div>
-        <div>
-            <span>@product.productDescription</span>
-        </div>
-        <div>
-            <input type="button" value="ADD TO CART" />
-        </div>
-        <input id="AddToCart" type="submit" value="@product.Id" />
-
-    </form>*@
-
-
-}
-
+            },
+            error: function () { alert("Error"); }
+        });
+    }
+</script>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js"></script>
+

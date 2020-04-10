@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -56,18 +57,21 @@ namespace WebShoppingCart_1A.Controllers
 
         }
 
-        [HttpPost]
-        public void AddToCart([FromBody] string productId /*Product product*/)
+        public void AddToCart(string ItemId /*Product product*/)
         {
-
-            string _productID = productId;//get input from product page
-
-            //string url;
-            //url = cfg.GetValue<string>("Hosts:ProductsAPI") + "/Home/getProducts";
-            //Result result = new Result();
-            //result = dataFetcher.GetData(httpClient, url, result);
-            //products = JsonConvert.DeserializeObject<List<Product>>(result.Value.ToString());
+            string url;
+            url = cfg.GetValue<string>("Hosts:ProductsAPI") + "/Home/getProducts";
+            Result result = new Result();
+            result = dataFetcher.GetData(httpClient, url, result);
+            products = JsonConvert.DeserializeObject<List<Product>>(result.Value.ToString());
+            string _productID = ItemId;//get input from product page
+            bool has = products.Any(prod => prod.Id == _productID);
 
         }
+
+        //public JsonResult Index(string ItemId)
+        //{
+        //    return Json(data: "", JsonRequestBehaviour.AllowGet);
+        //}
     }
 }
