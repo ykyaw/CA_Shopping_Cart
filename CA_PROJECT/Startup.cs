@@ -28,7 +28,7 @@ namespace APIGateway
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-
+            services.AddSession();
             //inject the service
             services.AddScoped<HttpClient>();
             services.AddScoped<DataFetcher>();
@@ -58,6 +58,7 @@ namespace APIGateway
 
             app.UseAuthorization();
 
+            app.UseSession();
             //use extenstions to register middleware
             app.UseMiddlewareExtensions();
 
