@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    var products = ViewData["gallery"] as List<Product>;
+    var users = ViewData["user"] as List<User>;
+}
+
+<h2 style="display:inline-block">Hello, Username@user.Name</h2><a style="margin:0 5px 0 20px" href="~/Home/MyPurchase">MyPurchase</a> | <a style="margin:0 5px" href="~/Home">Logout</a>
+<div id="cart">
+    <i id="ShoppingCart" class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
+    <button class="clear">Empty Cart</button>
+</div>
+<span id="itemCount">ItemCount: </span>
+&emsp;
+<div class="searchbox">
+    <input id="SearchInput" type="text" placeholder="Enter your search hear...">
+    <button type="submit"><i class="fa fa-search"></i></button>
+</div>
+&emsp;
+@*<div class="product">
+        @foreach (Product product in products)
+        {
+            <div class="product-row">
+                <img class="product-img" src="~/assets/1netlogo.png" />
+                <div> @product.Name</div>
+                <div> @product.Description</div>
+                <button class="AddCart">$@product.UnitPrice - Add to Cart</button>
+                <input type="hidden" class="productId" value="@product.Id" />
+            </div>
+        }
+    </div>*@
+
+<table>
+    <tr>
+        <th>Photo</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>UnitPrice</th>
+        <th>Add To Cart</th>
+    </tr>
+    @foreach (var product in products)
+    {
+        <tbody id="ProductTable">
+            <tr>
+                <td><img class="product-img" src="~/assets/python.jpg" /></td>
+                <td>@product.Name</td>
+                <td>@product.Description</td>
+                <td c>@product.UnitPrice</td>
+                <td><button class="AddCart">Add to Cart</button></td>
+                <input type="hidden" class="productId" value="@product.Id" />
+            </tr>
+        </tbody>
+    }
+</table>
+
+<link rel="stylesheet" href="~/css/Gallery.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/lib/crypto/core-min.js"></script>
+<script src="~/lib/crypto/sha256.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="~/js/Gallery.js"></script>
