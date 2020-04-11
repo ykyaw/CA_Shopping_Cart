@@ -13,11 +13,14 @@ using WebShoppingCart_1A.Models;
 using System.Text.Json;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Http;
+using System.Web.Providers.Entities;
 //using System.Net;
 //using System.Text.Json;
 //using System.Text.Json.Serialization;
 //using System.Text;
 //using System.Web;
+
 
 
 namespace WebShoppingCart_1A.Controllers
@@ -41,33 +44,45 @@ namespace WebShoppingCart_1A.Controllers
             string url;
             url = cfg.GetValue<string>("Hosts:ProductsAPI") + "/Home/getProducts";
             Result result = new Result();
-            result = dataFetcher.GetData(httpClient, url, result);
-            
+            result = dataFetcher.GetData(httpClient, url, result);  
             products = JsonConvert.DeserializeObject<List<Product>>(result.Value.ToString());
-            //IEnumerable<Product> iter =
-            //    from product in products
-            //    select product;
-            //foreach (Product product in iter)
-            //{
-            //    Debug.WriteLine("{0},{1},{2}", product.Id, product.productDescription, product.productRating);
-            //}
-
             ViewData["products"] = products;
             return View();
-
         }
 
-        public void AddToCart(string ItemId /*Product product*/)
+        public void AddToCart(string ItemId, Result result /*Product product*/)
         {
-            string url;
-            url = cfg.GetValue<string>("Hosts:ProductsAPI") + "/Home/getProducts";
-            Result result = new Result();
+            
+            result.Value = ItemId;
+            string sessionID = Request.Cookies["SessionId"];
+            string url = cfg.GetValue<string>("Hosts:CartAPI") + "/Home/receivecartfromapi";
             result = dataFetcher.GetData(httpClient, url, result);
-            products = JsonConvert.DeserializeObject<List<Product>>(result.Value.ToString());
-            string _productID = ItemId;//get input from product page
-            bool has = products.Any(prod => prod.Id == _productID);
 
+            //return JsonSerializer.Serialize(Result);
         }
+
+
+        //public string getProducts(Result result)
+        //{
+        //    result.Value = dbcontext.Product_tbl.ToList();
+        //    return JsonSerializer.Serialize(result);
+        //}
+
+
+        //HttpContext.Session.SetString("SessionUser", JsonConvert.SerializeObject(listofcartitem));
+        //            TempData["UserCartinfo"] = cart; //cart is passed to CartController through this method
+        //use TempData["happy"] to pass info btwn controller
+
+        //public void AddToCart(string ItemId /*Product product*/)
+        //{
+
+        //    Product findproductinfo = products.Find(x => x.productName == ItemId);
+        //    string findproductinfo_descrip = findproductinfo.productDescription;
+        //    string findproductinfo_name = findproductinfo.productName;
+        //    string findproductinfo_Id = findproductinfo.Id;
+        //    double findproductinfo_unitprice = findproductinfo.unitPrice;
+        //}
+
 
         //public JsonResult Index(string ItemId)
         //{

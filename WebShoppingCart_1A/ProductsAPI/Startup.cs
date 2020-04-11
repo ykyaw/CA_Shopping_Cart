@@ -64,7 +64,7 @@ namespace ProductsAPI
             dbcontext.Database.EnsureCreated();
 
             new ProductSeeder(dbcontext);
-           
+
         }
     }
 }
