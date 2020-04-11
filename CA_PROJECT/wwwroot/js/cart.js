@@ -3,7 +3,7 @@
         type: "POST",
         contentType: "application/json",
         url: url,
-        data: JSON.stringify({ Value: value }),
+        data: JSON.stringify( value ),
         success: function (response) {
             return Promise.resolve(response);
         },
@@ -36,7 +36,7 @@ function Put(url, value) {
         type: "PUT",
         contentType: "application/json",
         url: url,
-        data: JSON.stringify({ Value: value }),
+        data: JSON.stringify(value),
         success: function (response) {
             return Promise.resolve(response);
         },
@@ -66,41 +66,55 @@ function Delete(url) {
 }
 
 
-
-$(document).ready(function () {
-    Get("/cartList")
+function changeQty(e) {
+    //alert("qty is " + e.value);
+    var quantity = Number(e.value);
+    var cartId = e.nextElementSibling.value;
+    Post("/changeQty", { Id: cartId, Quantity: Number(e.value) })
         .then(function (response) {
             var result = JSON.parse(response);
             console.log("success", result);
-            for (var i = 0; i < result.length; i++)
-            {
-                console.log(result[i]);
+            if (quantity <= 0) {
+                var parent = e.parentNode.parentNode.parentNode;
+                parent.innerHTML = "";
+                return;
             }
-
-            
         })
         .catch(function (err) {
-            console.log("error in get purchases: ", JSON.stringify(err));
+            console.log("err", err);
         })
 
-})
+    $("totalBtn").click(function (cart) {
+        
+        var quantity = Number(e.value);
+        var price = e.nextElementSibling.value;
+        alert("Total: ",total)
+    });
 
-$("#changeQty").click(function () {
-    var productId = $(this).next().val(); $(this).prev()
-    alert("ProductId is" + productId);
-});
+    public decimal GetTotal()
+    {
+        ShoppingCartId = GetCartId();
+        // Multiply product price by quantity of that product to get        
+        // the current price for each of those products in the cart.  
+        // Sum all product price totals to get the cart total.   
+        decimal ? total = decimal.Zero;
+        total = (decimal?)(from cartItems in _db.ShoppingCartItems
+        where cartItems.CartId == ShoppingCartId
+        select(int ?)cartItems.Quantity *
+            cartItems.Product.UnitPrice).Sum();
+        return total ?? decimal.Zero;
+    }
+    
 
-
-
-$(document).keypress(function () {
-
-    Post("/changeQuantity", { Quantity, ProductId, UserId }
-        .then(function (reponse) {
-            var result = Json.parse(response);
-        })
-        .catch(function (err) {
-
-
-
-        });
 }
+
+    
+
+//})
+//$("#changeQty").click(function () {
+//    var productId = $(this).next().val(); 
+//    alert("ProductId is" + productId);
+//});
+
+
+

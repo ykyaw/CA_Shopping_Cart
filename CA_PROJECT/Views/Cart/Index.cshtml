@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Cart";
     var cartList = ViewData["cartList"] as List<Cart>;
+    float total = 0;
 }
 
 <!DOCTYPE html>
@@ -30,7 +31,12 @@
     </nav>
     <div id="purchases">
         @foreach (Cart cart in cartList)
-        {
+            {
+            total += product.Price * cart.Quantity;
+            <tr>
+            <input id="totalBtn" type ="button" value="total" />
+            <input id="totalBtn" type="button" value=@cart.price type="hidden">
+        </tr>
             <div class="purchase-row">
                 <div class="product">
                     <img class="product-img" src="~/assets/1586316169(1).jpg" />
@@ -51,8 +57,8 @@
                         <tr>
                             <div>
 
-                                <input type="number" value="0" id="changeQty">
-
+                                <input type="number" value="@cart.Quantity" onchange="changeQty(this)">
+                                <input type="hidden" value="@cart.Id" />
 
                                 <script src="~/js/cart.js"></script>
                             </div>
@@ -62,6 +68,8 @@
                 </div>
             </div>
         }
+
+        
     </div>
 
 
