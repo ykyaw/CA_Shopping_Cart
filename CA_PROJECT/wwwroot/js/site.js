@@ -87,7 +87,7 @@ $(document).ready(function () {
                 if (result.ErrMsg == null) {
                     window.location.replace(result.Value);
                     //redirect page to gallery page
-                 //   location.href="~/Views/Gallery)"
+
                 } else {
                     $("#errmsg").html(result.ErrMsg);
                 }

@@ -49,7 +49,7 @@ namespace APIGateway.Controllers
                 return System.Text.Json.JsonSerializer.Serialize(user);
             }
             return System.Text.Json.JsonSerializer.Serialize(new Operand() { Value= "https://" +
-                        Request.Host + "/Home/Index"
+                        Request.Host + "/Gallery/Index"
             });
         }
 
