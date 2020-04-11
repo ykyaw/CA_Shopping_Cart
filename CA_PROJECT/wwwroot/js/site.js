@@ -3,7 +3,7 @@ function Post(url, value) {
         type: "POST",
         contentType: "application/json",
         url: url,
-        data: JSON.stringify({ Value: value }),
+        data: JSON.stringify( value ),
         success: function (response) {
             var result = JSON.parse(response);
             console.log("success in post ajax" + result);
@@ -40,7 +40,7 @@ function Put(url, value) {
         type: "PUT",
         contentType: "application/json",
         url: url,
-        data: JSON.stringify({ Value: value }) ,
+        data: JSON.stringify(value),
         success: function (response) {
             var result = JSON.parse(response);
             console.log("success in put ajax" + result);
