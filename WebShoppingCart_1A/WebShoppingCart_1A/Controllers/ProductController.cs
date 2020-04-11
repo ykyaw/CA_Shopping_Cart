@@ -28,6 +28,7 @@ namespace WebShoppingCart_1A.Controllers
     public class ProductController : Controller
     {
         List<Product> products = new List<Product>();
+        List<Cart> carts = new List<Cart>();
         protected HttpClient httpClient;
         protected IConfiguration cfg;
         protected DataFetcher dataFetcher;
@@ -50,18 +51,25 @@ namespace WebShoppingCart_1A.Controllers
             return View();
         }
 
-        public void AddToCart(string ItemId, Result result /*Product product*/)
-        {
-            
+        public void AddToCart(string ItemId, Result result)
+        {   
             result.Value = ItemId;
             string sessionID = Request.Cookies["SessionId"];
             string url = cfg.GetValue<string>("Hosts:CartAPI") + "/Home/receivecartfromapi";
             result = dataFetcher.GetData(httpClient, url, result);
-
-            //return JsonSerializer.Serialize(Result);
         }
 
+        public IActionResult Cartcounter(string ItemId) //not sure how to get it working. leave it for now
+        {
+            string url = cfg.GetValue<string>("Hosts:CartAPI") + "/Home/RetrieveCart";
+            Result result = new Result();
+            result = dataFetcher.GetData(httpClient, url, result);
+            carts = JsonConvert.DeserializeObject<List<Cart>>(result.Value.ToString());
+            //ViewData["cartcounter"] = carts.Count;
+            return Json(JsonConvert.SerializeObject(carts.Count));
+        }
 
+        //return JsonSerializer.Serialize(Result);
         //public string getProducts(Result result)
         //{
         //    result.Value = dbcontext.Product_tbl.ToList();
