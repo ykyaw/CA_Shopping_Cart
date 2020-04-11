@@ -33,39 +33,46 @@ namespace APIGateway.Controllers
             return View();
         }
 
-        public IActionResult Verify(User user)
+        public IActionResult Login (string username, string hashPwd)
+        {
+            return View("Index, Gallery");
+        }
+
+        public string Verify([FromBody]User user)
         {
             var userDetails = usercontext.User.Where(
             x => x.Username == user.Username && x.Password == user.Password)
             .FirstOrDefault();
             if (userDetails == null)
             {
-                user.errmsg = "Wrong Username or Password entered.";
-                return View("Index", user);
+                user.ErrMsg = "Wrong Username or Password entered.";
+                return System.Text.Json.JsonSerializer.Serialize(user);
             }
-            return View(user);
-
+            return System.Text.Json.JsonSerializer.Serialize(new Operand() { Value= "https://" +
+                        Request.Host + "/Home/Index"
+            });
         }
 
-        public IActionResult Login([FromBody]User user)
-        {
-            var userDetails = usercontext.User.Where(
-            x => x.Username == user.Username && x.Password == user.Password)
-            .FirstOrDefault();
-            if (userDetails == null)
-            {
-                user.errmsg = "Wrong Username or Password entered.";
-                return View("Index", user);
-            }
-            userDetails.Password = null;
-            string token = RSA.RSAEncryption(userDetails);//get token
-            CookieOptions options = new CookieOptions();
-            options.Expires=DateTime.Now.AddDays(1);//set cookie expires day 
-            Response.Cookies.Append("token", token, options);
-            //HttpContext.Session.SetString(sessionId, userDetails.Id);
-            return View(user);
 
-        }
+        //public IActionResult Login([FromBody]User user)
+        //{
+        //    var userDetails = usercontext.User.Where(
+        //    x => x.Username == user.Username && x.Password == user.Password)
+        //    .FirstOrDefault();
+        //    if (userDetails == null)
+        //    {
+        //        user.ErrMsg = "Wrong Username or Password entered.";
+        //        return View("Index", user);
+        //    }
+        //    userDetails.Password = null;
+        //    string token = RSA.RSAEncryption(userDetails);//get token
+        //    CookieOptions options = new CookieOptions();
+        //    options.Expires=DateTime.Now.AddDays(1);//set cookie expires day 
+        //    Response.Cookies.Append("token", token, options);
+        //    //HttpContext.Session.SetString(sessionId, userDetails.Id);
+        //    return View(user);
+
+        //}
     }
 }
 

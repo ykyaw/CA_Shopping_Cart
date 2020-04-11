@@ -22,15 +22,16 @@
         <h1>Customer Login</h1>
 
         <form id="loginForm" action="Home/" method="POST">
+
             <p>Username</p>
-            <input id="uname" name="" type="text" placeholder="Enter Username" value="" />
+            <input id="uname" name="username" type="text" placeholder="Enter Username" value="" />
+
             <p>Password</p>
-            <input id="pwd" name="" type="password" placeholder="Enter Password" value="" />
+            <input id="pwd" name="password" type="password" placeholder="Enter Password" value="" />
 
             <input id="loginBtn" type="submit" value="LOGIN" />
 
-            <div id="errmsg">
-            </div>
+            <div id="errmsg" style="color:red"></div>
 
             <input id="hashPwd" name="hashPasswd" type="hidden" />
 
