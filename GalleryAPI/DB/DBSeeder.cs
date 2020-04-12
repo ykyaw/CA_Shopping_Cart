@@ -14,7 +14,7 @@ namespace GalleryAPI.DB
             Product product1 = new Product();
             product1.Id = Guid.NewGuid().ToString();
             product1.Name = ".NET Charts";
-            product1.UnitPrice = "99";
+            product1.UnitPrice = 99;
             product1.Description = "Brings powerful charting capabilities to your .NET applications.";
             product1.Photo = "photo1";
             dbcontext.Add(product1);
@@ -22,7 +22,7 @@ namespace GalleryAPI.DB
             Product product2 = new Product();
             product2.Id = Guid.NewGuid().ToString();
             product2.Name = ".NET PayPal";
-            product2.UnitPrice = "69";
+            product2.UnitPrice = 69;
             product2.Description = "Integrate your .NET apps with PayPal the easy way!";
             product2.Photo = "photo2";
             dbcontext.Add(product2);
@@ -30,7 +30,7 @@ namespace GalleryAPI.DB
             Product product3 = new Product();
             product3.Id = Guid.NewGuid().ToString();
             product3.Name = ".NET ML";
-            product3.UnitPrice = "299";
+            product3.UnitPrice = 254;
             product3.Description = "Supercharged .NET machine learning libraies.";
             product3.Photo = "photo3";
             dbcontext.Add(product3);
@@ -38,7 +38,7 @@ namespace GalleryAPI.DB
             Product product4 = new Product();
             product4.Id = Guid.NewGuid().ToString();
             product4.Name = ".NET Analytics";
-            product4.UnitPrice = "299";
+            product4.UnitPrice = 134;
             product4.Description = "Performs data mining and analytics easily in .NET.";
             product4.Photo = "photo";
             dbcontext.Add(product4);
@@ -46,7 +46,7 @@ namespace GalleryAPI.DB
             Product product5 = new Product();
             product5.Id = Guid.NewGuid().ToString();
             product5.Name = ".NET Logger ";
-            product5.UnitPrice = "49";
+            product5.UnitPrice = 75;
             product5.Description = "Logs and aggregates events easily in your .NET apps.";
             product5.Photo = "photo";
             dbcontext.Add(product5);
@@ -54,7 +54,7 @@ namespace GalleryAPI.DB
             Product product6 = new Product();
             product6.Id = Guid.NewGuid().ToString();
             product6.Name = ".NET Numerics";
-            product6.UnitPrice = "199";
+            product6.UnitPrice =177;
             product6.Description = "Powerful numerical methods for your .NET simulations.";
             product6.Photo = "photo";
             dbcontext.Add(product6);

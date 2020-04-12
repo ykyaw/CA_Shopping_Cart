@@ -1,0 +1,8 @@
+﻿#checkout:hover{
+    cursor:pointer;
+}
+
+td,th {
+    text-align: center;
+    vertical-align:middle;
+}

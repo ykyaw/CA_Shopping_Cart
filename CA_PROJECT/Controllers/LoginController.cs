@@ -15,80 +15,48 @@ namespace APIGateway.Controllers
 {
     public class LoginController : Controller
     {
-        protected UserContext usercontext;
+        protected DBUser db;
 
-        public LoginController(UserContext userContext)
+        public LoginController(DBUser db)
 
         {
-            this.usercontext = userContext;
+            this.db = db;
         }
 
         public IActionResult Index()
         {
-            User user = new User() { Id = "123123" };
-            string token = RSA.RSAEncryption(user);//get token
-            CookieOptions options = new CookieOptions();
-            options.Expires = DateTime.Now.AddDays(1);//set cookie expires day 
-            Response.Cookies.Append("token", token, options);
             return View();
-        }
-
-        public IActionResult Login (string username, string hashPwd)
-        {
-            return View("Index, Gallery");
         }
 
         public string Verify([FromBody]User user)
         {
-            var userDetails = usercontext.User.Where(
-            x => x.Username == user.Username && x.Password == user.Password)
-            .FirstOrDefault();
+            User userDetails = db.retrieveUserByNamePwd(user);
             if (userDetails == null)
             {
-                user.ErrMsg = "Wrong Username or Password entered.";
-                return System.Text.Json.JsonSerializer.Serialize(user);
+                userDetails.ErrMsg = "Wrong Username or Password entered.";
+                return System.Text.Json.JsonSerializer.Serialize(userDetails);
             }
+            user.Password = null;
+            user.Id = userDetails.Id;
+            User userToken = new User() { Id = userDetails.Id,Username=userDetails.Username };
+            string token = RSA.RSAEncryption(user);//get token
+            CookieOptions options = new CookieOptions();
+            options.Expires = DateTime.Now.AddDays(1);//set cookie expires day 
+            Response.Cookies.Append("token", token, options);
             return System.Text.Json.JsonSerializer.Serialize(new Operand() { Value= "https://" +
                         Request.Host + "/Gallery/Index"
             });
         }
 
+        [Route("/Logout")]
+        public bool Logout()
+        {
+            Response.Cookies.Append("token","",new CookieOptions() { Expires=DateTime.Now.AddDays(-1)});
+            return true;
+        }
 
-        //public IActionResult Login([FromBody]User user)
-        //{
-        //    var userDetails = usercontext.User.Where(
-        //    x => x.Username == user.Username && x.Password == user.Password)
-        //    .FirstOrDefault();
-        //    if (userDetails == null)
-        //    {
-        //        user.ErrMsg = "Wrong Username or Password entered.";
-        //        return View("Index", user);
-        //    }
-        //    userDetails.Password = null;
-        //    string token = RSA.RSAEncryption(userDetails);//get token
-        //    CookieOptions options = new CookieOptions();
-        //    options.Expires=DateTime.Now.AddDays(1);//set cookie expires day 
-        //    Response.Cookies.Append("token", token, options);
-        //    //HttpContext.Session.SetString(sessionId, userDetails.Id);
-        //    return View(user);
-
-        //}
     }
 }
 
-/* else
-{
-    Session["userId"] = userDetails.userId;
-    Session["username"] = userDetails.userFirstName;
-    return RedirectToAction("Index", "Gallery");
-}*/
-
-
-/* public IActionResult Logout()
- {
-     int UserId = (int)Session["userId"];
-     Session.Abandon();
-     return RedirectToAction("Index", "Login");
- }*/
 
 

@@ -18,8 +18,7 @@ namespace GalleryAPI.Models
         public string Name { get; set; }
 
         [Required]
-        [MaxLength(128)]
-        public string UnitPrice { get; set; }
+        public float UnitPrice { get; set; }
 
         [Required]
         [MaxLength(128)]

@@ -4,45 +4,89 @@
 @{
     ViewData["Title"] = "index";
     var purchases = ViewData["purchases"] as List<PurchaseHistory>;
+    User user = ViewData["user"] as User;
 }
-
-<div style="width:70%;margin:auto;">
-    <h1 style="display:inline-block">My Purchase </h1> <a style="margin:0 5px 0 20px" href="~/Home/Index">my purchase</a>|<a href="~/Login/Logout"style="margin:0 5px">Logout</a>
-<div id="purchases">
-    @foreach (PurchaseHistory purchase in purchases)
-    {
-        <div class="purchase-row">
-            <div class="product">
-                <img class="product-img" src="~/assets/1586316169(1).jpg" />
-                <div>product name</div>
-                <div>product description</div>
-                <div id="download" class="download-button">Download</div>
+<head>
+    <title>Shopping Cart</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/css/cart.css" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header" style="position:absolute">
+                <a class="navbar-brand" href="#">My Purchase</a>
             </div>
-            <div class="purchase-detail">
-                <table id="purchase-detail-table">
-                    <tr>
-                        <td>Purchased On:</td>
-                        <td>@purchase.PurchaseDate</td>
-                    </tr>
-                    <tr>
-                        <td>Quantity:</td>
-                        <td>@purchase.Quantity</td>
-                    </tr>
-                    <tr>
-                        <td>Activation Code:</td>
-                        <td></td>
-                    </tr>
-                </table>
-            </div>
+            <ul class="nav navbar-nav navbar-left" style="position:relative;left:180px;">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Hello @(user!=null?user.Username:"")</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../Gallery">Continue Shopping</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  id="logout">Logout</a>
+                </li>
+            </ul>
         </div>
-    }
-                                                                                                                          </div>
-</div>
+    </nav>
+    <div style="width:80%;margin:auto;">
+        <table class="table table-striped" style="margin: 100px auto 30px;">
+            <tbody>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Name&Desc</th>
+                    <th>Purchase Detail</th>
+                </tr>
+            </thead>
+            @foreach (PurchaseHistory purchase in purchases)
+            {
+                <tr>
+                    <td style="width: 150px;">
+                        <img style="width: 70%;border-radius: 80px;opacity: 0.8;" src="@purchase.Product.Photo" />
+                        <button class="btn btn-info btn-sm download" style="margin: 5px 0;">Download</button>
+                    </td>
+                    <td style="vertical-align:middle;width:45%;">
+                        <div>@purchase.Product.Name</div>
+                        <div>@purchase.Product.Description</div>
+                    </td>
+                    <td style="vertical-align:middle;width:40%;text-align:start;">
+                        <div class="form-group">
+                            <div>Purchased On:@purchase.PurchaseDate</div>
+                            <div>Quantity:@purchase.Quantity</div>
+                            <div>
+                                @if (purchase.ActivationCodes.Count > 1)
+                                {
+                                    <div class="form-group">
+                                        <select class="form-control">
+                                            @foreach (PurchaseActivationCode code in purchase.ActivationCodes)
+                                            {
+                                                <option>@code.ActivationCode</option>
+                                            }
+                                        </select>
+                                    </div>
+                                }
+                                else
+                                {
+                                    @purchase.ActivationCodes[0].ActivationCode
+                                }
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
 
+            </tbody>
+        </table>
+        
+    </div>
 
-<link rel="stylesheet" href="~/css/myPurchase.css" />
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="~/lib/crypto/core-min.js"></script>
-<script src="~/lib/crypto/sha256.js"></script>
-<script src="~/js/myPurchase.js"></script>
+    <link rel="stylesheet" href="~/css/myPurchase.css" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/crypto/core-min.js"></script>
+    <script src="~/lib/crypto/sha256.js"></script>
+    <script src="~/js/myPurchase.js"></script>
+</body>

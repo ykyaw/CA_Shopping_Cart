@@ -50,3 +50,7 @@ table, th, td {
 #element2 {
     display: inline-block;
 }
+
+#logout:hover{
+    cursor:pointer;
+}

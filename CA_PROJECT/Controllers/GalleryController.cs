@@ -20,6 +20,8 @@ namespace APIGateway.Controllers
         protected HttpClient httpClient;
         protected IConfiguration cfg;
         protected DataFetcher dataFetcher;
+        private static int badges = 0;
+        private static User user = null;
 
         public GalleryController(HttpClient httpClient, IConfiguration cfg, DataFetcher dataFetcher)
         {
@@ -28,58 +30,131 @@ namespace APIGateway.Controllers
             this.dataFetcher = dataFetcher;
         }
 
-        public string Addtocart([FromBody] Cart cart)
+        public IActionResult Search(string input)
         {
-            string token = Request.Cookies["token"];
-            User user = JsonConvert.DeserializeObject<User>(RSA.RSADecrypt(token).ToString());
-            if (user == null)
+            string url;
+            Operand operand = new Operand();
+            url = cfg.GetValue<string>("Hosts:GalleryAPI") + "/Home/Products";
+            operand = dataFetcher.GetData(url, operand, Request);
+            List<Product> list = JsonConvert.DeserializeObject<List<Product>>(operand.Value.ToString());
+            //return View(operand);
+            if (input != null)
             {
-                string carts = Request.Cookies["carts"];
-                List<Cart> cartList = new List<Cart>();
-                if (carts != null)
+                IEnumerable<Product> iter = from product in list
+                                            where product.Description.ToLower().Contains(input) || product.Name.ToLower().Contains(input)
+                                            select product;
+                list = new List<Product>();
+                foreach (Product product in iter)
                 {
-                    cartList = System.Text.Json.JsonSerializer.Deserialize<List<Cart>>(carts);
+                    list.Add(product);
                 }
-                cartList.Add(cart);
-                CookieOptions options = new CookieOptions();
-                options.Expires = DateTime.Now.AddDays(10);//set cookie expires day 
-                string newCookieCarts = System.Text.Json.JsonSerializer.Serialize(cartList);
-                Response.Cookies.Append("carts", newCookieCarts, options);
-                return "success";
+            }
+            ViewData["user"] = user;
+            ViewData["gallery"] = list;
+            ViewData["badges"] = badges;
+            ViewData["search"] = input == null?"":input ;
+            return View("Index");
+        }
+
+        public int Addtocart([FromBody] Cart cart)
+        {
+            string carts = Request.Cookies["cartList"];
+            List<Cart> cartList = new List<Cart>();
+            int badges = 0;
+            if (carts != null)
+            {
+                cartList = System.Text.Json.JsonSerializer.Deserialize<List<Cart>>(carts);
+                bool hasProduct = false;
+                foreach (Cart item in cartList)
+                {
+                    if (item.ProductId == cart.ProductId)
+                    {
+                        item.Quantity++;
+                        hasProduct = true;
+                    }
+                    badges += item.Quantity;
+                }
+                if (!hasProduct)
+                {
+                    cart.Quantity = 1;
+                    cartList.Add(cart);
+                    badges++;
+                }
             }
             else
             {
-                //
+                cart.Quantity = 1;
+                cartList.Add(cart);
+                badges = 1;
+            }
+            string token = Request.Cookies["token"];
+            if (token == null)
+            {
+                CookieOptions options = new CookieOptions();
+                options.Expires = DateTime.Now.AddDays(1);//set cookie expires day 
+                string newCookieCarts = System.Text.Json.JsonSerializer.Serialize(cartList);
+                Response.Cookies.Append("cartList", newCookieCarts, options);
+            }
+            else
+            {
                 Operand operand = new Operand();
-                operand.Value = cart;
+                operand.Value = cartList;
                 string url = cfg.GetValue<string>("Hosts:CartAPI") + "/Home/Addtocart";
                 //operand = dataFetcher.GetData(httpClient, url, operand);
                 operand = dataFetcher.GetData(url, operand, Request);
-                return "success";
+                badges= JsonConvert.DeserializeObject<int>(operand.Value.ToString());
+                Response.Cookies.Delete("cartList");
             }
+            return badges;
 
         }
 
-        // Attribute redirect to Gallery page
-        //[Route("/Gallery")]
         public IActionResult Index()
         {
             string url;
+            //int badges = 0;
             Operand operand = new Operand();
             url = cfg.GetValue<string>("Hosts:GalleryAPI") + "/Home/Products";
             operand = dataFetcher.GetData(url, operand, Request);
             var list = JsonConvert.DeserializeObject<List<Product>>(operand.Value.ToString());
             //return View(operand);
             ViewData["gallery"] = list;
-
-            //Create a list of user for user name display
-            //Try to call a method "Users" which list down all of users
-            /*            string url1;
-                        Operand operand1 = new Operand();
-                        url1 = cfg.GetValue<string>("Hosts:APIGateway") + "/Home/Products";
-                        operand = dataFetcher.GetData(url, operand, Request);
-                        var userList = JsonConvert.DeserializeObject<List<User>>(operand.Value.ToString());
-                        ViewData["user"] = userList;*/
+            string token = Request.Cookies["token"];
+            if (token != null)
+            {
+                string carts = Request.Cookies["cartList"];
+                if (carts != null)
+                {
+                    List<Cart> cartList = System.Text.Json.JsonSerializer.Deserialize<List<Cart>>(carts);
+                    operand.Value = cartList;
+                    url = cfg.GetValue<string>("Hosts:CartAPI") + "/Home/Addtocart";
+                    operand = dataFetcher.GetData(url, operand, Request);
+                    badges = JsonConvert.DeserializeObject<int>(operand.Value.ToString());
+                    Response.Cookies.Delete("cartList");
+                }
+                else
+                {
+                    url = cfg.GetValue<string>("Hosts:CartAPI") + "/Home/GetCount";
+                    operand = dataFetcher.GetData(url, operand, Request);
+                    badges = JsonConvert.DeserializeObject<int>(operand.Value.ToString());
+                }
+                user = JsonConvert.DeserializeObject<User>(RSA.RSADecrypt(token).ToString());
+                ViewData["user"] = user;
+            }
+            else
+            {
+                string carts = Request.Cookies["cartList"];
+                List<Cart> cartList = new List<Cart>();
+                if (carts != null)
+                {
+                    cartList = System.Text.Json.JsonSerializer.Deserialize<List<Cart>>(carts);
+                    foreach (Cart item in cartList)
+                    {
+                        badges += item.Quantity;
+                    }
+                }
+            }
+            ViewData["badges"] = badges;
             return View();
         }
     }

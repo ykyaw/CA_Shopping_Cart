@@ -2,51 +2,52 @@
 @{
     ViewData["Title"] = "Index";
     var products = ViewData["gallery"] as List<Product>;
-    var users = ViewData["user"] as List<User>;
+    User user = ViewData["user"] as User;
+    int badges = (int)ViewData["badges"];
+    string search = (string)ViewData["search"];
 }
-
-<h2 style="display:inline-block">Hello, Username@user.Name</h2><a style="margin:0 5px 0 20px" href="~/Home/MyPurchase">MyPurchase</a> | <a style="margin:0 5px" href="~/Home">Logout</a>
-<div id="cart">
-    <i id="ShoppingCart" class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
-    <button class="clear">Empty Cart</button>
-</div>
-<span id="itemCount">ItemCount: </span>
-&emsp;
-<div class="searchbox">
-    <input id="SearchInput" type="text" placeholder="Enter your search hear...">
-    <button type="submit"><i class="fa fa-search"></i></button>
-</div>
-&emsp;
-@*<div class="product">
-        @foreach (Product product in products)
-        {
-            <div class="product-row">
-                <img class="product-img" src="~/assets/1netlogo.png" />
-                <div> @product.Name</div>
-                <div> @product.Description</div>
-                <button class="AddCart">$@product.UnitPrice - Add to Cart</button>
-                <input type="hidden" class="productId" value="@product.Id" />
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header" style="position:absolute">
+            <a class="navbar-brand" href="#">Gallery</a>
+        </div>
+        <ul class="nav navbar-nav navbar-left" style="position:relative;left:180px;">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Hello @(user!=null?user.Username:"")</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../MyPurchase">MyPurchase</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="logout">Logout</a>
+            </li>
+        </ul>
+        <form class="form-inline" action="/Gallery/Search" method="get">
+            <div class="form-group searchbox">
+                <input class="form-control input-sm" name="input" id="SearchInput" type="text" placeholder="Search Product Here" value="@search">
             </div>
-        }
-    </div>*@
-
-<table>
-    <tr>
-        <th>Photo</th>
-        <th>Name</th>
-        <th>Description</th>
-        <th>UnitPrice</th>
-        <th>Add To Cart</th>
-    </tr>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="#">
+                    <i id="ShoppingCart" class="fa fa-shopping-cart fa-2x" aria-hidden="true" style="font-size:20px;color:white;">
+                        <span class="badge">@badges</span>
+                    </i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<table style="margin:100px auto 30px;border:none">
     @foreach (var product in products)
     {
-        <tbody id="ProductTable">
-            <tr>
-                <td><img class="product-img" src="~/assets/python.jpg" /></td>
-                <td>@product.Name</td>
-                <td>@product.Description</td>
-                <td c>@product.UnitPrice</td>
-                <td><button class="AddCart">Add to Cart</button></td>
+        <tbody class="productCard" style="display: inline-block;width: 150px;height:300px;border-radius: 10px;margin:5px;background: #D1D9E0;padding: 5px;">
+            <tr style="display:inline-block;border:none;border-radius: 10px;height:100%">
+                <td style="display:block;border:none;"><img style="width: 70%;border-radius: 80px;opacity: 0.8;" src="@product.Photo" /></td>
+                <td style="display:block;border:none;">@product.Name</td>
+                <td style="display:block;border:none;">@product.Description</td>
+                <td style="display:block;border:none;">SGD @product.UnitPrice</td>
+                <td style="display:block;border:none;"><button class="AddCart btn-primary btn-sm">Add to Cart</button></td>
                 <input type="hidden" class="productId" value="@product.Id" />
             </tr>
         </tbody>

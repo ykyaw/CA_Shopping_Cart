@@ -9,18 +9,6 @@ namespace CartAPI.Models
 {
     public class Cart
     {
-        private string userId;
-
-        public Cart()
-        {
-        }
-
-        public Cart(string userId)
-        {
-            this.UserId = userId;           
-        }
-
-        
 
         [MaxLength(36)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -36,6 +24,9 @@ namespace CartAPI.Models
 
         [Required]
         public int Quantity { get; set; }
+
+        [NotMapped]
+        public  Product Product { set; get; }
     }
 
     

@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using GalleryAPI.Models;
 using GalleryAPI.Services;
 using System.Text.Json;
+using Newtonsoft.Json;
 
 namespace GalleryAPI.Controllers
 {
@@ -28,13 +29,27 @@ namespace GalleryAPI.Controllers
             return View();
         }
 
+        public string PurchasesProduct([FromBody] Operand operand)
+        {
+            List<PurchaseHistory> list = JsonConvert.DeserializeObject<List<PurchaseHistory>>(operand.Value.ToString());
+            operand.Value=gallery.PurchasesProduct(list);
+            return System.Text.Json.JsonSerializer.Serialize(operand);
+        }
+
 
         //get all product list in object format
         public string Products([FromBody] Operand operand)
         {
             List<Product> productGallery = gallery.GetAllProducts();
             operand.Value = productGallery;
-            return JsonSerializer.Serialize(operand);
+            return System.Text.Json.JsonSerializer.Serialize(operand);
+        }
+
+        public string CartProduct([FromBody] Operand operand)
+        {
+            List<Cart> cartList = System.Text.Json.JsonSerializer.Deserialize<List<Cart>>(operand.Value.ToString());
+            operand.Value=gallery.CartProduct(cartList);
+            return System.Text.Json.JsonSerializer.Serialize(operand);
         }
 
 

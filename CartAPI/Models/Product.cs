@@ -5,20 +5,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace APIGateway.Models
+namespace CartAPI.Models
 {
-    public class Cart
+    public class Product
     {
         public string Id { get; set; }
+        public string Name { get; set; }
+        public float UnitPrice { get; set; }
+        public string Description { get; set; }
+        public string Photo{ get; set; }
 
-        public string UserId { get; set; }
-
-        public string ProductId { get; set; }
-
-        public int Quantity { get; set; }
-
-        public Product Product { set; get; }
     }
-
-    
 }

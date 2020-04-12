@@ -25,11 +25,27 @@ namespace APIGateway.Middlewares
             string controller = (string)context.Request.RouteValues["controller"];
             string action = (string)context.Request.RouteValues["action"];
             //get sessionId from cookie
-            if (controller == "Login"||controller == "Gallery")
+            if (controller == "Login")
             {
-
+                if( action == "Index")
+                {
+                    string token = context.Request.Cookies["token"];
+                    //judge the token
+                    if (token != null)
+                    {
+                        User user = JsonConvert.DeserializeObject<User>(RSA.RSADecrypt(token).ToString());
+                        if (user != null)
+                        {
+                            context.Response.Redirect("https://" +
+                               context.Request.Host + "/Gallery");
+                            return;
+                        }
+                    }
+                }
+                
+                
             }
-            else
+            else if(controller != "Gallery")
             {
                 string token = context.Request.Cookies["token"];
                 //judge the token

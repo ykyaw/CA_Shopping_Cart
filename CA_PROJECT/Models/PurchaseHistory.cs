@@ -15,9 +15,8 @@ namespace APIGateway.Models
         public string UserId { get; set; }
         public string ProductId { get; set; }
         public DateTime PurchaseDate { get; set; }
-        public string ActivationCode { get; set; }
         public int Quantity { get; set; }
-        //public  User User { get; set; }
-        //public  Product Product { get; set; }
+        public Product Product { get; set; }
+        public List<PurchaseActivationCode> ActivationCodes { set; get; }
     }
 }

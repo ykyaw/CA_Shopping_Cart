@@ -1,5 +1,6 @@
 ﻿using CartAPI.DB;
 using CartAPI.Models;
+using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,29 +25,41 @@ namespace CartAPI.Services
 
         }
         // Added by Yuanchang for add to cart post
-        public void AddToCart(Cart cart, User user)
+        public void AddToCart(List<Cart> cartList, User user)
         {
-            //// Get the matching cart and user instances
-            Cart cartRecord = db.Carts.Where(
-                item => item.ProductId == cart.ProductId
-                && item.UserId == user.Id).SingleOrDefault();
-            if (cartRecord == null)
+            IDbContextTransaction transcat = db.Database.BeginTransaction();
+            try
             {
-                Cart newCart = new Cart
+                //// Get the matching cart and user instances
+                foreach(Cart cart in cartList)
                 {
-                    // Create a new cart item if no cart item exists
-                    Id = System.Guid.NewGuid().ToString(),
-                    UserId = user.Id,
-                    ProductId = cart.ProductId,
-                    Quantity = 1
-                };
-                db.Add(newCart);
+                    Cart cartRecord = db.Carts.Where(
+                    item => item.ProductId == cart.ProductId
+                    && item.UserId == user.Id).SingleOrDefault();
+                    if (cartRecord == null)
+                    {
+                        Cart newCart = new Cart
+                        {
+                            // Create a new cart item if no cart item exists
+                            Id = System.Guid.NewGuid().ToString(),
+                            UserId = user.Id,
+                            ProductId = cart.ProductId,
+                            Quantity = cart.Quantity
+                        };
+                        db.Add(newCart);
+                    }
+                    else
+                    {
+                        cartRecord.Quantity++;
+                    }
+                }
+                
+                db.SaveChanges();
+                transcat.Commit();
             }
-            else
-            {
-                cartRecord.Quantity++;
+            catch (Exception) { 
+                transcat.Rollback(); 
             }
-            db.SaveChanges();
         }
         // Added by Yuanchang to count items in cart
         public int GetCount(User user)
@@ -57,6 +70,61 @@ namespace CartAPI.Services
                           select (int?)cartItems.Quantity).Sum(); ;
             return count ?? 0;
         }
+
+        //change the quantity of cart
+        public bool ChangeQuantity(Cart cart)
+        {
+            IDbContextTransaction transcat = db.Database.BeginTransaction();
+            try
+            {
+                Cart cartRecord = db.Carts.Where(
+                item => item.Id == cart.Id).SingleOrDefault();
+                if (cart.Quantity == 0)
+                {
+                    db.Carts.Remove(cartRecord);
+                }
+                else
+                {
+                    cartRecord.Quantity = cart.Quantity;
+                }
+                db.SaveChanges();
+                transcat.Commit();
+                return true;
+            }
+            catch (Exception)
+            {
+                transcat.Rollback();
+                return false;
+            }
+        }
+
+
+        public IsDone Checkout(User user)
+        {
+            IDbContextTransaction transcat = db.Database.BeginTransaction();
+            try
+            {
+                List<Cart> cartList = db.Carts.Where(
+                item => item.UserId == user.Id).ToList<Cart>();
+                if (cartList != null)
+                {
+                    foreach(Cart cart in cartList)
+                    {
+                        db.Carts.Remove(cart);
+                    }
+                }
+                db.SaveChanges();
+                transcat.Commit();
+                return new IsDone() { Done = true };
+            }
+            catch (Exception)
+            {
+                transcat.Rollback();
+                return new IsDone() { Done = false };
+            }
+        }
+
     }
-    
+
+
 }

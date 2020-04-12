@@ -31,12 +31,21 @@ namespace MyPurchaseAPI.Controllers
             return View();
         }
 
+        public string Checkout([FromBody] Operand operand)
+        {
+            string token = Request.Cookies["token"];
+            User user = JsonConvert.DeserializeObject<User>(RSA.RSADecrypt(token).ToString());
+            List<Cart> cartList= System.Text.Json.JsonSerializer.Deserialize<List<Cart>>(operand.Value.ToString());
+            operand.Value=purchase.Checkout(cartList,user);
+            return System.Text.Json.JsonSerializer.Serialize(operand);
+        }
+
         //get purchase list
         public string Purchases([FromBody] Operand operand)
         {
             string token=Request.Cookies["token"]; 
             User user = JsonConvert.DeserializeObject<User>(RSA.RSADecrypt(token).ToString());
-            List<PurchaseHistory> purchaseHistories = purchase.GetPurchaseHistories();
+            List<PurchaseHistory> purchaseHistories = purchase.GetPurchaseHistories(user);
             operand.Value = purchaseHistories;
             return System.Text.Json.JsonSerializer.Serialize(operand);
         }

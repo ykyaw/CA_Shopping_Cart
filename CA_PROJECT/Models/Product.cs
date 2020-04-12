@@ -11,7 +11,7 @@ namespace APIGateway.Models
 
         public string Name { get; set; }
 
-        public string UnitPrice { get; set; }
+        public float UnitPrice { get; set; }
 
         public string Description { get; set; }
 

@@ -32,9 +32,11 @@ namespace MyPurchaseAPI.Models
 
         [NotMapped]
         public  User User { get; set; }
+
         [NotMapped]
         public  Product Product { get; set; }
 
-        public virtual List<PurchaseActivationCode> ActivationCodes { set; get; }
+        [NotMapped]
+        public  List<PurchaseActivationCode> ActivationCodes { set; get; }
     }
 }

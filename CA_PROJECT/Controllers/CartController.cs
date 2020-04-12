@@ -33,16 +33,39 @@ namespace CartAPI.Controllers
             Operand operand = new Operand();
 
             url = cfg.GetValue<string>("Hosts:CartAPI") + "/Home/CartList";
-            //operand = dataFetcher.GetData(httpClient, url, operand);
             operand = dataFetcher.GetData(url, operand,Request);
-            var list = JsonConvert.DeserializeObject<List<Cart>>(operand.Value.ToString());
+            List<Cart> list = JsonConvert.DeserializeObject<List<Cart>>(operand.Value.ToString()); 
+            url = cfg.GetValue<string>("Hosts:GalleryAPI") + "/Home/CartProduct";
+            operand.Value = list;
+            operand = dataFetcher.GetData(url, operand, Request);
+            list = JsonConvert.DeserializeObject<List<Cart>>(operand.Value.ToString()); 
+            string token = Request.Cookies["token"];
+            User user = JsonConvert.DeserializeObject<User>(RSA.RSADecrypt(token).ToString());
+            ViewData["user"] = user;
             ViewData["cartList"] = list;
             return View();
         }
 
-        public string Checkout()
+        public bool Checkout()
         {
-            return "";
+            string url;
+            Operand operand = new Operand();
+            url = cfg.GetValue<string>("Hosts:CartAPI") + "/Home/CartList";
+            operand = dataFetcher.GetData(url, operand, Request);
+            url = cfg.GetValue<string>("Hosts:MyPurchaseAPI") + "/Home/Checkout";
+            operand = dataFetcher.GetData(url, operand, Request);
+            IsDone done = JsonConvert.DeserializeObject<IsDone>(operand.Value.ToString());
+            if (done.Done)
+            {
+                url = cfg.GetValue<string>("Hosts:CartAPI") + "/Home/Checkout";
+                operand = dataFetcher.GetData(url, operand, Request);
+                done = JsonConvert.DeserializeObject<IsDone>(operand.Value.ToString());
+                if (done.Done)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         [Route("/changeQty")]
@@ -51,32 +74,8 @@ namespace CartAPI.Controllers
             string url;
             Operand operand = new Operand() { Value=cart};
             url = cfg.GetValue<string>("Hosts:CartAPI") + "/Home/ChangeQuantity";
-            //operand = dataFetcher.GetData(httpClient, url, operand);
             operand = dataFetcher.GetData(url, operand, Request);
             return System.Text.Json.JsonSerializer.Serialize(operand);
-        }
-
-        
-
-
-        public double Total()
-        {
-            return 0;
-        }
-
-        public int updateQty()
-        {
-            return 0;
-        }
-
-        public void continueShopping()
-        {
-            
-        }
-
-        public void checkOut()
-        {
-            
         }
 
     }
