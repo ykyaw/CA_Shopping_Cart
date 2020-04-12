@@ -1,49 +1,37 @@
-﻿@{
+﻿@using WebShoppingCart_1A.Controllers
+
+
+
+@{
     ViewData["Title"] = "index";
+
     var products = ViewData["products"] as List<Product>;
 
 }
+<partial name="_SearchProduct" />
+<partial name="_Productlayout" for="@products" />
 
-<h1>Cart</h1>
 
-
-    @foreach (Product product in products)
+@*@foreach (Product product in products)
     {
-            <div>
-                <span>@product.productName</span>
-            </div>
-            <img src="@product.imageURL" height="100">
-            <div>
-                <span>@product.unitPrice</span>
-            </div>
-            <div>
-                <span>@product.productDescription</span>
-            </div>
-            <input type="button" name="AddToCart" value="ADD TO CART" itemid="@product.Id"  onclick="AddToCart(this)"/>
-    }
+
+        <div>
+            <span>@product.productName</span>
+        </div>
+        <img src="@product.imageURL" height="100">
+        <div>
+            <span>@product.unitPrice</span>
+        </div>
+        <div>
+            <span>@product.productDescription</span>
+        </div>
+        <div>
+            <input class="AddToCartBtn" type="submit" value="ADD TO CART" />
+        </div>
+        <input type="hidden" value="@product.Id" name="id" />
+    }*@
 
 
-<script type="text/javascript">
-    function AddToCart(item) {
-        var itemId = $(item).attr("itemid");
-        var formData = new FormData();
-        formData.append("ItemId", itemId);
-
-        $.ajax({
-            async: true,
-            type: 'POST',
-            contentType: false,
-            processData: false,
-            data: formData,
-            url: '/Product/AddToCart',
-            success: function (data) {
-
-            },
-            error: function () { alert("Error"); }
-        });
-    }
-</script>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js"></script>
-

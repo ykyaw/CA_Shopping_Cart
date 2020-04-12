@@ -26,7 +26,7 @@ namespace WebShoppingCart_1A.Controllers
             this.dataFetcher = dataFetcher;
         }
 
-        public IActionResult Showcart()
+        public IActionResult Showcart() //work in progress, sunday morning
         {
             //retrieve all product from productAPI
             string productAPIurl = cfg.GetValue<string>("Hosts:ProductsAPI") + "/Home/getProducts";
@@ -59,7 +59,7 @@ namespace WebShoppingCart_1A.Controllers
             return View();
         }
 
-        public void Cartcounter()
+        public void Checkout()
         {
 
         }

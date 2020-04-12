@@ -51,12 +51,20 @@ namespace WebShoppingCart_1A.Controllers
             return View();
         }
 
-        public void AddToCart(string ItemId, Result result)
-        {   
-            result.Value = ItemId;
-            string sessionID = Request.Cookies["SessionId"];
-            string url = cfg.GetValue<string>("Hosts:CartAPI") + "/Home/receivecartfromapi";
-            result = dataFetcher.GetData(httpClient, url, result);
+        public void AddToCart(string ItemId)
+        {
+            if (Request.Cookies["CartState"] == null)
+            {
+                List<string> currentcart = new List<string>();
+                currentcart.Add(ItemId);
+                Response.Cookies.Append("CartState", JsonConvert.SerializeObject(currentcart));
+            }
+            else
+            {
+                List<string> currentcart = JsonConvert.DeserializeObject<List<string>>(Request.Cookies["CartState"]);
+                currentcart.Add(ItemId);
+                Response.Cookies.Append("CartState", JsonConvert.SerializeObject(currentcart));
+            }
         }
 
         public IActionResult Cartcounter(string ItemId) //not sure how to get it working. leave it for now

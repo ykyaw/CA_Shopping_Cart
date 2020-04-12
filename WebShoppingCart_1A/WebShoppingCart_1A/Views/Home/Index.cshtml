@@ -1,5 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+
+    string val = (string)ViewData["productId"];
 }
 
     <div class="text-center">
@@ -10,6 +12,7 @@
             <div>
                 <form action="https://localhost:44334/Home/Index" method="post">
                     <button id="LoginToAcc">Click me to login</button>
+                    <p> @val</p>
                 </form>
             </div>
         </div>

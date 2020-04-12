@@ -1,0 +1,30 @@
+﻿@model List<Product>;
+@{
+    ViewData["Title"] = "Index";
+    var CartItems = Model;
+
+    @*Here need to hard code a class to pass parameters down to _Cartlist (say, shopping cart layout) and _CartItem (item details including quantity) *@
+    @*Only after hard coding then we can try whether it is working*@
+    @*(sorry was too exhauseted that is why never try on hard code :(*@
+}
+
+<h1>Shopping Cart</h1>
+
+<br />
+<partial name="/-CartList" for="@CartItems" />
+<br />
+<partial name="CartFooter" />
+
+
+
+
+
+
+
+
+
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/Product_Index.js"></script>
