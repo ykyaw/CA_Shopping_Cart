@@ -51,6 +51,64 @@ namespace WebShoppingCart_1A.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult Search(string keyword)
+        {
+            string url;
+            url = cfg.GetValue<string>("Hosts:ProductsAPI") + "/Home/getProducts";
+            Result result = new Result();
+            result = dataFetcher.GetData(httpClient, url, result);
+            products = JsonConvert.DeserializeObject<List<Product>>(result.Value.ToString());
+
+            List<Product> searchedproduct = new List<Product>();
+
+            var allproducts = from x in products
+                              select x;
+
+            if (keyword == null)
+            {
+                searchedproduct.AddRange(allproducts);
+            }
+            else
+            {
+                foreach (Product product in products)
+                {
+                    if (product.productName.ToLower().Contains(keyword.ToLower()) || product.productDescription.ToLower().Contains(keyword.ToLower()))
+                    {
+                        searchedproduct.Add(product);
+                    }
+                }
+            };
+            ViewData["searchedproducts"] = searchedproduct;
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Detail(string productid)
+        {
+            string url;
+            url = cfg.GetValue<string>("Hosts:ProductsAPI") + "/Home/getProducts";
+            Result result = new Result();
+            result = dataFetcher.GetData(httpClient, url, result);
+            products = JsonConvert.DeserializeObject<List<Product>>(result.Value.ToString());
+
+            List<Product> clickedproduct = new List<Product>();
+
+            var clickedproducts = from x in products
+                                  select x;
+
+            foreach (Product product in products)
+            {
+                if (product.Id.Contains(productid))
+                {
+                    clickedproduct.Add(product);
+                }
+            }
+            ViewData["clickedproduct"] = clickedproduct;
+
+            return View();
+        }
+
         public void AddToCart(string ItemId)
         {
             if (Request.Cookies["CartState"] == null)
