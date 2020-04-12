@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MyPurchaseAPI.Models;
 using MyPurchaseAPI.Services;
+using MyPurchaseAPI.Utils;
+using Newtonsoft.Json;
 
 namespace MyPurchaseAPI.Controllers
 {
@@ -32,11 +34,11 @@ namespace MyPurchaseAPI.Controllers
         //get purchase list
         public string Purchases([FromBody] Operand operand)
         {
-            string sessionId = Request.Cookies["sessionId"];
-            string userId = HttpContext.Session.GetString(sessionId);
+            string token=Request.Cookies["token"]; 
+            User user = JsonConvert.DeserializeObject<User>(RSA.RSADecrypt(token).ToString());
             List<PurchaseHistory> purchaseHistories = purchase.GetPurchaseHistories();
             operand.Value = purchaseHistories;
-            return JsonSerializer.Serialize(operand);
+            return System.Text.Json.JsonSerializer.Serialize(operand);
         }
 
         public IActionResult Privacy()

@@ -7,8 +7,6 @@ namespace MyPurchaseAPI.Models
 {
     public class Operand
     {
-        public List<string> Infix { get; set; }
-        public List<string> Postfix { get; set; }
         public Object Value { get; set; }
     }
 }

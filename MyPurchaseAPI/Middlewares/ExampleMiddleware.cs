@@ -24,6 +24,7 @@ namespace MyPurchaseAPI.Middlewares
         public async Task Invoke(HttpContext context)
         {
             string token=context.Request.Cookies["token"];
+            User user = JsonConvert.DeserializeObject<User>(RSA.RSADecrypt(token).ToString());
             await next(context);
         }
     }

@@ -36,8 +36,8 @@ namespace APIGateway.Controllers
         {
             string url;
             Operand operand = new Operand();
-            string sessionId = Request.Cookies["sessionId"];
-            string userId = HttpContext.Session.GetString(sessionId);
+            //string sessionId = Request.Cookies["sessionId"];
+            //string userId = HttpContext.Session.GetString(sessionId);
             url = cfg.GetValue<string>("Hosts:MyPurchaseAPI") + "/Home/Purchases";
             //operand = dataFetcher.GetData(httpClient, url, operand);
             operand = dataFetcher.GetData(url, operand, Request);
