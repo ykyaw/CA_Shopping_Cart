@@ -42,13 +42,27 @@ namespace WebShoppingCart_1A.Controllers
         }
         public IActionResult Logout(Result result)
         {
-            
+            string userid = JsonConvert.DeserializeObject<string>(Request.Cookies["UserId"]);
             List<string> currentcartid = JsonConvert.DeserializeObject<List<string>>(Request.Cookies["CartState"]);
-            result.Value = JsonConvert.SerializeObject(currentcartid);
+            Cart ctosave = new Cart();
+            List<Cart> CartPasstoAPI = new List<Cart>();
+            foreach (string x in currentcartid)
+            {
+                ctosave.userId = userid;
+                ctosave.productId = x;
+                CartPasstoAPI.Add(ctosave);
+
+            }
+            result.Value = JsonConvert.SerializeObject(CartPasstoAPI);
             string url = cfg.GetValue<string>("Hosts:CartAPI") + "/Home/receivecartfromlogout";
             result = dataFetcher.GetData(httpClient, url, result);
             Response.Cookies.Delete("UserId");
             return RedirectToAction("Index", "Product");
+            //result.Value = JsonConvert.SerializeObject(currentcartid);
+            //string url = cfg.GetValue<string>("Hosts:CartAPI") + "/Home/receivecartfromlogout";
+            //result = dataFetcher.GetData(httpClient, url, result);
+            //Response.Cookies.Delete("UserId");
+            //return RedirectToAction("Index", "Product");
         }
     }
 }

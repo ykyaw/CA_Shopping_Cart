@@ -56,9 +56,11 @@ namespace AccountAPI.Controllers
             {
                 if (LoginUser.password == Password)
                 {
-                    List<string> loggedin = new List<string>();
-                    loggedin.Add(LoginUser.Id);
-                    Response.Cookies.Append("UserId", JsonConvert.SerializeObject(loggedin));
+                    //List<string> loggedin = new List<string>();
+                    //loggedin.Add(LoginUser.Id);
+                    string userid = JsonConvert.SerializeObject(LoginUser.Id);
+                    Response.Cookies.Append("UserId", userid);
+                    //Response.Cookies.Append("UserId", JsonConvert.SerializeObject(userid));
                     return Redirect("https://localhost:44361/Account/Index");
                 }
                 else
