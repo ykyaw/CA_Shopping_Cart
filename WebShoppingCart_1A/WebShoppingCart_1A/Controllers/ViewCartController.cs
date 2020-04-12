@@ -47,7 +47,7 @@ namespace WebShoppingCart_1A.Controllers
                 }
             }
 
-            ViewData["totalprice"]= currentcart.Sum(item => item.unitPrice);
+            ViewData["totalprice"] = currentcart.Sum(item => item.unitPrice);
             ViewData["CartView"] = currentcart;
             return View();
 
@@ -55,9 +55,9 @@ namespace WebShoppingCart_1A.Controllers
 
         public void MinusCart(string ItemId)
         {
-                List<string> currentcart = JsonConvert.DeserializeObject<List<string>>(Request.Cookies["CartState"]);
-                currentcart.Remove(ItemId);
-                Response.Cookies.Append("CartState", JsonConvert.SerializeObject(currentcart));
+            List<string> currentcart = JsonConvert.DeserializeObject<List<string>>(Request.Cookies["CartState"]);
+            currentcart.Remove(ItemId);
+            Response.Cookies.Append("CartState", JsonConvert.SerializeObject(currentcart));
 
         }
 
@@ -82,14 +82,19 @@ namespace WebShoppingCart_1A.Controllers
                 return View("Checkout"); //orderscontroller
         }
 
-        public void Logout(Result result)
+        public IActionResult Logout(Result result)
         {
             List<string> currentcartid = JsonConvert.DeserializeObject<List<string>>(Request.Cookies["CartState"]);
             result.Value = currentcartid;
-            string url = cfg.GetValue<string>("Hosts:CartAPI") + "/Home/XXXX";
+            string url = cfg.GetValue<string>("Hosts:CartAPI") + "/Home/receivecartfromapi";
             result = dataFetcher.GetData(httpClient, url, result);
+            Response.Cookies.Delete("CartState");
+            //Response.Cookies.Delete("UserId");
+            return RedirectToAction("Index", "Product");
 
         }
+    }
+}
 
 
 
@@ -123,6 +128,3 @@ namespace WebShoppingCart_1A.Controllers
         //}
 
 
-
-    }
-}

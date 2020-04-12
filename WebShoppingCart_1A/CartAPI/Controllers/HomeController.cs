@@ -9,6 +9,7 @@ using CartAPI.Models;
 using WebShoppingCart_1A.Models;
 using System.Text.Json;
 using CartAPI.CartDB;
+using Newtonsoft.Json;
 
 namespace CartAPI.Controllers
 {
@@ -24,27 +25,32 @@ namespace CartAPI.Controllers
             this.dbcontext = dbcontext;
         }
 
-        
-
         public IActionResult Index()
         {
             return View();
         }
 
-
-        public string receivecartfromapi([FromBody]Result result)
+        public string receivecartfromlogout([FromBody]Result result)
         {
-            //result.Value = JsonSerializer.Deserialize<Result>(result.Value.ToString());
-            Cart usercart = new Cart();
-            //string sessionID = Request.Cookies["SessionId"];
-            string ItemId = result.Value.ToString();
-            //usercart.userId = sessionID;
-            usercart.Id = Guid.NewGuid().ToString();
-            usercart.productId = ItemId;
-            dbcontext.Add(usercart);
-            dbcontext.SaveChanges();
-            return JsonSerializer.Serialize(result);
 
+            List<string> receivedcart = new List<string>();
+            receivedcart = JsonConvert.DeserializeObject<List<string>>(result.Value.ToString());
+            Cart usercart = new Cart();
+            foreach(string cart in receivedcart)
+            {
+                usercart.Id= Guid.NewGuid().ToString();
+                usercart.productId = cart;
+                usercart.userId = "123";
+                dbcontext.Add(usercart);
+            }
+
+            dbcontext.SaveChanges();
+            return System.Text.Json.JsonSerializer.Serialize(result);
+        }
+        public string getProducts(Result result)
+        {
+            result.Value = dbcontext.Cart_tbl.ToList();
+            return System.Text.Json.JsonSerializer.Serialize(result);
         }
 
         public IActionResult Privacy()
