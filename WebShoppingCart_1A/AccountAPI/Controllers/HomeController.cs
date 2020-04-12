@@ -9,6 +9,8 @@ using AccountAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using AccountAPI.DB;
+using Newtonsoft.Json;
+using System.Text.Json;
 
 namespace AccountAPI.Controllers
 {
@@ -28,7 +30,6 @@ namespace AccountAPI.Controllers
 
         public IActionResult Index()
         {
-
             return View();
         }
 
@@ -53,24 +54,23 @@ namespace AccountAPI.Controllers
 
             if (LoginUser != null)
             {
-                if (LoginUser.password == Password )
+                if (LoginUser.password == Password)
                 {
-                    return View("OkLogin");
+                    List<string> loggedin = new List<string>();
+                    loggedin.Add(LoginUser.Id);
+                    Response.Cookies.Append("UserId", JsonConvert.SerializeObject(loggedin));
+                    return Redirect("https://localhost:44361/Account/Index");
                 }
-
                 else
                     return RedirectToAction("Index");
-                
+
             }
-            
-                return View("Privacy");
-
-
-            //HttpContext.Session.SetString("username", username);
-            //code here wanted------to send username from account API to APIgateway
-            //return RedirectToAction();
-
-
+            return View("Privacy");
+        }
+        public string getAccounts(Result result)
+        {
+            result.Value = dbcontext.UserAccount_tbl.ToList();
+            return System.Text.Json.JsonSerializer.Serialize(result);
         }
     }
 }
