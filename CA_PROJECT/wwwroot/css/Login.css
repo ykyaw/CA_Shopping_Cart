@@ -54,14 +54,14 @@ h1{
     font-size: 14px;
 }
 
-    .loginbox input[type="submit"] {
-        border: none;
-        outline: none;
-        height: 40px;
-        background: #86c232;
-        color: #fff;
-        font-size: 14px;
-        border-radius: 20px;
+.loginbox input[type="submit"] {
+     border: none;
+     outline: none;
+     height: 40px;
+     background: #86c232;
+     color: #fff;
+     font-size: 14px;
+     border-radius: 20px;
     }
 
 .loginbox input[type="submit"]:hover{
@@ -75,3 +75,4 @@ h1{
 
 .loginbox a:hover{
 }
+

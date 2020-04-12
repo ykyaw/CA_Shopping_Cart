@@ -10,7 +10,8 @@ namespace APIGateway.Models
 {
     public class User
     {
-        internal string errmsg;
+        [NotMapped]
+        public string ErrMsg { set; get; }
 
         [MaxLength(36)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]

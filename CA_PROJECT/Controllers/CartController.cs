@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using APIGateway.Models;
 using APIGateway.Services;
+using APIGateway.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
@@ -44,10 +45,20 @@ namespace CartAPI.Controllers
             return "";
         }
 
-        public string ChangeQuantity()
+        [Route("/changeQty")]
+        public string ChangeQuantity([FromBody] Cart cart)
         {
-            return "";
+            string url;
+            Operand operand = new Operand() { Value=cart};
+            url = cfg.GetValue<string>("Hosts:CartAPI") + "/Home/ChangeQuantity";
+            //operand = dataFetcher.GetData(httpClient, url, operand);
+            operand = dataFetcher.GetData(url, operand, Request);
+            return System.Text.Json.JsonSerializer.Serialize(operand);
         }
+
+        
+
+
         public double Total()
         {
             return 0;

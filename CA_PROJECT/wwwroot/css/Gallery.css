@@ -1,0 +1,52 @@
+﻿.product {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+    display: inline-block;
+}
+
+#product-img {
+    display: inline-table;
+    width: 10%;
+    height: auto;
+}
+
+.searchbox {
+    top: 1355px;
+    left: 1575px;
+}
+
+    .searchbox input {
+        height: 30px;
+        width: 700px;
+    }
+
+#itemCount {
+    position: absolute;
+    display: none;
+    top: 120px;
+    left: 200px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: red;
+    color: white;
+    text-align: center;
+}
+
+table, th, td {
+    font-family: arial, sans-serif;
+    text-align: center;
+    border: 1px solid black;
+    padding: 1px;
+}
+
+#element1 {
+    display: inline-block;
+}
+
+#element2 {
+    display: inline-block;
+}

@@ -72,11 +72,11 @@ namespace APIGateway
             });
 
             //create database and table
-            dbcontext.Database.EnsureDeleted();
-            dbcontext.Database.EnsureCreated();
+            //dbcontext.Database.EnsureDeleted();
+            //dbcontext.Database.EnsureCreated();
 
-            //insert data into database
-            new DBSeeder(dbcontext);
+            ////insert data into database
+            //new DBSeeder(dbcontext);
 
         }
     }

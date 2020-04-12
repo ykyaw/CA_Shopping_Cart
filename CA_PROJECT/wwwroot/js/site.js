@@ -3,10 +3,8 @@ function Post(url, value) {
         type: "POST",
         contentType: "application/json",
         url: url,
-        data: JSON.stringify({ Value: value }),
+        data: JSON.stringify( value ),
         success: function (response) {
-            var result = JSON.parse(response);
-            console.log("success in post ajax" + result);
             return Promise.resolve(response);
         },
         error: function (response) {
@@ -23,8 +21,6 @@ function Get(url) {
         contentType: "application/json",
         url: url,
         success: function (response) {
-            var result = JSON.parse(response);
-            console.log("success in get ajax" + result);
             return Promise.resolve(response);
         },
         error: function (response) {
@@ -40,10 +36,8 @@ function Put(url, value) {
         type: "PUT",
         contentType: "application/json",
         url: url,
-        data: JSON.stringify({ Value: value }) ,
+        data: JSON.stringify(value),
         success: function (response) {
-            var result = JSON.parse(response);
-            console.log("success in put ajax" + result);
             return Promise.resolve(response);
         },
         error: function (response) {
@@ -60,9 +54,7 @@ function Delete(url) {
         contentType: "application/json",
         url: url,
         success: function (response) {
-            var result = JSON.parse(response);
-            console.log("success in delete ajax" + result);
-            return Promise.resolve(result);
+            return Promise.resolve(response);
         },
         error: function (err) {
             console.log(err);
@@ -77,27 +69,34 @@ $(document).ready(function () {
 
     $("#loginBtn").on("click", function (e) {
         e.preventDefault();
-        var uname = $("#uname").val();
-        var pwd = $("#pwd").val();
-        if (uname.length === 0 || pwd.length === 0) {
-            $("#errmsg").html("All fields are required.");
+        var username = $("#uname").val();
+        var password = $("#pwd").val();
+        $("#hashPwd").val(CryptoJS.SHA256(password).toString());
+        var hashPwd = $("#hashPwd").val();
+
+
+        if (username.length == 0 || password.length == 0) {
+            $("#errmsg").html("Both Username and Password are required.");
             return;
         }
 
-        $("#hashPwd").val(CryptoJS.SHA256(psw).toString());
-        $("#pwd").val("");
-
-        var hashPwd = $("#hashPwd").val();
-
-        Post("loginBtn", { Username: uname, Password: hashPwd })
+        Post("/Login/Verify", { Username: username, Password: hashPwd })
             .then(function (response) {
                 var result = JSON.parse(response);
+                console.log(result);
+                if (result.ErrMsg == null) {
+                    window.location.replace(result.Value);
+                    //redirect page to gallery page
+
+                } else {
+                    $("#errmsg").html(result.ErrMsg);
+                }
             })
             .catch(function (err) {
-                console.log("Error logging in", JSON.stringify(err));;
+                console.log("err",err)
             })
-
-        });
+    });
 
         //$("#loginForm").submit();
-    });
+});
+
