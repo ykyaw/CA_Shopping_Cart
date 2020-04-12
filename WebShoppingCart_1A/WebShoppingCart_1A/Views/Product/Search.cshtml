@@ -1,10 +1,9 @@
-﻿@using WebShoppingCart_1A.Controllers
-
+﻿
 @{
-    ViewData["Title"] = "index";
-    var products = ViewData["products"] as List<Product>;
-
+    ViewData["Title"] = "Search";
+    var searchedproduct = ViewData["searchedproducts"] as List<Product>;
 }
+
 <nav class="navbar navbar-light bg-light">
 
     <form method="get" class="form-inline " asp-controller="Product" asp-action="Search">
@@ -17,9 +16,14 @@
 </nav>
 <br />
 
+@if (searchedproduct.Count == 0)
+{
+    <p>No products matched to search criteria.</p>
+}
+
 <div class="container">
     <div class="row">
-        @foreach (var product in products)
+        @foreach (var product in searchedproduct)
         {
 
             <div class="col-sm-4">
@@ -28,52 +32,27 @@
                         <img class="card-img-top d-block w-100" style="height:300px"
                              src=@product.imageURL usemap="#photo">
                     </a>
-                    <form method="get" asp-action="Detail" asp-controller="Product">
-                        <map name="photo">
-                            <area href="@product.Id">
-                        </map>
-                    </form>
                     <div class="card-body">
                         <a href="https://localhost:44361/Product/Detail?productid=@product.Id" style="color:black;font-weight:bold">@product.productName</a>
-
                         <input class="card-text" type="hidden" name="productId"><br />
                         @for (var i = 0; i < product.productRating; i++)
                         {
                             <img src="~/images/onestar.png" style="height:20px; width:20px;" />
                         }
                     </div>
-                        <div class="card-footer">
-                            <h5 class="card-title text-center">@product.unitPrice.ToString("c")</h5>
-                            <div class="text-center">
-                                <input type="button" name="AddToCart" value="Add to basket" method="get" itemid="@product.Id" onclick="AddToCart(this)" />
 
-                            </div>
+                    <div class="card-footer">
+                        <h5 class="card-title text-center">@product.unitPrice.ToString("c")</h5>
+                        <div class="text-center">
+                            <input type="button" name="AddToCart" value="Add to basket" itemid="@product.Id" onclick="AddToCart(this)" />
+
                         </div>
+                    </div>
                 </div>
             </div>
         }
     </div>
 </div>
-
-@*@foreach (Product product in products)
-    {
-
-        <div>
-            <span>@product.productName</span>
-        </div>
-        <img src="@product.imageURL" height="100">
-        <div>
-            <span>@product.unitPrice</span>
-        </div>
-        <div>
-            <span>@product.productDescription</span>
-        </div>
-        <div>
-            <input class="AddToCartBtn" type="submit" value="ADD TO CART" />
-        </div>
-        <input type="hidden" value="@product.Id" name="id" />
-    }*@
-
 
 <script type="text/javascript">
     function AddToCart(item) {

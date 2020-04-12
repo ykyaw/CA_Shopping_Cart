@@ -6,10 +6,9 @@ using System.Security.Cryptography;
 using System.Text;
 
 
-
-namespace AccountAPI.ForHashing
+namespace AccountAPI.Hashing
 {
-    public class hashAlgo
+    public class hashing
     {
         static public string Sha256(string str)
         {
@@ -18,6 +17,5 @@ namespace AccountAPI.ForHashing
             byte[] hash = sha256.ComputeHash(Encoding.UTF8.GetBytes(str));
             return BitConverter.ToString(hash).Replace("-", "").ToLower();
         }
-
     }
 }
