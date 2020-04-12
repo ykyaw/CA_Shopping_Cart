@@ -7,6 +7,7 @@ using APIGateway.DB;
 using APIGateway.Extensions;
 using APIGateway.Services;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -36,6 +37,7 @@ namespace APIGateway
             services.AddDbContext<UserContext>(opt =>
                opt.UseLazyLoadingProxies()
                .UseSqlServer(Configuration.GetConnectionString("DbConn")));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
