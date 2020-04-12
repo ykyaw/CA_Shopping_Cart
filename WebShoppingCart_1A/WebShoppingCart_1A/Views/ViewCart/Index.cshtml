@@ -1,0 +1,20 @@
+﻿@using WebShoppingCart_1A.Controllers
+
+
+
+@{
+    ViewData["Title"] = "index";
+
+    var cartview = ViewData["CartView"] as List<Product>;
+
+}
+@*<partial name="_SearchProduct" />*@
+<partial name="_Productlayout" for="@cartview" />
+
+
+
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js"></script>
