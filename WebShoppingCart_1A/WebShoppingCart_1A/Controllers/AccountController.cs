@@ -40,5 +40,14 @@ namespace WebShoppingCart_1A.Controllers
             ViewData["accounts"] = accounts;
             return View();
         }
+        public IActionResult Logout()
+        {
+            //List<string> currentcartid = JsonConvert.DeserializeObject<List<string>>(Request.Cookies["CartState"]);
+            //result.Value = currentcartid;
+            //string url = cfg.GetValue<string>("Hosts:CartAPI") + "/Home/XXXX";
+            //result = dataFetcher.GetData(httpClient, url, result);
+            Response.Cookies.Delete("UserId");
+            return RedirectToAction("Index", "Product");
+        }
     }
 }
