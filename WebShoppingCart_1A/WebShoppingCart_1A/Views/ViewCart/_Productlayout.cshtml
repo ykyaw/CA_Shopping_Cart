@@ -1,0 +1,104 @@
+﻿@model List<Product>;
+
+@{
+    var products = Model;
+}
+@{ var counter = 0;
+    foreach (var product in products)
+        counter++; }
+<a class="nav-link text-dark" asp-area="" asp-controller="ViewCart" asp-action="Checkout">Checkout</a>
+
+<h3> Total price: @ViewData["totalprice"]</h3>
+<h3> Items in cart: @counter</h3>
+<div class="container">
+    <div class="row">
+        @foreach (var product in products)
+        {
+            <div class="col-sm-4">
+                <div class="" card-deck"">
+                    <img class="card-img-top d-block w-100" style="height:300px"
+                         src=@product.imageURL>
+                    <div class="card-body">
+                        <h6 class="card-text">@product.productName</h6>
+                        <input class="card-text" type="hidden" name="productId">
+                    </div>
+                    <div class="card-footer">
+                        <h5 class="card-title text-center">$@product.unitPrice</h5>
+                        <div class="text-center">
+                            @*<input type="button" name="AddToCart" value="Add to basket" itemid="@product.Id"  onclick="AddToCart(this)"/>*@
+                            <input type="button" name="AddToCart" value="Add" itemid="@product.Id" onclick="AddToCart(this)" />
+                            <input type="button" name="RemoveCart" value="Remove" removeid="@product.Id" onclick="RemoveCart(this)" />
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@*<input type="button" name="AddToCart" value="Add to basket" itemid="@product.Id" onclick="AddToCart(this)" />*@
+@*<input type="button" name="AddToCart" value="Update Cart" onclick="AddToCart(this)" />*@
+<a class="nav-link text-dark" asp-area="" asp-controller="ViewCart" asp-action="Index">Update Cart</a> @*This refreshes the page to recalculate total price*@
+
+<script type="text/javascript">
+    function AddToCart(item) {
+        var itemId = $(item).attr("itemid");
+        var formData = new FormData();
+        formData.append("ItemId", itemId);
+
+        $.ajax({
+            async: true,
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            data: formData,
+            url: '/Product/AddToCart',
+            success: function (data) {
+
+            },
+            error: function () { alert("Error"); }
+        });
+    }
+    function RemoveCart(item2) {
+        var removeId = $(item2).attr("removeid");
+        var formData = new FormData();
+        formData.append("ItemId", removeId);
+
+        $.ajax({
+            async: true,
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            data: formData,
+            url: '/ViewCart/MinusCart',
+            success: function (data) {
+
+            },
+            error: function () { alert("Error"); }
+        });
+    }
+
+
+
+
+</script>
+
+@*pagegation*@
+<br />
+<br />
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-end">
+        <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1">Previous</a>
+        </li>
+        <li class="page-item disabled"><a class="page-link" href="#">1</a></li>
+        <li class="page-item disabled"><a class="page-link" href="#">2</a></li>
+        <li class="page-item disabled"><a class="page-link" href="#">3</a></li>
+        <li class="page-item disabled">
+            <a class="page-link" href="#">Next</a>
+        </li>
+    </ul>
+</nav>
+

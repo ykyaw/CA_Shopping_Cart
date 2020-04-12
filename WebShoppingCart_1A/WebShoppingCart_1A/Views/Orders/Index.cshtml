@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Past Orders View </h1>
+
+@{
+    ViewData["Title"] = "index";
+
+    var products = ViewData["products"] as List<Product>;
+
+}
+<partial name="_SearchProduct" />
+<partial name="_Productlayout" for="@products" />
+
+
+@*@foreach (Product product in products)
+    {
+
+        <div>
+            <span>@product.productName</span>
+        </div>
+        <img src="@product.imageURL" height="100">
+        <div>
+            <span>@product.unitPrice</span>
+        </div>
+        <div>
+            <span>@product.productDescription</span>
+        </div>
+        <div>
+            <input class="AddToCartBtn" type="submit" value="ADD TO CART" />
+        </div>
+        <input type="hidden" value="@product.Id" name="id" />
+    }*@

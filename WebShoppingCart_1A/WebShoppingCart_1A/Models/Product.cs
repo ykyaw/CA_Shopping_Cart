@@ -23,5 +23,8 @@ namespace WebShoppingCart_1A.Models
 
         public string imageURL { get; set; }
 
+        public string userId { get; set; } //only for processing checkout in orders controller. Do not delete
+
+
     }
 }
