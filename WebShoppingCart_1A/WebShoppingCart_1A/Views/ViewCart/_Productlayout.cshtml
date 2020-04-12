@@ -1,4 +1,5 @@
-﻿@model List<Product>;
+﻿
+@model List<Product>;
 
 @{
     var products = Model;
@@ -6,41 +7,110 @@
 @{ var counter = 0;
     foreach (var product in products)
         counter++; }
-<a class="nav-link text-dark" asp-area="" asp-controller="ViewCart" asp-action="Checkout">Checkout</a>
 
-<h3> Total price: @ViewData["totalprice"]</h3>
-<h3> Items in cart: @counter</h3>
+    <form>
+        <a href="https://localhost:44361/Product/Index">Back to Products</a>
+    </form>
+    <hr>
+
+<h4> Items in cart: @counter</h4>
+
+<div align="right">
+    <form asp-area="" asp-controller="ViewCart" asp-action="Index">
+        <button class="btn btn-outline-success my-2 my-sm-0">Update Cart</button>
+    </form>
+</div>
+
+
 <div class="container">
-    <div class="row">
-        @foreach (var product in products)
-        {
-            <div class="col-sm-4">
-                <div class="" card-deck"">
-                    <img class="card-img-top d-block w-100" style="height:300px"
-                         src=@product.imageURL>
-                    <div class="card-body">
-                        <h6 class="card-text">@product.productName</h6>
-                        <input class="card-text" type="hidden" name="productId">
-                    </div>
-                    <div class="card-footer">
-                        <h5 class="card-title text-center">$@product.unitPrice</h5>
-                        <div class="text-center">
-                            @*<input type="button" name="AddToCart" value="Add to basket" itemid="@product.Id"  onclick="AddToCart(this)"/>*@
-                            <input type="button" name="AddToCart" value="Add" itemid="@product.Id" onclick="AddToCart(this)" />
-                            <input type="button" name="RemoveCart" value="Remove" removeid="@product.Id" onclick="RemoveCart(this)" />
+        <table class="table table-striped custab" style="width:100%">
+            <thead>
+                <tr>
+                    <th style="width:auto;padding-right:50px"></th>
+                    <th style="width:auto;padding-right:50px">Product Name</th>
+                    <th style="width:auto;padding-right:50px" align="justify">Quantity</th>
+                    <th style="width:auto;padding-right:50px">Unit Price</th>
+                </tr>
+            </thead>
+            @foreach (var product in products)
+            {
+                <tr>
+                    <td>
+                        <img style="float: left; padding-right: 50px;" alt="@product.productName" width="200" height="200" src=@product.imageURL>
+                    </td>
+                    <td>@product.productName</td>
+                    <td>
+                        <input type="button" name="RemoveCart" value="-" removeid="@product.Id" onclick="RemoveCart(this)" />
+                        <input type="text" value="1" maxlength="4" size="4">
+                        <input type="button" name="AddCart" value="+" itemid="@product.Id" onclick="AddToCart(this)" />
+                    </td>
+                    <td>@product.unitPrice.ToString("c")</td>
+                </tr>
+            }
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+
+                    <p align="right"><h3> Total price: $@ViewData["totalprice"]</h3></p>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+<div align="right">
+    <form asp-area="" asp-controller="ViewCart" asp-action="Checkout">
+        <button class="btn btn-outline-success my-2 my-sm-0">Check out</button>
+    </form>
+</div>
 
 
+
+
+
+@*This refreshes the page to recalculate total price*@
+
+@*
+        <div class="container">
+        <div class="row">
+            @foreach (var product in products)
+            {
+                <div class="col-sm-4">
+                    <div class="" card-deck"">
+                        <img class="card-img-top d-block w-100" style="height:300px"
+                             src=@product.imageURL>
+                        <div class="card-body">
+                            <h6 class="card-text">@product.productName</h6>
+                            <input class="card-text" type="hidden" name="productId">
+                        </div>
+                        <div class="card-footer">
+                            <h5 class="card-title text-center">$@product.unitPrice</h5>
+                            <div class="text-center">
+                                @*<input type="button" name="AddToCart" value="Add to basket" itemid="@product.Id"  onclick="AddToCart(this)"/>
+                                        <input type="button" name="AddToCart" value="Add" itemid="@product.Id" onclick="AddToCart(this)" />
+                                    <input type="button" name="RemoveCart" value="Remove" removeid="@product.Id" onclick="RemoveCart(this)" />
+
+    <input type="button" name="RemoveCart" value="-" removeid="@product.Id" onclick="RemoveCart(this)" />
+    <input type="text" value="1" maxlength="4" size="4">
+    <input type="button" name="AddCart" value="+" itemid="@product.Id" onclick="AddToCart(this)" />
+
+
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        }
+            }
+        </div>
     </div>
-</div>
 
-@*<input type="button" name="AddToCart" value="Add to basket" itemid="@product.Id" onclick="AddToCart(this)" />*@
-@*<input type="button" name="AddToCart" value="Update Cart" onclick="AddToCart(this)" />*@
-<a class="nav-link text-dark" asp-area="" asp-controller="ViewCart" asp-action="Index">Update Cart</a> @*This refreshes the page to recalculate total price*@
+    @*<input type="button" name="AddToCart" value="Add to basket" itemid="@product.Id" onclick="AddToCart(this)" />
+    @*<input type="button" name="AddToCart" value="Update Cart" onclick="AddToCart(this)" />
+
+    <a class="nav-link text-dark" asp-area="" asp-controller="ViewCart" asp-action="Index">Update Cart</a> @*This refreshes the page to recalculate total price
+*@
+
+
 
 <script type="text/javascript">
     function AddToCart(item) {
@@ -79,10 +149,6 @@
             error: function () { alert("Error"); }
         });
     }
-
-
-
-
 </script>
 
 @*pagegation*@
