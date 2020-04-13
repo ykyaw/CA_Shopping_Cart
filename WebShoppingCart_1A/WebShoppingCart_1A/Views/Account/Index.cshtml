@@ -1,7 +1,13 @@
-﻿
-@{
-    ViewData["Title"] = "OkLogin";
+﻿@{
+    var accounts = ViewData["accounts"] as List<Account>;
 }
 
-<h1>Welcome Back Dear User! </h1>
-
+@if (Context.Request.Cookies["UserId"] != null && accounts != null)
+{
+    foreach (var account in accounts)
+    {
+        <div>
+            <h1>Hello @account.email!</h1>
+        </div>
+    }
+}

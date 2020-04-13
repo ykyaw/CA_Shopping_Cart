@@ -64,10 +64,10 @@ namespace AccountAPI.Controllers
                     return Redirect("https://localhost:44361/Account/Index");
                 }
                 else
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", "Home");
 
             }
-            return View("Privacy");
+            return RedirectToAction("Index", "Home");
         }
         public string getAccounts(Result result)
         {
