@@ -33,6 +33,7 @@ namespace APIGateway
             //inject the service
             services.AddScoped<HttpClient>();
             services.AddScoped<DataFetcher>();
+            services.AddScoped<DBUser>();
             //inject dbcontext
             services.AddDbContext<UserContext>(opt =>
                opt.UseLazyLoadingProxies()
@@ -68,7 +69,7 @@ namespace APIGateway
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Login}/{action=Index}/{id?}");
+                    pattern: "{controller=Gallery}/{action=Index}/{id?}");
             });
 
             //create database and table

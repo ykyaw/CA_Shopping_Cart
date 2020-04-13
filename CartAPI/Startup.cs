@@ -57,11 +57,11 @@ namespace CartAPI
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            ////create database and table
-            dbcontext.Database.EnsureDeleted();
-            dbcontext.Database.EnsureCreated();
+            //create database and table
+            //dbcontext.Database.EnsureDeleted();
+            //dbcontext.Database.EnsureCreated();
 
-            new Seeder(dbcontext);
+            //new Seeder(dbcontext);
         }
     }
 }
