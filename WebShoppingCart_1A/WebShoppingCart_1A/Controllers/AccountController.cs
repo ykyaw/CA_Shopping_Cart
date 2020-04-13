@@ -17,6 +17,7 @@ using System.Web.Providers.Entities;
 
 namespace WebShoppingCart_1A.Controllers
 {
+
     public class AccountController : Controller
     {
         List<Account> accounts = new List<Account>();
@@ -83,6 +84,7 @@ namespace WebShoppingCart_1A.Controllers
             string url = cfg.GetValue<string>("Hosts:CartAPI") + "/Home/receivecartfromlogout";
             result = dataFetcher.GetData(httpClient, url, result);
             Response.Cookies.Delete("UserId");
+            Response.Cookies.Delete("CartState");
             return RedirectToAction("Index", "Product");
            
         }

@@ -76,7 +76,7 @@ namespace WebShoppingCart_1A.Controllers
             //upon receving successful response, push all info to Orders API, and send response to CartAPI to clear data and clear cookie cart state
             if (Request.Cookies["UserId"] == null)
             {
-                return Redirect("https://localhost:44334/Home/Login");
+                return Redirect("https://localhost:44334/Home/Index");
             }
             else
                 return View("Checkout"); //orderscontroller

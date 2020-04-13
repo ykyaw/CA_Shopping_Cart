@@ -32,16 +32,17 @@ namespace CartAPI.Controllers
 
         public string receivecartfromlogout([FromBody]Result result)
         {
-
             List<Cart> receivedcart = new List<Cart>();
             receivedcart = JsonConvert.DeserializeObject<List<Cart>>(result.Value.ToString());
-            Cart usercart = new Cart();
-            foreach(Cart cart in receivedcart)
+            dbcontext.Database.EnsureDeleted(); //clears old cart records
+            dbcontext.Database.EnsureCreated();
+            Cart newcart = new Cart();
+            foreach (Cart cart in receivedcart) // this adds new data
             {
-                usercart.Id= Guid.NewGuid().ToString();
-                usercart.productId = cart.productId;
-                usercart.userId = cart.userId;
-                dbcontext.Add(usercart);
+                newcart.Id= Guid.NewGuid().ToString();
+                newcart.productId = cart.productId;
+                newcart.userId = cart.userId;
+                dbcontext.Add(newcart);
                 dbcontext.SaveChanges();
             }
 
