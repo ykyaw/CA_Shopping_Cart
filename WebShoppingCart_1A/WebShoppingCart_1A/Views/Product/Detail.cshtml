@@ -4,120 +4,124 @@
     var clickedproduct = ViewData["clickedproduct"] as List<Product>;
 }
 
-@foreach (var product in clickedproduct)
-{
-    <img style="float: left; padding-right: 50px;" alt="@product.productName" width="400" height="400" align="left" src=@product.imageURL>
+    <table>
+        @foreach (var product in clickedproduct)
+        {
+            <th>
+                <img style="float: left; padding-right: 50px;" alt="@product.productName" width="400" height="400" align="left" src=@product.imageURL>
+            </th>
+            <th>
 
-    <!-- Product Description -->
-    <div>
-        <h1>@product.productName</h1>
-        <p>@product.productDescription</p>
-        <p>
-            @for (var i = 0; i < product.productRating; i++)
-            {
-                <img src="~/images/onestar.png" style="height:20px; width:20px;" />
+                <!-- Product Description -->
+                <div>
+                    <h1>@product.productName</h1>
+                    <p>@product.productDescription</p>
+                    <p>
+                        @for (var i = 0; i < product.productRating; i++)
+                        {
+                            <img src="~/images/onestar.png" style="height:20px; width:20px;" />
+                        }
+                    </p>
+
+
+                    <p class="price">Price:  @product.unitPrice.ToString("c")</p>
+
+                    <p> <input type="button" name="AddToCart" value="Add to Cart" itemid="@product.Id" onclick="AddToCart(this)" /></p><br />
+                    <a href="https://localhost:44361/Product/Index">Back to Products</a>
+                    <hr />
+                </div>
+            </th>
+        }
+    </table>
+
+        <div class="container">
+            <div class="row">
+                <h3>Our Top Rated Products</h3>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-sm-4">
+                    <a href=" https://localhost:44361/Product/Detail?productid=KaspAV2019">
+                        <img class="card-img-top d-block w-100" style="height:150px;width:150px;"
+                             src="~/images/Kaspersky.png" usemap="#photo">
+                    </a>
+                    <form method="get" asp-action="Detail" asp-controller="Product">
+                        <map name="photo">
+                            <area href=" https://localhost:44361/Product/Detail?productid=KaspAV2019" alt="No image">
+                        </map>
+                    </form>
+                    <div>
+                        <a href=" https://localhost:44361/Product/Detail?productid=KaspAV2019" style="color:black;font-weight:bold">Kaspersky Anti-Virus 2019</a><br />
+                        <img src="~/images/fivestars.PNG" style="height:20px;" />
+                        <h6>Price: &#36;151.00</h6>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <a href=" https://localhost:44361/Product/Detail?productid=MSOfficePro2019">
+                        <img class="card-img-top d-block w-100" style="height:150px;width:150px;"
+                             src="~/images/Office.jpg" usemap="#photo">
+                    </a>
+                    <form method="get" asp-action="Detail" asp-controller="Product">
+                        <map name="photo">
+                            <area href=" https://localhost:44361/Product/Detail?productid=MSOfficePro2019" alt="No image">
+                        </map>
+                    </form>
+                    <div>
+                        <a href=" https://localhost:44361/Product/Detail?productid=MSOfficePro2019" style="color:black;font-weight:bold">Microsoft Office Professional 2019</a><br />
+                        <img src="~/images/fivestars.PNG" style="height:20px;" />
+                        <h6>Price: &#36;40.00</h6>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <a href=" https://localhost:44361/Product/Detail?productid=McAfeetp">
+                        <img class="card-img-top d-block w-100" style="height:150px;width:150px;"
+                             src="~/images/McAfee.png" usemap="#photo">
+                    </a>
+                    <form method="get" asp-action="Detail" asp-controller="Product">
+                        <map name="photo">
+                            <area href=" https://localhost:44361/Product/Detail?productid=McAfeetp" alt="No image">
+                        </map>
+                    </form>
+                    <div>
+                        <a href=" https://localhost:44361/Product/Detail?productid=McAfeetp" style="color:black;font-weight:bold">McAfee Total Protection</a><br />
+                        <img src="~/images/fivestars.PNG" style="height:20px;" />
+                        <h6>Price: &#36;272.80</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <script type="text/javascript">
+            function AddToCart(item) {
+                var itemId = $(item).attr("itemid");
+                var formData = new FormData();
+                formData.append("ItemId", itemId);
+
+                $.ajax({
+                    async: true,
+                    type: 'POST',
+                    contentType: false,
+                    processData: false,
+                    data: formData,
+                    url: '/Product/AddToCart',
+                    success: function (data) {
+
+                    },
+                    error: function () { alert("Error"); }
+                });
             }
-        </p>
-        
 
-        <p class="price">Price:  @product.unitPrice.ToString("c")</p>
-        
-        <p> <input type="button" name="AddToCart" value="Add to Cart" itemid="@product.Id" onclick="AddToCart(this)" /></p><br />
-        <a href="https://localhost:44361/Product/Index">Back to Products</a>
-        <hr />
-
-    </div>
-}
+        </script>
 
 
-<div class="container">
-        <div class="row">
-            <h3>Our Top Rated Products</h3>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-sm-4">
-                <a href="https://localhost:44361/Product/Detail?productid=Kasp%20AV2019">
-                    <img class="card-img-top d-block w-100" style="height:150px;width:150px;"
-                         src="~/images/Kaspersky.png" usemap="#photo">
-                </a>
-                <form method="get" asp-action="Detail" asp-controller="Product">
-                    <map name="photo">
-                        <area href="https://localhost:44361/Product/Detail?productid=Kasp%20AV2019">
-                    </map>
-                </form>
-                <div>
-                    <a href="https://localhost:44361/Product/Detail?productid=Kasp%20AV2019" style="color:black;font-weight:bold">Kaspersky Anti-Virus 2019</a><br />
-                    <img src="~/images/fivestars.PNG" style="height:20px;" />
-                    <h6>Price: &#36;151.00</h6>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <a href="https://localhost:44361/Product/Detail?productid=MS%20Office%20Pro%202019">
-                    <img class="card-img-top d-block w-100" style="height:150px;width:150px;"
-                         src="~/images/Office.jpg" usemap="#photo">
-                </a>
-                <form method="get" asp-action="Detail" asp-controller="Product">
-                    <map name="photo">
-                        <area href="https://localhost:44361/Product/Detail?productid=MS%20Office%20Pro%202019">
-                    </map>
-                </form>
-                <div>
-                    <a href="https://localhost:44361/Product/Detail?productid=MS%20Office%20Pro%202019" style="color:black;font-weight:bold">Microsoft Office Professional 2019</a><br />
-                    <img src="~/images/fivestars.PNG" style="height:20px;" />
-                    <h6>Price: &#36;40.00</h6>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <a href="https://localhost:44361/Product/Detail?productid=McFreeAV">
-                    <img class="card-img-top d-block w-100" style="height:150px;width:150px;"
-                         src="~/images/McAfee.png" usemap="#photo">
-                </a>
-                <form method="get" asp-action="Detail" asp-controller="Product">
-                    <map name="photo">
-                        <area href="https://localhost:44361/Product/Detail?productid=McFreeAV">
-                    </map>
-                </form>
-                <div>
-                    <a href="https://localhost:44361/Product/Detail?productid=McFreeAV" style="color:black;font-weight:bold">McAfee</a><br />
-                    <img src="~/images/fourstars.PNG" style="height:20px;" />
-                    <h6>Price: &#36;272.80</h6>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-
-
-
-
-<script type="text/javascript">
-    function AddToCart(item) {
-        var itemId = $(item).attr("itemid");
-        var formData = new FormData();
-        formData.append("ItemId", itemId);
-
-        $.ajax({
-            async: true,
-            type: 'POST',
-            contentType: false,
-            processData: false,
-            data: formData,
-            url: '/Product/AddToCart',
-            success: function (data) {
-
-            },
-            error: function () { alert("Error"); }
-        });
-    }
-
-</script>
-
-
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="~/js/site.js"></script>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js"></script>
 
 
