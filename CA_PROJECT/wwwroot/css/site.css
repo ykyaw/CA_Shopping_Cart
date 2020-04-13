@@ -6,7 +6,11 @@ a.navbar-brand {
   text-align: center;
   word-break: break-all;
 }
-
+@media(min-width:1200px){
+    .container{
+        max-width:100%;
+    }
+}
 /* Provide sufficient contrast against white background */
 a {
   color: #0366d6;

@@ -88,14 +88,14 @@ namespace APIGateway.Controllers
                 badges = 1;
             }
             string token = Request.Cookies["token"];
-            if (token == null)
+            if (token == null) 
             {
                 CookieOptions options = new CookieOptions();
                 options.Expires = DateTime.Now.AddDays(1);//set cookie expires day 
                 string newCookieCarts = System.Text.Json.JsonSerializer.Serialize(cartList);
                 Response.Cookies.Append("cartList", newCookieCarts, options);
             }
-            else
+            else 
             {
                 Operand operand = new Operand();
                 operand.Value = cartList;
