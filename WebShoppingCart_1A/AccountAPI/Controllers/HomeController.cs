@@ -49,7 +49,7 @@ namespace AccountAPI.Controllers
             //code wanted here-------
             //condition:2. are the username and password able to be found in our database--> yes,go to con 3; -->no,return login
             //condition:3. is username and password matches?-->yes, SetString and send back to API gateway
-            Useraccount LoginUser = dbcontext.UserAccount_tbl.Where(x => x.email == Email).FirstOrDefault();
+            Useraccount LoginUser = dbcontext.UserAccount_tbl.Where(x => x.Email == Email).FirstOrDefault();
 
 
             if (LoginUser != null)
@@ -64,10 +64,10 @@ namespace AccountAPI.Controllers
                     return Redirect("https://localhost:44361/Account/Index");
                 }
                 else
-                    return RedirectToAction("Index", "Home");
+                    return Redirect("https://localhost:44334/Home/Index");
 
             }
-            return RedirectToAction("Index", "Home");
+            return Redirect("https://localhost:44334/Home/Index");
         }
         public string getAccounts(Result result)
         {

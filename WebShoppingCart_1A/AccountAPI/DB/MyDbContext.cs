@@ -7,21 +7,21 @@ using AccountAPI.Models;
 
 namespace AccountAPI.DB
 {
-    public class MyDbContext:DbContext
+    public class MyDbContext : DbContext
     {
-        public MyDbContext(DbContextOptions<MyDbContext>options):base(options)
+        public MyDbContext(DbContextOptions<MyDbContext> options) : base(options)
         {
 
         }
 
         protected override void OnModelCreating(ModelBuilder model)
         {
-            model.Entity<Useraccount>().HasIndex(model => model.email).IsUnique();
-            
+            model.Entity<Useraccount>().HasIndex(model => model.Email).IsUnique();
+
         }
         public DbSet<Useraccount> UserAccount_tbl { get; set; }
 
     }
 
-    
+
 }

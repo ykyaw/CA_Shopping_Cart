@@ -1,5 +1,4 @@
 ﻿using AccountAPI.Models;
-using AccountAPI.Hashing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +15,27 @@ namespace AccountAPI.DB
         {
             Useraccount user1 = new Useraccount();
             user1.Id = "1";
-            user1.email = "team1a@u.nus.edu";
-            user1.password = hashing.Sha256("123456");
+            user1.Name = "Tom Lee";
+            user1.Email = "tomlee@gmail.com";
+            user1.password = "123456";
             dbcontext.Add(user1);
             dbcontext.SaveChanges();
 
+            Useraccount user2 = new Useraccount();
+            user2.Id = "2";
+            user2.Name = "Dick Tan";
+            user2.Email = "dicktan@gmail.com";
+            user2.password = "123456";
+            dbcontext.Add(user2);
+            dbcontext.SaveChanges();
+
+            Useraccount user3 = new Useraccount();
+            user3.Id = "3";
+            user3.Name = "Harry Potter";
+            user3.Email = "harrypotter@gmail.com";
+            user3.password = "123456";
+            dbcontext.Add(user3);
+            dbcontext.SaveChanges();
         }
 
     }

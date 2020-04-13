@@ -47,6 +47,7 @@ namespace WebShoppingCart_1A.Controllers
             List<string> checkoutcart = JsonConvert.DeserializeObject<List<string>>(Request.Cookies["CartState"]);
             Product temp = new Product();
             List<Orders> finalorderskept = new List<Orders>();
+            DateTime x = DateTime.UtcNow;
             foreach (string ItemId in checkoutcart)
             {
                 foreach (Product product in products)
@@ -62,7 +63,7 @@ namespace WebShoppingCart_1A.Controllers
                 finalorder.productId = temp.Id;
                 finalorder.unitPrice = temp.unitPrice;
                 finalorder.userId = userid;
-                finalorder.timestamp = DateTime.UtcNow;
+                finalorder.timestamp = x;
                 finalorderskept.Add(finalorder);
             }
 

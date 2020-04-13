@@ -69,7 +69,7 @@ namespace OrdersAPI
 
 
 
-            //dbcontext.Database.EnsureDeleted();
+            dbcontext.Database.EnsureDeleted();
             dbcontext.Database.EnsureCreated();
 
 

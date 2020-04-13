@@ -58,7 +58,7 @@ namespace CartAPI
             });
 
 
-            //dbcontext.Database.EnsureDeleted();
+            dbcontext.Database.EnsureDeleted();
             dbcontext.Database.EnsureCreated();
 
             new CartSeeder(dbcontext);
