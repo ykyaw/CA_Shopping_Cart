@@ -37,9 +37,35 @@ namespace WebShoppingCart_1A.Controllers
             Result result = new Result();
             result = dataFetcher.GetData(httpClient, url, result);
             accounts = JsonConvert.DeserializeObject<List<Account>>(result.Value.ToString());
+
+            if (Request.Cookies["UserId"] != null) //this block of code pull unpaid cart item back to cookies
+            {
+                //pull all unpaid ItemId from CartAPI based on UserId
+                Result result2 = new Result();
+                result.Value = Request.Cookies["UserId"];
+                string url2 = cfg.GetValue<string>("Hosts:CartAPI") + "/Home/getProducts";
+                result2 = dataFetcher.GetData(httpClient, url2, result);
+                List<Cart> carthistory = new List<Cart>();
+                carthistory = JsonConvert.DeserializeObject<List<Cart>>(result2.Value.ToString());
+                List<string> cartid = new List<string>();
+                foreach (Cart x in carthistory)
+                {
+                    cartid.Add(x.productId);
+                }
+                if (Request.Cookies["CartState"] == null)
+                {
+                    Response.Cookies.Append("CartState", JsonConvert.SerializeObject(cartid));
+                }
+                else
+                {
+                    List<string> currentcart = JsonConvert.DeserializeObject<List<string>>(Request.Cookies["CartState"]);
+                    currentcart.AddRange(cartid);
+                    Response.Cookies.Append("CartState", JsonConvert.SerializeObject(currentcart));
+                }
+            }
             ViewData["accounts"] = accounts;
             return View();
-        }
+        }    
         public IActionResult Logout(Result result)
         {
             string userid = JsonConvert.DeserializeObject<string>(Request.Cookies["UserId"]);
@@ -58,11 +84,13 @@ namespace WebShoppingCart_1A.Controllers
             result = dataFetcher.GetData(httpClient, url, result);
             Response.Cookies.Delete("UserId");
             return RedirectToAction("Index", "Product");
-            //result.Value = JsonConvert.SerializeObject(currentcartid);
+           
+        }
+    }
+}
+
+ //result.Value = JsonConvert.SerializeObject(currentcartid);
             //string url = cfg.GetValue<string>("Hosts:CartAPI") + "/Home/receivecartfromlogout";
             //result = dataFetcher.GetData(httpClient, url, result);
             //Response.Cookies.Delete("UserId");
             //return RedirectToAction("Index", "Product");
-        }
-    }
-}
