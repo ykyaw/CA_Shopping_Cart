@@ -16,7 +16,7 @@ namespace GalleryAPI.DB
             product1.Name = ".NET Charts";
             product1.UnitPrice = 99;
             product1.Description = "Brings powerful charting capabilities to your .NET applications.";
-            product1.Photo = "~/assets/Charts.jpg";
+            product1.Photo = "../assets/Charts.jpg";
             dbcontext.Add(product1);
 
             Product product2 = new Product();
@@ -24,7 +24,7 @@ namespace GalleryAPI.DB
             product2.Name = ".NET PayPal";
             product2.UnitPrice = 69;
             product2.Description = "Integrate your .NET apps with PayPal the easy way!";
-            product2.Photo = "~/assets/PayPal.jpg";
+            product2.Photo = "../assets/PayPal.jpg";
             dbcontext.Add(product2);
 
             Product product3 = new Product();
@@ -32,7 +32,7 @@ namespace GalleryAPI.DB
             product3.Name = ".NET ML";
             product3.UnitPrice = 254;
             product3.Description = "Supercharged .NET machine learning libraies.";
-            product3.Photo = "~/assets/ML.jpg";
+            product3.Photo = "../assets/ML.jpg";
             dbcontext.Add(product3);
 
             Product product4 = new Product();
@@ -40,7 +40,7 @@ namespace GalleryAPI.DB
             product4.Name = ".NET Analytics";
             product4.UnitPrice = 134;
             product4.Description = "Performs data mining and analytics easily in .NET.";
-            product4.Photo = "~/assets/Analytics.jpg";
+            product4.Photo = "../assets/Analytics.jpg";
             dbcontext.Add(product4);
 
             Product product5 = new Product();
@@ -48,7 +48,7 @@ namespace GalleryAPI.DB
             product5.Name = ".NET Logger";
             product5.UnitPrice = 75;
             product5.Description = "Logs and aggregates events easily in your .NET apps.";
-            product5.Photo = "~/assets/Logger.jpg";
+            product5.Photo = "../assets/Logger.jpg";
             dbcontext.Add(product5);
 
             Product product6 = new Product();
@@ -56,7 +56,7 @@ namespace GalleryAPI.DB
             product6.Name = ".NET Numerics";
             product6.UnitPrice =177;
             product6.Description = "Powerful numerical methods for your .NET simulations.";
-            product6.Photo = "~/assets/Numerics.jpg";
+            product6.Photo = "../assets/Numerics.jpg";
             dbcontext.Add(product6);
 
             Product product7 = new Product();
@@ -64,7 +64,7 @@ namespace GalleryAPI.DB
             product7.Name = ".NET Blazor";
             product7.UnitPrice = 177;
             product7.Description = "Develop with reusable UI components that can take advantage of WebAssembly for near-native performance";
-            product7.Photo = "~/assets/Blazor.jpg";
+            product7.Photo = "../assets/Blazor.jpg";
             dbcontext.Add(product7);
 
             Product product8 = new Product();
@@ -72,7 +72,7 @@ namespace GalleryAPI.DB
             product8.Name = ".NET API";
             product8.UnitPrice = 188;
             product8.Description = "Develop RESTful HTTP services with ASP.NET Core web API";
-            product8.Photo = "~/assets/API.jpg";
+            product8.Photo = "../assets/API.jpg";
             dbcontext.Add(product8);
 
             Product product9 = new Product();
@@ -80,7 +80,7 @@ namespace GalleryAPI.DB
             product9.Name = ".NET WebUI";
             product9.UnitPrice = 199;
             product9.Description = "Develop page-focused web apps with a clean separation of concerns";
-            product9.Photo = "~/assets/WebUI.jpg";
+            product9.Photo = "../assets/WebUI.jpg";
             dbcontext.Add(product9);
 
             Product product10 = new Product();
@@ -88,7 +88,7 @@ namespace GalleryAPI.DB
             product10.Name = ".NET MVC";
             product10.UnitPrice = 210;
             product10.Description = "Develop web apps using the Model-View-Controller design pattern";
-            product10.Photo = "~/assets/MVC.jpg";
+            product10.Photo = "../assets/MVC.jpg";
             dbcontext.Add(product10);
 
             Product product11 = new Product();
@@ -96,7 +96,7 @@ namespace GalleryAPI.DB
             product11.Name = ".NET RealTime";
             product11.UnitPrice = 211;
             product11.Description = "Add real-time functionality to your web app, enable server-side code to push content instantly";
-            product11.Photo = "~/assets/RealTime.jpg";
+            product11.Photo = "../assets/RealTime.jpg";
             dbcontext.Add(product11);
 
             Product product12 = new Product();
