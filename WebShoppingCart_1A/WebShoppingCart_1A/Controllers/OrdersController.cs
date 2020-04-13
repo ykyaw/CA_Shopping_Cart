@@ -33,9 +33,10 @@ namespace WebShoppingCart_1A.Controllers
             return View();
         }
 
-        public void SuccessPayment(Result result)
+        public IActionResult SuccessPayment(Result result)
         {
 
+            string userid = JsonConvert.DeserializeObject<string>(Request.Cookies["UserId"]);
             //retrieve all product from productAPI
             string productAPIurl = cfg.GetValue<string>("Hosts:ProductsAPI") + "/Home/getProducts";
             Result p_result = new Result();
@@ -44,22 +45,29 @@ namespace WebShoppingCart_1A.Controllers
 
             //retrieve productId from CartState in cookie
             List<string> checkoutcart = JsonConvert.DeserializeObject<List<string>>(Request.Cookies["CartState"]);
-            List<Product> finalizedcart = new List<Product>();
+            Orders finalorder = new Orders();
+            List<Orders> finalorderskept = new List<Orders>();
+            //List<Orders> finalorder = new List<Orders>();
             foreach (string ItemId in checkoutcart)
             {
                 foreach (Product product in products)
                 {
                     if (ItemId == product.Id)
                     {
-                        finalizedcart.Add(product);
+                        finalorder.imageURL = product.imageURL;
+                        finalorder.productId = product.Id;
+                        finalorder.unitPrice = product.unitPrice;
+                        finalorder.userId = userid;
+                        finalorder.timestamp = DateTime.UtcNow;
+                        finalorderskept.Add(finalorder); 
                     }
                 }
             }
-
-            result.Value = finalizedcart;
-            string url = cfg.GetValue<string>("Hosts:OrderAPI") + "/Home/XXXX";
+            result.Value = JsonConvert.SerializeObject(finalorderskept);
+            string url = cfg.GetValue<string>("Hosts:OrdersAPI") + "/Home/receiveorders";
             result = dataFetcher.GetData(httpClient, url, result);
             Response.Cookies.Delete("CartState");
+            return RedirectToAction("Index", "Product"); //Change if we want to show a different checkout page
         }
 
         public IActionResult ViewPastPurchases(Result result)

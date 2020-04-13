@@ -14,7 +14,7 @@ namespace CartAPI.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string Id { get; set; }
 
-        //[Required]
+        [Required]
         [MaxLength(36)]
         public string userId { get; set; }
 

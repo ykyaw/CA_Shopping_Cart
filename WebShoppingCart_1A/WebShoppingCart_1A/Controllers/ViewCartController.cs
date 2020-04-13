@@ -76,23 +76,23 @@ namespace WebShoppingCart_1A.Controllers
             //upon receving successful response, push all info to Orders API, and send response to CartAPI to clear data and clear cookie cart state
             if (Request.Cookies["UserId"] == null)
             {
-                return Redirect("https://localhost:44334/Home/Login");
+                return Redirect("https://localhost:44334/Home/Index");
             }
             else
-                return View("Checkout"); //orderscontroller
+                return RedirectToAction("SuccessPayment","Orders"); //orderscontroller
         }
 
-        public IActionResult Logout(Result result)
-        {
-            List<string> currentcartid = JsonConvert.DeserializeObject<List<string>>(Request.Cookies["CartState"]);
-            result.Value = currentcartid;
-            string url = cfg.GetValue<string>("Hosts:CartAPI") + "/Home/receivecartfromapi";
-            result = dataFetcher.GetData(httpClient, url, result);
-            Response.Cookies.Delete("CartState");
-            //Response.Cookies.Delete("UserId");
-            return RedirectToAction("Index", "Product");
+        //public IActionResult Logout(Result result)
+        //{
+        //    List<string> currentcartid = JsonConvert.DeserializeObject<List<string>>(Request.Cookies["CartState"]);
+        //    result.Value = currentcartid;
+        //    string url = cfg.GetValue<string>("Hosts:CartAPI") + "/Home/receivecartfromapi";
+        //    result = dataFetcher.GetData(httpClient, url, result);
+        //    Response.Cookies.Delete("CartState");
+        //    //Response.Cookies.Delete("UserId");
+        //    return RedirectToAction("Index", "Product");
 
-        }
+        //}
     }
 }
 
