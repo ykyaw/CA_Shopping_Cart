@@ -45,10 +45,8 @@ namespace WebShoppingCart_1A.Controllers
 
             //retrieve productId from CartState in cookie
             List<string> checkoutcart = JsonConvert.DeserializeObject<List<string>>(Request.Cookies["CartState"]);
-            Orders finalorder = new Orders();
             Product temp = new Product();
             List<Orders> finalorderskept = new List<Orders>();
-            //List<Orders> finalorder = new List<Orders>();
             foreach (string ItemId in checkoutcart)
             {
                 foreach (Product product in products)
@@ -58,9 +56,8 @@ namespace WebShoppingCart_1A.Controllers
                         temp = product;
                         break;
                     }
-
-                    
                 }
+                Orders finalorder = new Orders();
                 finalorder.imageURL = temp.imageURL;
                 finalorder.productId = temp.Id;
                 finalorder.unitPrice = temp.unitPrice;
@@ -68,22 +65,6 @@ namespace WebShoppingCart_1A.Controllers
                 finalorder.timestamp = DateTime.UtcNow;
                 finalorderskept.Add(finalorder);
             }
-            //foreach (string ItemId in checkoutcart)
-            //{
-            //    foreach (Product product in products)
-            //    {
-            //        if (ItemId == product.Id)
-            //        {
-            //            finalorder.imageURL = product.imageURL;
-            //            finalorder.productId = product.Id;
-            //            finalorder.unitPrice = product.unitPrice;
-            //            finalorder.userId = userid;
-            //            finalorder.timestamp = DateTime.UtcNow;
-            //        }
-            //    }
-            //    finalorderskept.Add(finalorder);
-            //}
-
 
             result.Value = JsonConvert.SerializeObject(finalorderskept);
             string url = cfg.GetValue<string>("Hosts:OrdersAPI") + "/Home/receiveorders";
@@ -99,13 +80,13 @@ namespace WebShoppingCart_1A.Controllers
 
             //retrieve all product from OrderAPI
             List<Orders> orderhist = new List<Orders>();
-            string orderAPIurl = cfg.GetValue<string>("Hosts:OrderAPI") + "/Home/OrderHistory";
+            string orderAPIurl = cfg.GetValue<string>("Hosts:OrdersAPI") + "/Home/OrderHistory";
             Result o_result = new Result();
             o_result = dataFetcher.GetData(httpClient, orderAPIurl, o_result);
             orderhist = JsonConvert.DeserializeObject<List<Orders>>(o_result.Value.ToString());
             //FOLLOW UP
             ViewData["pastorders"] = orderhist;
-            return View();
+            return View("Index");
         }
 
 

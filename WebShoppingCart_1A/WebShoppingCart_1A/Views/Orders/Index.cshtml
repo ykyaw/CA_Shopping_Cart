@@ -1,35 +1,19 @@
-﻿
-@{
-    ViewData["Title"] = "Index";
-}
+﻿@using WebShoppingCart_1A.Controllers
 
-<h1>Past Orders View </h1>
+
 
 @{
     ViewData["Title"] = "index";
 
-    var products = ViewData["products"] as List<Product>;
+    var ordersview = ViewData["pastorders"] as List<Orders>; // need to change
 
 }
-<partial name="_SearchProduct" />
-<partial name="_Productlayout" for="@products" />
+<partial name="_Productlayout" for="@ordersview" />
 
 
-@*@foreach (Product product in products)
-    {
 
-        <div>
-            <span>@product.productName</span>
-        </div>
-        <img src="@product.imageURL" height="100">
-        <div>
-            <span>@product.unitPrice</span>
-        </div>
-        <div>
-            <span>@product.productDescription</span>
-        </div>
-        <div>
-            <input class="AddToCartBtn" type="submit" value="ADD TO CART" />
-        </div>
-        <input type="hidden" value="@product.Id" name="id" />
-    }*@
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js"></script>

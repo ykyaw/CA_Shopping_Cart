@@ -1,0 +1,178 @@
+﻿
+@model List<Product>;
+
+@{
+    var products = Model;
+    var counter = products.Count();
+    var unique = new Dictionary<Product, int>();
+    foreach (var product in products)
+    {
+        if (!unique.ContainsKey(product))
+        {
+            var count = products.FindAll(x => x.Equals(product)).Count;
+            unique.Add(product, count);
+        }
+    }
+
+}
+
+    <form>
+        <a href="https://localhost:44361/Product/Index">Back to Products</a>
+    </form>
+    <hr>
+
+<h4> Items in cart: @counter</h4>
+
+<div align="right">
+    <form asp-area="" asp-controller="ViewCart" asp-action="Index">
+        <button class="btn btn-outline-success my-2 my-sm-0">Update Cart</button>
+    </form>
+</div>
+
+
+<div class="container">
+        <table class="table table-striped custab" style="width:100%">
+            <thead>
+                <tr>
+                    <th style="width:auto;padding-right:50px"></th>
+                    <th style="width:auto;padding-right:50px">Product Name</th>
+                    <th style="width:auto;padding-right:50px" align="justify">Quantity</th>
+                    <th style="width:auto;padding-right:50px">Unit Price</th>
+                </tr>
+            </thead>
+            @foreach (var r in unique)
+            {
+                <tr>
+                    <td>
+                        <img style="float: left; padding-right: 50px;" alt="@r.Key.productName" width="200" height="200" src=@r.Key.imageURL>
+                    </td>
+                    <td>@r.Key.productName</td>
+                    <td>
+                        <input type="button" name="RemoveCart" value="-" removeid="@r.Key.Id" onclick="RemoveCart(this)" />
+                        <input type="text" value="@r.Value" maxlength="4" size="4" disabled>
+                        <input type="button" name="AddCart" value="+" itemid="@r.Key.Id" onclick="AddToCart(this)" />
+                    </td>
+                    <td>@((r.Value*r.Key.unitPrice).ToString("c"))</td>
+                </tr>
+            }
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+
+                    <p align="right"><h3> Total price: @ViewData["totalprice"]</h3></p>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+<div align="right">
+    <form asp-area="" asp-controller="ViewCart" asp-action="Checkout">
+        <button class="btn btn-outline-success my-2 my-sm-0">Check out</button>
+    </form>
+</div>
+
+
+
+
+
+@*This refreshes the page to recalculate total price*@
+
+@*
+        <div class="container">
+        <div class="row">
+            @foreach (var product in products)
+            {
+                <div class="col-sm-4">
+                    <div class="" card-deck"">
+                        <img class="card-img-top d-block w-100" style="height:300px"
+                             src=@product.imageURL>
+                        <div class="card-body">
+                            <h6 class="card-text">@product.productName</h6>
+                            <input class="card-text" type="hidden" name="productId">
+                        </div>
+                        <div class="card-footer">
+                            <h5 class="card-title text-center">$@product.unitPrice</h5>
+                            <div class="text-center">
+                                @*<input type="button" name="AddToCart" value="Add to basket" itemid="@product.Id"  onclick="AddToCart(this)"/>
+                                        <input type="button" name="AddToCart" value="Add" itemid="@product.Id" onclick="AddToCart(this)" />
+                                    <input type="button" name="RemoveCart" value="Remove" removeid="@product.Id" onclick="RemoveCart(this)" />
+
+    <input type="button" name="RemoveCart" value="-" removeid="@product.Id" onclick="RemoveCart(this)" />
+    <input type="text" value="1" maxlength="4" size="4">
+    <input type="button" name="AddCart" value="+" itemid="@product.Id" onclick="AddToCart(this)" />
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    @*<input type="button" name="AddToCart" value="Add to basket" itemid="@product.Id" onclick="AddToCart(this)" />
+    @*<input type="button" name="AddToCart" value="Update Cart" onclick="AddToCart(this)" />
+
+    <a class="nav-link text-dark" asp-area="" asp-controller="ViewCart" asp-action="Index">Update Cart</a> @*This refreshes the page to recalculate total price
+*@
+
+
+
+<script type="text/javascript">
+    function AddToCart(item) {
+        var itemId = $(item).attr("itemid");
+        var formData = new FormData();
+        formData.append("ItemId", itemId);
+
+        $.ajax({
+            async: true,
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            data: formData,
+            url: '/Product/AddToCart',
+            success: function (data) {
+
+            },
+            error: function () { alert("Error"); }
+        });
+    }
+    function RemoveCart(item2) {
+        var removeId = $(item2).attr("removeid");
+        var formData = new FormData();
+        formData.append("ItemId", removeId);
+
+        $.ajax({
+            async: true,
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            data: formData,
+            url: '/ViewCart/MinusCart',
+            success: function (data) {
+
+            },
+            error: function () { alert("Error"); }
+        });
+    }
+</script>
+
+@*pagegation*@
+<br />
+<br />
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-end">
+        <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1">Previous</a>
+        </li>
+        <li class="page-item disabled"><a class="page-link" href="#">1</a></li>
+        <li class="page-item disabled"><a class="page-link" href="#">2</a></li>
+        <li class="page-item disabled"><a class="page-link" href="#">3</a></li>
+        <li class="page-item disabled">
+            <a class="page-link" href="#">Next</a>
+        </li>
+    </ul>
+</nav>
+

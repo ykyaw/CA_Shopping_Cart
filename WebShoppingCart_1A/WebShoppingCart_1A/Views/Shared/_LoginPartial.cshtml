@@ -2,8 +2,12 @@
 
 
 @{
-    List<string> cartcount = JsonConvert.DeserializeObject<List<string>>(Context.Request.Cookies["CartState"]);
-    int? counter = cartcount.Count();
+    int counter = 0;
+    if (Context.Request.Cookies["CartState"] != null)
+    {
+        List<string> cartcount = JsonConvert.DeserializeObject<List<string>>(Context.Request.Cookies["CartState"]);
+        counter = cartcount.Count();
+    }
 }
 
 <ul class="navbar-nav">
