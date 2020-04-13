@@ -40,7 +40,7 @@
                 <li>
                     <a href="#">
                         <span style="font-size:20px;color:white;">
-                            TotalAmount(SGD):@totalAmount
+                            TotalAmount(SGD):<span id="total">@totalAmount</span>
                         </span>
                     </a>
                 </li>
@@ -61,7 +61,7 @@
             </thead>
             @foreach (Cart cart in cartList)
             {
-                <tr>
+                <tr class="cartLine">
                     <td style="width: 150px;">
                         <img style="width: 70%;border-radius: 80px;opacity: 0.8;" src="@cart.Product.Photo" />
                     </td>
@@ -69,14 +69,14 @@
                         <div>@cart.Product.Name</div>
                         <div>@cart.Product.Description</div>
                     </td>
-                    <td style="vertical-align:middle;">@cart.Product.UnitPrice</td>
+                    <td style="vertical-align:middle;" class="price">@cart.Product.UnitPrice</td>
                     <td style="vertical-align:middle;">
                         <div class="form-group" style="width:100px;margin:auto;">
-                            <input type="number" value="@cart.Quantity" onchange="changeQty(this)" class="form-control input-sm" style="width:100%">
+                            <input type="number" value="@cart.Quantity" onchange="changeQty(this)" class="form-control input-sm quantity" style="width:100%">
                             <input type="hidden" value="@cart.Id" />
                         </div>
                     </td>
-                    <td style="vertical-align:middle;">@(cart.Product.UnitPrice*cart.Quantity)</td>
+                    <td style="vertical-align:middle;" class="subtotal">@(cart.Product.UnitPrice*cart.Quantity)</td>
                 </tr>
             }
 

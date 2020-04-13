@@ -16,6 +16,17 @@
                 parent.innerHTML = "";
                 return;
             }
+            var totalamount = 0
+            var cartLines = $(".cartLine");
+            for (var i = 0; i < cartLines.length; i++) {
+                console.log("line", cartLines[i]);
+                var price = $(cartLines[i]).find(".price").text()
+                var qty = $(cartLines[i]).find(".quantity").val();
+                var subtotal = Number(price) * Number(qty);
+                totalamount += subtotal;
+                $(cartLines[i]).find(".subtotal").text(subtotal);
+                $("#total").text(totalamount);
+            }
         })
         .catch(function (err) {
             console.log("err", err);
