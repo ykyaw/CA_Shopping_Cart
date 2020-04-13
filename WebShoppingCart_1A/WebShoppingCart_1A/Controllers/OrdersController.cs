@@ -46,6 +46,7 @@ namespace WebShoppingCart_1A.Controllers
             //retrieve productId from CartState in cookie
             List<string> checkoutcart = JsonConvert.DeserializeObject<List<string>>(Request.Cookies["CartState"]);
             Orders finalorder = new Orders();
+            Product temp = new Product();
             List<Orders> finalorderskept = new List<Orders>();
             //List<Orders> finalorder = new List<Orders>();
             foreach (string ItemId in checkoutcart)
@@ -54,32 +55,56 @@ namespace WebShoppingCart_1A.Controllers
                 {
                     if (ItemId == product.Id)
                     {
-                        finalorder.imageURL = product.imageURL;
-                        finalorder.productId = product.Id;
-                        finalorder.unitPrice = product.unitPrice;
-                        finalorder.userId = userid;
-                        finalorder.timestamp = DateTime.UtcNow;
-                        finalorderskept.Add(finalorder); 
+                        temp = product;
+                        break;
                     }
+
+                    
                 }
+                finalorder.imageURL = temp.imageURL;
+                finalorder.productId = temp.Id;
+                finalorder.unitPrice = temp.unitPrice;
+                finalorder.userId = userid;
+                finalorder.timestamp = DateTime.UtcNow;
+                finalorderskept.Add(finalorder);
             }
+            //foreach (string ItemId in checkoutcart)
+            //{
+            //    foreach (Product product in products)
+            //    {
+            //        if (ItemId == product.Id)
+            //        {
+            //            finalorder.imageURL = product.imageURL;
+            //            finalorder.productId = product.Id;
+            //            finalorder.unitPrice = product.unitPrice;
+            //            finalorder.userId = userid;
+            //            finalorder.timestamp = DateTime.UtcNow;
+            //        }
+            //    }
+            //    finalorderskept.Add(finalorder);
+            //}
+
+
             result.Value = JsonConvert.SerializeObject(finalorderskept);
             string url = cfg.GetValue<string>("Hosts:OrdersAPI") + "/Home/receiveorders";
             result = dataFetcher.GetData(httpClient, url, result);
+
+
             Response.Cookies.Delete("CartState");
             return RedirectToAction("Index", "Product"); //Change if we want to show a different checkout page
         }
 
-        public IActionResult ViewPastPurchases(Result result)
+        public IActionResult PastPurchases(Result result)
         {
 
             //retrieve all product from OrderAPI
-            string orderAPIurl = cfg.GetValue<string>("Hosts:OrderAPI") + "/Home/getProducts";
+            List<Orders> orderhist = new List<Orders>();
+            string orderAPIurl = cfg.GetValue<string>("Hosts:OrderAPI") + "/Home/OrderHistory";
             Result o_result = new Result();
             o_result = dataFetcher.GetData(httpClient, orderAPIurl, o_result);
-            //orders = JsonConvert.DeserializeObject<List<Product>>(o_result.Value.ToString());// get orders model from XJ
+            orderhist = JsonConvert.DeserializeObject<List<Orders>>(o_result.Value.ToString());
             //FOLLOW UP
-            //ViewData["pastorders"] = orders;
+            ViewData["pastorders"] = orderhist;
             return View();
         }
 

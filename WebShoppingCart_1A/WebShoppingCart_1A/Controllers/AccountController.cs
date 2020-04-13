@@ -69,6 +69,10 @@ namespace WebShoppingCart_1A.Controllers
         }    
         public IActionResult Logout(Result result)
         {
+            if(Request.Cookies["CartState"]==null)
+            {
+                return RedirectToAction("Emptycartlogout");
+            }
             string userid = JsonConvert.DeserializeObject<string>(Request.Cookies["UserId"]);
             List<string> currentcartid = JsonConvert.DeserializeObject<List<string>>(Request.Cookies["CartState"]);
             Cart ctosave = new Cart();
@@ -78,7 +82,6 @@ namespace WebShoppingCart_1A.Controllers
                 ctosave.userId = userid;
                 ctosave.productId = x;
                 CartPasstoAPI.Add(ctosave);
-
             }
             result.Value = JsonConvert.SerializeObject(CartPasstoAPI);
             string url = cfg.GetValue<string>("Hosts:CartAPI") + "/Home/receivecartfromlogout";
@@ -87,6 +90,15 @@ namespace WebShoppingCart_1A.Controllers
             Response.Cookies.Delete("CartState");
             return RedirectToAction("Index", "Product");
            
+        }
+
+        public IActionResult Emptycartlogout(Result result) //this method request CartAPI to empty state upon nothing in cart or successful checkout
+        {
+            int empty = 0;
+            result.Value = JsonConvert.SerializeObject(empty);
+            string url = cfg.GetValue<string>("Hosts:CartAPI") + "/Home/clearcart";
+            result = dataFetcher.GetData(httpClient, url, result);
+            return RedirectToAction("Index", "Product");
         }
     }
 }

@@ -48,6 +48,12 @@ namespace OrdersAPI.Controllers
             return System.Text.Json.JsonSerializer.Serialize(result);
         }
 
+        public string OrderHistory(Result result)
+        {
+            result.Value = dbcontext.Orders_tbl.ToList();
+            return System.Text.Json.JsonSerializer.Serialize(result);
+        }
+
         public IActionResult Index()
         {
             return View();

@@ -32,10 +32,10 @@ namespace CartAPI.Controllers
 
         public string receivecartfromlogout([FromBody]Result result)
         {
-            List<Cart> receivedcart = new List<Cart>();
-            receivedcart = JsonConvert.DeserializeObject<List<Cart>>(result.Value.ToString());
             dbcontext.Database.EnsureDeleted(); //clears old cart records
             dbcontext.Database.EnsureCreated();
+            List<Cart> receivedcart = new List<Cart>();
+            receivedcart = JsonConvert.DeserializeObject<List<Cart>>(result.Value.ToString());
             Cart newcart = new Cart();
             foreach (Cart cart in receivedcart) // this adds new data
             {
@@ -47,6 +47,13 @@ namespace CartAPI.Controllers
             }
 
             
+            return System.Text.Json.JsonSerializer.Serialize(result);
+        }
+        public string clearcart([FromBody]Result result)
+        {
+            int x = JsonConvert.DeserializeObject<int>(result.Value.ToString());
+            if (x == 0)
+            { dbcontext.Database.EnsureDeleted(); } //clears old cart records
             return System.Text.Json.JsonSerializer.Serialize(result);
         }
         public string getProducts(Result result)
