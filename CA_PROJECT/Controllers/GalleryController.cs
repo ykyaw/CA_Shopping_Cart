@@ -60,7 +60,7 @@ namespace APIGateway.Controllers
         {
             string carts = Request.Cookies["cartList"];
             List<Cart> cartList = new List<Cart>();
-            int badges = 0;
+            badges = 0;
             if (carts != null)
             {
                 cartList = System.Text.Json.JsonSerializer.Deserialize<List<Cart>>(carts);
