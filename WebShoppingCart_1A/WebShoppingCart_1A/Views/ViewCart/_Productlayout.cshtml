@@ -3,10 +3,18 @@
 
 @{
     var products = Model;
-}
-@{ var counter = 0;
+    var counter = products.Count();
+    var unique = new Dictionary<Product, int>();
     foreach (var product in products)
-        counter++; }
+    {
+        if (!unique.ContainsKey(product))
+        {
+            var count = products.FindAll(x => x.Equals(product)).Count;
+            unique.Add(product, count);
+        }
+    }
+
+}
 
     <form>
         <a href="https://localhost:44361/Product/Index">Back to Products</a>
@@ -32,19 +40,19 @@
                     <th style="width:auto;padding-right:50px">Unit Price</th>
                 </tr>
             </thead>
-            @foreach (var product in products)
+            @foreach (var r in unique)
             {
                 <tr>
                     <td>
-                        <img style="float: left; padding-right: 50px;" alt="@product.productName" width="200" height="200" src=@product.imageURL>
+                        <img style="float: left; padding-right: 50px;" alt="@r.Key.productName" width="200" height="200" src=@r.Key.imageURL>
                     </td>
-                    <td>@product.productName</td>
+                    <td>@r.Key.productName</td>
                     <td>
-                        <input type="button" name="RemoveCart" value="-" removeid="@product.Id" onclick="RemoveCart(this)" />
-                        <input type="text" value="1" maxlength="4" size="4">
-                        <input type="button" name="AddCart" value="+" itemid="@product.Id" onclick="AddToCart(this)" />
+                        <input type="button" name="RemoveCart" value="-" removeid="@r.Key.Id" onclick="RemoveCart(this)" />
+                        <input type="text" value="@r.Value" maxlength="4" size="4" disabled>
+                        <input type="button" name="AddCart" value="+" itemid="@r.Key.Id" onclick="AddToCart(this)" />
                     </td>
-                    <td>@product.unitPrice.ToString("c")</td>
+                    <td>@((r.Value*r.Key.unitPrice).ToString("c"))</td>
                 </tr>
             }
             <tr>
@@ -53,7 +61,7 @@
                 <td></td>
                 <td>
 
-                    <p align="right"><h3> Total price: $@ViewData["totalprice"]</h3></p>
+                    <p align="right"><h3> Total price: @ViewData["totalprice"]</h3></p>
                 </td>
             </tr>
         </table>

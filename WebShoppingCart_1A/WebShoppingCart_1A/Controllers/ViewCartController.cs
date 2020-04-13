@@ -47,7 +47,7 @@ namespace WebShoppingCart_1A.Controllers
                 }
             }
 
-            ViewData["totalprice"] = currentcart.Sum(item => item.unitPrice);
+            ViewData["totalprice"] = currentcart.Sum(item => item.unitPrice).ToString("c");
             ViewData["CartView"] = currentcart;
             return View();
 
