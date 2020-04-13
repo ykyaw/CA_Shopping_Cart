@@ -21,33 +21,18 @@ namespace GalleryAPI.Middlewares
 
         public async Task Invoke(HttpContext context)
         {
-            string controller = (string)context.Request.RouteValues["controller"];
-            string action = (string)context.Request.RouteValues["action"];
-            //get sessionId from cookie
-            if (controller == "Login" || controller == "Gallery")
+            string token = context.Request.Cookies["token"];
+            //judge the token
+            if (token != null)
             {
-
-            }
-            else
-            {
-                string token = context.Request.Cookies["token"];
-                //judge the token
-                if (token == null)
-                {
-                    context.Response.Redirect("https://" +
-                        context.Request.Host + "/Login/Index");
-                    return;
-                }
                 User user = JsonConvert.DeserializeObject<User>(RSA.RSADecrypt(token).ToString());
-                if (user == null)
+                if (user != null)
                 {
                     context.Response.Redirect("https://" +
-                       context.Request.Host + "/Login/Index");
+                       context.Request.Host + "/Login");
                     return;
                 }
-                //judge the userId is correct
             }
-
 
             await next(context);
         }

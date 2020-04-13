@@ -50,5 +50,11 @@ $('.clear').click(function () {
 });
 
 $("#ShoppingCart").click(function () {
-    window.location.href = "../Cart";
+    if ($("#userName").text().indexOf(",") == -1) {
+        alert("Please login first");
+        window.location.href = "../Login";
+    } else {
+        window.location.href = "../Cart";
+    }
+    
 })

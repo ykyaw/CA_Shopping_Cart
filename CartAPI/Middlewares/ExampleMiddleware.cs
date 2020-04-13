@@ -23,7 +23,18 @@ namespace CartAPI.Middlewares
 
         public async Task Invoke(HttpContext context)
         {
-            string token=context.Request.Cookies["token"];
+            string token = context.Request.Cookies["token"];
+            //judge the token
+            if (token != null)
+            {
+                User user = JsonConvert.DeserializeObject<User>(RSA.RSADecrypt(token).ToString());
+                if (user != null)
+                {
+                    context.Response.Redirect("https://" +
+                       context.Request.Host + "/Login");
+                    return;
+                }
+            }
             await next(context);
         }
     }

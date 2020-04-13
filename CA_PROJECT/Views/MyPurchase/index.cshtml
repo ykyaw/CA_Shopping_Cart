@@ -32,56 +32,63 @@
         </div>
     </nav>
     <div style="width:80%;margin:auto;">
-        <table class="table table-striped" style="margin: 100px auto 30px;">
-            <tbody>
-            <thead>
-                <tr>
-                    <th>Item</th>
-                    <th>Name&Desc</th>
-                    <th>Purchase Detail</th>
-                </tr>
-            </thead>
-            @foreach (PurchaseHistory purchase in purchases)
-            {
-                <tr>
-                    <td style="width: 150px;">
-                        <img style="width: 70%;border-radius: 80px;opacity: 0.8;" src="@purchase.Product.Photo" />
-                        <button class="btn btn-info btn-sm download" style="margin: 5px 0;">Download</button>
-                    </td>
-                    <td style="vertical-align:middle;width:45%;">
-                        <div>@purchase.Product.Name</div>
-                        <div>@purchase.Product.Description</div>
-                    </td>
-                    <td style="vertical-align:middle;width:40%;text-align:start;">
-                        <div class="form-group">
-                            <div>Purchased On:@purchase.PurchaseDate</div>
-                            <div>Quantity:@purchase.Quantity</div>
-                            <div>
-                                @if (purchase.ActivationCodes.Count > 1)
-                                {
-                                    <div class="form-group">
-                                        <select class="form-control">
-                                            @foreach (PurchaseActivationCode code in purchase.ActivationCodes)
-                                            {
-                                                <option>@code.ActivationCode</option>
-                                            }
-                                        </select>
-                                    </div>
-                                }
-                                else
-                                {
-                                    @purchase.ActivationCodes[0].ActivationCode
-                                }
+        @if (purchases.Count == 0)
+        {
+            <div style="margin:100px auto 30px;width:100%;height:500px;text-align:center;background-image:url('../assets/empty.jpg');background-repeat:no-repeat;background-position:center center;">
+            </div>
+        }
+        else
+        {
+            <table class="table table-striped" style="margin: 100px auto 30px;">
+                <tbody>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Name&Desc</th>
+                        <th>Purchase Detail</th>
+                    </tr>
+                </thead>
+                @foreach (PurchaseHistory purchase in purchases)
+                {
+                    <tr>
+                        <td style="width: 150px;">
+                            <img style="width: 70%;border-radius: 80px;opacity: 0.8;" src="@purchase.Product.Photo" />
+                            <button class="btn btn-info btn-sm download" style="margin: 5px 0;" onclick="alert('You have downloaded it')">Download</button>
+                        </td>
+                        <td style="vertical-align:middle;width:45%;">
+                            <div>@purchase.Product.Name</div>
+                            <div>@purchase.Product.Description</div>
+                        </td>
+                        <td style="vertical-align:middle;width:40%;text-align:start;">
+                            <div class="form-group">
+                                <div>Purchased On:@purchase.PurchaseDate</div>
+                                <div>Quantity:@purchase.Quantity</div>
+                                <div>
+                                    @if (purchase.ActivationCodes.Count > 1)
+                                    {
+                                        <div class="form-group">
+                                            <select class="form-control">
+                                                @foreach (PurchaseActivationCode code in purchase.ActivationCodes)
+                                                {
+                                                    <option>@code.ActivationCode</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        @purchase.ActivationCodes[0].ActivationCode
+                                    }
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                </tr>
-            }
+                        </td>
+                    </tr>
+                }
 
-            </tbody>
-        </table>
-        
-    </div>
+                </tbody>
+            </table>
+        }
+        </div>
 
     <link rel="stylesheet" href="~/css/myPurchase.css" />
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

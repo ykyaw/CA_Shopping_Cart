@@ -59,18 +59,7 @@ namespace MyPurchaseAPI.Services
                             Quantity = cart.Quantity
                         };
                         dbcontext.PurchaseHistories.Add(purchaseHistory);
-                    //}
                     purchaseHistories.Add(purchaseHistory);
-                    //for (int i = 0; i < cart.Quantity; i++)
-                    //{
-                    //    PurchaseActivationCode purchaseActivationCode = new PurchaseActivationCode()
-                    //    {
-                    //        Id = Guid.NewGuid().ToString(),
-                    //        PurchaseHistoryId = purchaseHistory.Id,
-                    //        ActivationCode = Guid.NewGuid().ToString()
-                    //    };
-                    //    dbcontext.PurchaseActivationCodes.Add(purchaseActivationCode);
-                    //}
                 }
                 foreach(PurchaseHistory item in purchaseHistories)
                 {

@@ -13,14 +13,27 @@
         </div>
         <ul class="nav navbar-nav navbar-left" style="position:relative;left:180px;">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Hello @(user!=null?user.Username:"")</a>
+                <a class="nav-link" href="#" id="userName">Hello @(user!=null?","+user.Username:"")</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="../MyPurchase">MyPurchase</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="logout">Logout</a>
-            </li>
+            @if (user != null)
+            {
+                <li class="nav-item">
+                    <a class="nav-link" href="../MyPurchase">MyPurchase</a>
+                </li>
+            }
+            @if (user != null)
+            {
+                <li class="nav-item">
+                    <a class="nav-link" id="logout">Logout</a>
+                </li>
+            }
+            else
+            {
+                <li class="nav-item">
+                    <a class="nav-link" href="../Login">Login</a>
+                </li>
+            }
+
         </ul>
         <form class="form-inline" action="/Gallery/Search" method="get">
             <div class="form-group searchbox">
@@ -38,6 +51,13 @@
         </ul>
     </div>
 </nav>
+@if (products.Count == 0)
+{
+<div style="margin:100px auto 30px;width:100%;height:500px;text-align:center;background-image:url('../assets/empty.jpg');background-repeat:no-repeat;background-position:center center;">
+</div>
+}
+else
+{
 <table style="margin:100px auto 30px;border:none">
     @foreach (var product in products)
     {
@@ -45,7 +65,19 @@
             <tr style="display:inline-block;border:none;border-radius: 10px;height:100%">
                 <td style="display:block;border:none;"><img style="width: 70%;border-radius: 80px;opacity: 0.8;" src="@product.Photo" /></td>
                 <td style="display:block;border:none;">@product.Name</td>
-                <td style="display:block;border:none;">@product.Description</td>
+                <td style="display:block;border:none;">
+                    @if (product.Description.Length > 60)
+                    {
+                        <a href="#" class="tooltip-test" data-toggle="tooltip" title="@product.Description" style="color:black">
+                            @(product.Description.Substring(0,60)+"...")
+                        </a>
+                    }
+                    else
+                    {
+                        @product.Description
+                    }
+
+                </td>
                 <td style="display:block;border:none;">SGD @product.UnitPrice</td>
                 <td style="display:block;border:none;"><button class="AddCart btn-primary btn-sm">Add to Cart</button></td>
                 <input type="hidden" class="productId" value="@product.Id" />
@@ -53,6 +85,8 @@
         </tbody>
     }
 </table>
+}
+
 
 <link rel="stylesheet" href="~/css/Gallery.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -63,3 +97,6 @@
 <script src="~/lib/crypto/sha256.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="~/js/Gallery.js"></script>
+<script>
+    $(function () { $("[data-toggle='tooltip']").tooltip(); });
+</script>

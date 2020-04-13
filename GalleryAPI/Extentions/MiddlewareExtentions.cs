@@ -11,7 +11,7 @@ namespace GalleryAPI.Extensions
     {
         public static IApplicationBuilder UseMiddlewareExtensions(this IApplicationBuilder app)
         {
-            app.UseMiddleware<Middleware>();
+            //app.UseMiddleware<Middleware>();
 
             return app;
         }

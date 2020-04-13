@@ -33,7 +33,7 @@ namespace APIGateway.Controllers
             User userDetails = db.retrieveUserByNamePwd(user);
             if (userDetails == null)
             {
-                userDetails.ErrMsg = "Wrong Username or Password entered.";
+                userDetails=new User() { ErrMsg = "Wrong Username or Password entered." };
                 return System.Text.Json.JsonSerializer.Serialize(userDetails);
             }
             user.Password = null;

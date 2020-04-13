@@ -13,7 +13,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Shopping Cart</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="~/css/cart.css" />
@@ -48,40 +47,51 @@
         </div>
     </nav>
     <div id="purchases">
-        <table class="table table-striped" style="margin: 100px auto 30px;">
-            <tbody>
-            <thead>
-                <tr>
-                    <th>Item</th>
-                    <th>Name&Desc</th>
-                    <th>Price(SGD)</th>
-                    <th>Quantity</th>
-                    <th>Subtotal(SGD)</th>
-                </tr>
-            </thead>
-            @foreach (Cart cart in cartList)
-            {
-                <tr class="cartLine">
-                    <td style="width: 150px;">
-                        <img style="width: 70%;border-radius: 80px;opacity: 0.8;" src="@cart.Product.Photo" />
-                    </td>
-                    <td style="vertical-align:middle;">
-                        <div>@cart.Product.Name</div>
-                        <div>@cart.Product.Description</div>
-                    </td>
-                    <td style="vertical-align:middle;" class="price">@cart.Product.UnitPrice</td>
-                    <td style="vertical-align:middle;">
-                        <div class="form-group" style="width:100px;margin:auto;">
-                            <input type="number" value="@cart.Quantity" onchange="changeQty(this)" class="form-control input-sm quantity" style="width:100%">
-                            <input type="hidden" value="@cart.Id" />
-                        </div>
-                    </td>
-                    <td style="vertical-align:middle;" class="subtotal">@(cart.Product.UnitPrice*cart.Quantity)</td>
-                </tr>
-            }
 
-            </tbody>
-        </table>
+        @if (cartList.Count == 0)
+        {
+                <div style="margin:100px auto 30px;width:100%;height:500px;text-align:center;background-image:url('../assets/empty.jpg');background-repeat:no-repeat;background-position:center center;">
+                </div>
+        }
+        else
+        {
+            <table class="table table-striped" style="margin: 100px auto 30px;">
+                <tbody>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Name&Desc</th>
+                        <th>Price(SGD)</th>
+                        <th>Quantity</th>
+                        <th>Subtotal(SGD)</th>
+                    </tr>
+                </thead>
+                @foreach (Cart cart in cartList)
+                {
+                    <tr class="cartLine">
+                        <td style="width: 150px;">
+                            <img style="width: 70%;border-radius: 80px;opacity: 0.8;" src="@cart.Product.Photo" />
+                        </td>
+                        <td style="vertical-align:middle;">
+                            <div>@cart.Product.Name</div>
+                            <div>@cart.Product.Description</div>
+                        </td>
+                        <td style="vertical-align:middle;" class="price">@cart.Product.UnitPrice</td>
+                        <td style="vertical-align:middle;">
+                            <div class="form-group" style="width:100px;margin:auto;">
+                                <input type="number" value="@cart.Quantity" onchange="changeQty(this)" class="form-control input-sm quantity" style="width:100%">
+                                <input type="hidden" value="@cart.Id" />
+                            </div>
+                        </td>
+                        <td style="vertical-align:middle;" class="subtotal">@(cart.Product.UnitPrice*cart.Quantity)</td>
+                    </tr>
+                }
+
+                </tbody>
+            </table>
+        }
+
+
     </div>
 
 

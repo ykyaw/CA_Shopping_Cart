@@ -42,8 +42,6 @@ namespace APIGateway.Middlewares
                         }
                     }
                 }
-                
-                
             }
             else if(controller != "Gallery")
             {

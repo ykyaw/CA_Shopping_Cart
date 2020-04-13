@@ -12,7 +12,7 @@ namespace MyPurchaseAPI.Extensions
     {
         public static IApplicationBuilder UseMiddlewareExtensions(this IApplicationBuilder app)
         {
-            app.UseMiddleware<ExampleMiddleware>();
+            //app.UseMiddleware<ExampleMiddleware>();
 
             return app;
         }

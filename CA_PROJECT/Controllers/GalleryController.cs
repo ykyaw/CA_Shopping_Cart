@@ -112,7 +112,7 @@ namespace APIGateway.Controllers
         public IActionResult Index()
         {
             string url;
-            //int badges = 0;
+            badges = 0;
             Operand operand = new Operand();
             url = cfg.GetValue<string>("Hosts:GalleryAPI") + "/Home/Products";
             operand = dataFetcher.GetData(url, operand, Request);
