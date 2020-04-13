@@ -64,8 +64,8 @@ namespace MyPurchaseAPI
             });
 
             ////create database and table
-            //dbcontext.Database.EnsureDeleted();
-            //dbcontext.Database.EnsureCreated();
+            dbcontext.Database.EnsureDeleted();
+            dbcontext.Database.EnsureCreated();
 
             //new Seeder(dbcontext);
         }

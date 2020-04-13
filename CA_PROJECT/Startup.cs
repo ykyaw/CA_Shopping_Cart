@@ -33,6 +33,7 @@ namespace APIGateway
             //inject the service
             services.AddScoped<HttpClient>();
             services.AddScoped<DataFetcher>();
+            services.AddScoped<DBUser>();
             //inject dbcontext
             services.AddDbContext<UserContext>(opt =>
                opt.UseLazyLoadingProxies()
@@ -59,7 +60,7 @@ namespace APIGateway
             app.UseRouting();
 
             app.UseAuthorization();
-
+            
             //app.UseSession();
             //use extenstions to register middleware
             app.UseMiddlewareExtensions();
